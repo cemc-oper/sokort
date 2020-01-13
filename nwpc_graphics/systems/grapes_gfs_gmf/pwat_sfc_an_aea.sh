@@ -13,7 +13,7 @@
 #   FORECAST_DATA_FORMAT
 #   FORECAST_DATA_CENTER
 #
-# Parameters
+# Parameters should be passed as environment variables.
 #   start_time: YYYYMMDDHH
 #   forecast_hour: FFF
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
@@ -24,12 +24,12 @@ set -e
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-pyenv local anaconda3-2019.10
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#
+#pyenv local anaconda3-2019.10
 source /home/wangdp/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh
 conda activate ncl_stable
 

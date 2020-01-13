@@ -9,6 +9,22 @@ import pytimeparse
 
 
 def run_plot(task: dict, work_dir: str, config: dict):
+    """
+    Run ncl script to draw plot in work_dir.
+
+    Parameters
+    ----------
+    task: dict
+        task config dict
+    work_dir: str
+        work directory
+    config: dict
+        service config
+
+    Returns
+    -------
+    None
+    """
     ncl_lib = config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
     geodiag_root = config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
     geodiag_tools = str(Path(geodiag_root, "tools"))
