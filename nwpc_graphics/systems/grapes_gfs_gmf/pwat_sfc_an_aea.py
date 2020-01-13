@@ -2,17 +2,15 @@
 from pathlib import Path
 import datetime
 import os
-import click
 import shutil
 import subprocess
-import sys
+
+import pytimeparse
 
 
-@click.command()
-@click.option("--work-dir", help="work directory")
-def cli(work_dir):
-    ncl_lib = "/home/wangdp/project/graph/ncllib"
-    geodiag_root = "/home/wangdp/project/graph/GEODIAG"
+def run_plot(task: dict, work_dir: str, config: dict):
+    ncl_lib = config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
+    geodiag_root = config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
     geodiag_tools = str(Path(geodiag_root, "tools"))
 
     graphic_product_lib_root = ncl_lib
@@ -20,13 +18,13 @@ def cli(work_dir):
     forecast_data_format = "grib2"
     forecast_data_center = "ecmwf"
 
-    ncl_dir = "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
-    script_dir = "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
+    ncl_dir = task["ncl_dir"]  # "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
+    script_dir = task["script_dir"]  # "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
 
-    data_path = "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
+    data_path = task["data_path"]  # "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
-    start_datetime = datetime.datetime(2020, 1, 11, 0)
-    forecast_timedelta = datetime.timedelta(hours=3)
+    start_datetime = datetime.datetime.fromisoformat(task["start_date"])  # datetime.datetime(2020, 1, 11, 0)
+    forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(task["forecast_time"]))  # datetime.timedelta(hours=3)
     start_day = start_datetime.strftime("%Y%m%d")  # 20200111
     start_time = start_datetime.strftime("%Y%m%d%H")  # 2020011100
     start_hour = f"{start_datetime.hour:02}"  # 00
@@ -68,7 +66,3 @@ def cli(work_dir):
     stdout, stderr = pipe.communicate()
     pipe.wait()
     pipe.terminate()
-
-
-if __name__ == "__main__":
-    cli()
