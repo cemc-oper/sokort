@@ -93,3 +93,10 @@ def run_plot(task: dict, work_dir: str, config: dict):
     stdout, stderr = pipe.communicate()
     pipe.wait()
     pipe.terminate()
+
+
+def show_plot(task: dict, work_dir: str, config: dict):
+    forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(task["forecast_time"]))  # datetime.timedelta(hours=3)
+    forecast_hour = f"{forecast_timedelta.seconds//3600:03}"
+    from IPython.display import Image
+    return Image(filename=f"./AEA_AN_{forecast_hour}.png")
