@@ -17,7 +17,7 @@ def cli(work_dir):
             "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
             "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
             "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
-            "start_date": datetime.datetime(2020, 1, 11, 0).isoformat(),
+            "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
             "forecast_time": "3h",
         },
         work_dir=work_dir,

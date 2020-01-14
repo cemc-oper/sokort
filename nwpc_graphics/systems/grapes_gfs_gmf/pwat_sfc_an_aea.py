@@ -20,7 +20,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
             "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
             "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
             "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
-            "start_date": datetime.datetime(2020, 1, 11, 0).isoformat(),
+            "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
             "forecast_time": "3h",
         }
     work_dir: str
@@ -50,7 +50,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
 
     data_path = task["data_path"]  # "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
-    start_datetime = datetime.datetime.fromisoformat(task["start_date"])  # datetime.datetime(2020, 1, 11, 0)
+    start_datetime = datetime.datetime.fromisoformat(task["start_datetime"])  # datetime.datetime(2020, 1, 11, 0)
     forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(task["forecast_time"]))  # datetime.timedelta(hours=3)
     start_day = start_datetime.strftime("%Y%m%d")  # 20200111
     start_time = start_datetime.strftime("%Y%m%d%H")  # 2020011100
