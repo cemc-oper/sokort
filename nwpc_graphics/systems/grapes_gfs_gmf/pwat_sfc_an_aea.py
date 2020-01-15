@@ -77,7 +77,11 @@ def run_plot(task: dict, work_dir: str, config: dict):
     shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
     shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
 
-    script_path = Path(Path(__file__).parent, "pwat_sfc_an_aea.sh")
+    component_directory = Path(__file__).parent
+    script_path = "pwat_sfc_an_aea.sh"
+    shutil.copy2(f"{str(Path(component_directory, 'pwat_sfc_an_aea.sh'))}", script_path)
+    shutil.copy2(f"{str(Path(component_directory, 'load_env.sh'))}", "load_env.sh")
+
     envs = os.environ
     envs.update({
             "GEODIAG_ROOT": geodiag_root,
@@ -90,7 +94,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
             "data_path": data_path,
     })
     pipe = subprocess.Popen(
-        [f"{str(script_path)}"],
+        [f"./{str(script_path)}"],
         start_new_session=True,
         env=envs
     )
