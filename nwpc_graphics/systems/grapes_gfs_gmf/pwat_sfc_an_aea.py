@@ -45,6 +45,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
     forecast_time_interval = 12
     forecast_data_format = "grib2"
     forecast_data_center = "ecmwf"
+    ncl_script_name = "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
 
     ncl_lib = config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
     geodiag_root = config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
@@ -75,13 +76,12 @@ def run_plot(task: dict, work_dir: str, config: dict):
         f.write(f"{start_time}{forecast_hour}\n")
         f.write(f"{forecast_time}")
 
-    ncl_script_name = "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
     shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
     shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
 
     component_directory = Path(__file__).parent
-    script_path = "pwat_sfc_an_aea.sh"
-    shutil.copy2(f"{str(Path(component_directory, 'pwat_sfc_an_aea.sh'))}", script_path)
+    script_path = "run_ncl.sh"
+    shutil.copy2(f"{str(Path(component_directory, script_path))}", script_path)
     shutil.copy2(f"{str(Path(component_directory, 'load_env.sh'))}", "load_env.sh")
 
     envs = os.environ
@@ -93,8 +93,9 @@ def run_plot(task: dict, work_dir: str, config: dict):
             "FORECAST_DATA_CENTER": forecast_data_center,
             "start_time": start_time,
             "forecast_hour": forecast_hour,
-            "forecast_time_interval": forecast_time_interval,
+            "forecast_time_interval": f"{forecast_time_interval}",
             "data_path": data_path,
+            "ncl_script_name": ncl_script_name,
     })
     pipe = subprocess.Popen(
         [f"./{str(script_path)}"],

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run GFS_GRAPES_PWAT_SFC_AN_AEA.ncl to draw graph.
+# Run ncl script to draw graph.
 #
 # Prepare:
 #   1. enter a work directory
@@ -18,6 +18,7 @@
 #   forecast_hour: FFF
 #   forecast_time_interval: forecast time interval, required by some graph.
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
+#   ncl_script_name: ncl script file
 #
 
 set -x
@@ -31,7 +32,7 @@ source ./load_env.sh
 #---------------
 # ncl script name
 #-----------------
-file_name=GFS_GRAPES_PWAT_SFC_AN_AEA.ncl
+file_name=${ncl_script_name}  # GFS_GRAPES_PWAT_SFC_AN_AEA.ncl
 echo $file_name
 
 #----------------
