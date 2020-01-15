@@ -55,7 +55,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
     start_day = start_datetime.strftime("%Y%m%d")  # 20200111
     start_time = start_datetime.strftime("%Y%m%d%H")  # 2020011100
     start_hour = f"{start_datetime.hour:02}"  # 00
-    forecast_hour = f"{forecast_timedelta.seconds//3600:03}"  # 003
+    forecast_hour = f"{int(forecast_timedelta.total_seconds())//3600:03}"  # 003
     forecast_datetime = start_datetime + forecast_timedelta
     forecast_time = forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
 
@@ -97,6 +97,6 @@ def run_plot(task: dict, work_dir: str, config: dict):
 
 def show_plot(task: dict, work_dir: str, config: dict):
     forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(task["forecast_time"]))  # datetime.timedelta(hours=3)
-    forecast_hour = f"{forecast_timedelta.seconds//3600:03}"
+    forecast_hour = f"{int(forecast_timedelta.total_seconds())//3600:03}"
     from IPython.display import Image
     return Image(filename=f"./AEA_AN_{forecast_hour}.png")
