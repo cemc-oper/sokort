@@ -109,7 +109,15 @@ def run_plot(task: dict, work_dir: str, config: dict):
 
 
 def show_plot(task: dict, work_dir: str, config: dict):
+    image_list = _get_image_list(task, work_dir, config)
+    from IPython.display import Image, display
+    for an_image in image_list:
+        display(Image(filename=f"./{an_image['path']}"))
+
+
+def _get_image_list(task: dict, work_dir: str, config: dict):
     forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(task["forecast_time"]))  # datetime.timedelta(hours=3)
     forecast_hour = f"{int(forecast_timedelta.total_seconds())//3600:03}"
-    from IPython.display import Image
-    return Image(filename=f"./AEA_AN_{forecast_hour}.png")
+    return [{
+        "path": f"./AEA_AN_{forecast_hour}.png"
+    }]
