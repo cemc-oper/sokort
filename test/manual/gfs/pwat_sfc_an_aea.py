@@ -9,9 +9,6 @@ from nwpc_graphics.systems.grapes_gfs_gmf.pwat_sfc_an_aea import run_plot
 @click.command()
 @click.option("--work-dir", help="work directory")
 def cli(work_dir):
-    forecast_data_format = "grib2"
-    forecast_data_center = "ecmwf"
-
     run_plot(
         task={
             "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
