@@ -16,7 +16,9 @@
 # Parameters should be passed as environment variables.
 #   start_time: YYYYMMDDHH
 #   forecast_hour: FFF
+#   forecast_time_interval: forecast time interval, required by some graph.
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
+#
 
 set -x
 set -e
@@ -38,7 +40,7 @@ echo $file_name
 initial_time=${start_time}
 min_forecast_time=${forecast_hour}
 max_forecast_time=${forecast_hour}
-forecast_time_interval=12
+forecast_time_interval=${forecast_time_interval}
 graphic_output_home=./  # path of pic
 
 #------------------

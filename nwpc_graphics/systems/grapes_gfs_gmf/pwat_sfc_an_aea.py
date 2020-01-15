@@ -41,14 +41,16 @@ def run_plot(task: dict, work_dir: str, config: dict):
     -------
     None
     """
+    # magic options
+    forecast_time_interval = 12
+    forecast_data_format = "grib2"
+    forecast_data_center = "ecmwf"
+
     ncl_lib = config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
     geodiag_root = config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
     geodiag_tools = str(Path(geodiag_root, "tools"))
 
     graphic_product_lib_root = ncl_lib
-
-    forecast_data_format = "grib2"
-    forecast_data_center = "ecmwf"
 
     ncl_dir = task["ncl_dir"]  # "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
     script_dir = task["script_dir"]  # "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
@@ -91,6 +93,7 @@ def run_plot(task: dict, work_dir: str, config: dict):
             "FORECAST_DATA_CENTER": forecast_data_center,
             "start_time": start_time,
             "forecast_hour": forecast_hour,
+            "forecast_time_interval": forecast_time_interval,
             "data_path": data_path,
     })
     pipe = subprocess.Popen(
