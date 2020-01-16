@@ -40,16 +40,16 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
     start_time_4dvar = start_datetime_4dvar.strftime("%Y%m%d%H")
 
     task = {
-        "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
-        "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
+        "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script/",
+        "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script/",
         "data_path": f"/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/{start_time_4dvar}/ORIG/",
         "start_datetime": start_datetime.isoformat(),
         "forecast_time": forecast_time,
     }
     work_dir = tempfile.mkdtemp()
     config = {
-        "ncl_lib": "/home/wangdp/project/graph/ncllib",
-        "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
+        "ncl_lib": "/home/wangdp/project/graph/ncllib/",
+        "geodiag_root": "/home/wangdp/project/graph/GEODIAG/",
     }
 
     return {
