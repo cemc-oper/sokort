@@ -3,13 +3,13 @@ import datetime
 
 import click
 
-from nwpc_graphics.systems.grapes_gfs_gmf.pwat_sfc_an_aea import run_plot
+from nwpc_graphics.systems.grapes_gfs_gmf.plotter import Plotter
 
 
 @click.command()
 @click.option("--work-dir", help="work directory")
 def cli(work_dir):
-    run_plot(
+    Plotter(
         task={
             "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
             "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
@@ -22,7 +22,7 @@ def cli(work_dir):
             "ncl_lib": "/home/wangdp/project/graph/ncllib",
             "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
         }
-    )
+    ).run_plot()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# An example script to load ncl environment.
+# In this example, we use anaconda to install NCL.
+#
 
 #---------------
 # SECTION: activate anaconda environment for NCL.

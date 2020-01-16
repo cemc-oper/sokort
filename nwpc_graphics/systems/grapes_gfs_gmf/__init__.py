@@ -2,11 +2,11 @@
 import datetime
 import tempfile
 
-from nwpc_graphics.systems.grapes_gfs_gmf import pwat_sfc_an_aea
+from nwpc_graphics.systems.grapes_gfs_gmf import plotter
 
 
 plot_mapper = {
-    "pwat_sfc_an_aea": pwat_sfc_an_aea
+    "pwat_sfc_an_aea": plotter
 }
 
 
@@ -16,8 +16,8 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    run_plot = plot_mapper[plot_type].run_plot
-    run_plot(**params)
+    p = plot_mapper[plot_type].Plotter
+    p(**params).run_plot()
 
 
 def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
@@ -26,11 +26,10 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    run_plot = plot_mapper[plot_type].run_plot
-    run_plot(**params)
+    p = plot_mapper[plot_type].Plotter(**params)
+    p.run_plot()
 
-    graph_show_plot = plot_mapper[plot_type].show_plot
-    return graph_show_plot(**params)
+    return p.show_plot()
 
 
 def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time: str):
