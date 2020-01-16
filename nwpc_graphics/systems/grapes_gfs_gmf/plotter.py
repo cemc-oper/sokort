@@ -13,7 +13,7 @@ import subprocess
 import pytimeparse
 
 
-class Plotter(object):
+class BasePlotter(object):
     def __init__(self, task: dict, work_dir: str, config: dict):
         """
         Parameters
@@ -39,6 +39,7 @@ class Plotter(object):
         self.task = task
         self.work_dir = work_dir
         self.config = config
+        self.ncl_script_name = None
 
     def run_plot(self):
         """
@@ -48,7 +49,9 @@ class Plotter(object):
         forecast_time_interval = 12
         forecast_data_format = "grib2"
         forecast_data_center = "ecmwf"
-        ncl_script_name = "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
+        if self.ncl_script_name is None:
+            raise ValueError("ncl_script_name should be set.")
+        ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
 
         ncl_lib = self.config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
         geodiag_root = self.config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
@@ -117,8 +120,4 @@ class Plotter(object):
             display(Image(filename=f"./{an_image['path']}"))
 
     def _get_image_list(self):
-        forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(self.task["forecast_time"]))  # datetime.timedelta(hours=3)
-        forecast_hour = f"{int(forecast_timedelta.total_seconds())//3600:03}"
-        return [{
-            "path": f"./AEA_AN_{forecast_hour}.png"
-        }]
+        raise NotImplemented()

@@ -3,7 +3,7 @@ import datetime
 
 import click
 
-from nwpc_graphics.systems.grapes_gfs_gmf.plotter import Plotter
+from nwpc_graphics.systems.grapes_gfs_gmf.graphics.pwat_sfc_an_aea import Plotter
 
 
 @click.command()

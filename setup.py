@@ -24,5 +24,6 @@ setup(
         'pyyaml',
         "pytimeparse",
         "IPython",
+        "loguru",
     ],
 )

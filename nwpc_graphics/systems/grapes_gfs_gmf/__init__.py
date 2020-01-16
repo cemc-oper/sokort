@@ -1,32 +1,34 @@
 # coding: utf-8
 import datetime
 import tempfile
+import importlib
 
 from nwpc_graphics.systems.grapes_gfs_gmf import plotter
+from nwpc_graphics.logging import get_logger
 
 
-plot_mapper = {
-    "pwat_sfc_an_aea": plotter
-}
+logger = get_logger()
 
 
 def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
-    if plot_type not in plot_mapper:
+    plot_module = _get_plot_module(plot_type)
+    if plot_type is None:
         raise Exception("plot type is not supported")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    p = plot_mapper[plot_type].Plotter
+    p = plot_module.Plotter
     p(**params).run_plot()
 
 
 def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
-    if plot_type not in plot_mapper:
+    plot_module = _get_plot_module(plot_type)
+    if plot_type is None:
         raise Exception("plot type is not supported")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    p = plot_mapper[plot_type].Plotter(**params)
+    p = plot_module.Plotter(**params)
     p.run_plot()
 
     return p.show_plot()
@@ -55,3 +57,12 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
         "work_dir": work_dir,
         "config": config,
     }
+
+
+def _get_plot_module(plot_type: str):
+    try:
+        plot_module = importlib.import_module(f"nwpc_graphics.systems.grapes_gfs_gmf.graphics.{plot_type}")
+    except ImportError:
+        logger.error(f'plot type is not found: {plot_type}')
+        return None
+    return plot_module
