@@ -1,4 +1,7 @@
 # coding: utf-8
+#   整层可降水量
+#   http://nwpc.nmc.cn/list.jhtml?class_id=03130328
+
 import datetime
 
 import pytimeparse

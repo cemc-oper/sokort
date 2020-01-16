@@ -1,4 +1,7 @@
 # coding: utf-8
+#   200hPa高度
+#   http://nwpc.nmc.cn/list.jhtml?class_id=031301
+
 import datetime
 
 import pytimeparse
