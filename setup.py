@@ -19,25 +19,10 @@ setup(
 
     zip_safe=False,
 
-    # install_requires=[
-    #     'click',
-    #     'pyyaml',
-    #     'pika',
-    #     'requests',
-    #     'sqlalchemy',
-    #     'loguru',
-    # ],
-    #
-    # extras_require={
-    #     'test': [],
-    #     'gidat': [
-    #         'cx_Oracle'
-    #     ],
-    #     'earth': [
-    #         'celery',
-    #         'netCDF4',
-    #         'elasticsearch==6.3.1',
-    #         'redis'
-    #     ]
-    # }
+    install_requires=[
+        'click',
+        'pyyaml',
+        "pytimeparse",
+        "IPython",
+    ],
 )
