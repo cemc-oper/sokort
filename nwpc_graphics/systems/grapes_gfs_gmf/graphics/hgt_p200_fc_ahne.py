@@ -1,6 +1,10 @@
 # coding: utf-8
-#   200hPa高度
-#   http://nwpc.nmc.cn/list.jhtml?class_id=031301
+"""
+200hPa高度 + 200hPa风场
+
+图片样例请访问NWPC/CMA官网：
+    http://nwpc.nmc.cn/list.jhtml?class_id=031301
+"""
 
 import datetime
 

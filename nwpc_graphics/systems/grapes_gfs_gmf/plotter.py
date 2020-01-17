@@ -1,9 +1,5 @@
 # coding: utf-8
-#
-# Total Precipitable Water Vapor (mm)
-#   整层可降水量
-#   http://nwpc.nmc.cn/list.jhtml?class_id=03130328
-#
+
 from pathlib import Path
 import datetime
 import os

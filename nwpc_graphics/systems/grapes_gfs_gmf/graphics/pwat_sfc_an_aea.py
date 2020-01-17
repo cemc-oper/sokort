@@ -1,6 +1,10 @@
 # coding: utf-8
-#   整层可降水量
-#   http://nwpc.nmc.cn/list.jhtml?class_id=03130328
+"""
+整层可降水量
+
+图片样例请访问NWPC/CMA官网：
+    http://nwpc.nmc.cn/list.jhtml?class_id=03130328
+"""
 
 import datetime
 
