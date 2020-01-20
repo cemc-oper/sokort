@@ -11,7 +11,8 @@ import pytimeparse
 
 class BasePlotter(object):
     def __init__(self, task: dict, work_dir: str, config: dict):
-        """
+        """Base class for plotter.
+
         Parameters
         ----------
         task: dict
@@ -38,8 +39,7 @@ class BasePlotter(object):
         self.ncl_script_name = None
 
     def run_plot(self):
-        """
-        Run ncl script to draw plot in work_dir.
+        """Run ncl script to draw plot in work_dir.
         """
         # magic options
         forecast_time_interval = 12
@@ -110,10 +110,21 @@ class BasePlotter(object):
         pipe.terminate()
 
     def show_plot(self):
+        """Show images in IPython.
+        """
         image_list = self._get_image_list()
         from IPython.display import Image, display
         for an_image in image_list:
             display(Image(filename=f"./{an_image['path']}"))
 
     def _get_image_list(self):
+        """Get image list.
+
+        Should implemented by sub-class.
+
+        Returns
+        -------
+        image_list: list
+            Images list.
+        """
         raise NotImplemented()

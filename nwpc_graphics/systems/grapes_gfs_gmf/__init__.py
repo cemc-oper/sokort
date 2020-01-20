@@ -11,6 +11,24 @@ logger = get_logger()
 
 
 def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+    """Draw images and save them in work directory.
+
+    Parameters
+    ----------
+    plot_type : str
+        Plot type according to systems.
+    start_date: str
+        Start date, YYYYMMDD
+    start_time: str
+        Start hour, HH
+    forecast_time: str
+        Forecast time duration, such as 3h.
+
+    Raises
+    -------
+    ValueError
+        plot_type is not found
+    """
     plot_module = _get_plot_module(plot_type)
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
@@ -22,6 +40,24 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
 
 def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+    """Draw images and show them in Jupyter Notebook.
+
+    Parameters
+    ----------
+    plot_type : str
+        Plot type according to systems.
+    start_date: str
+        Start date, YYYYMMDD
+    start_time: str
+        Start hour, HH
+    forecast_time: str
+        Forecast time duration, such as 3h.
+
+    Raises
+    -------
+    ValueError
+        plot_type is not found
+    """
     plot_module = _get_plot_module(plot_type)
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
@@ -35,6 +71,24 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
 
 def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+    """Get params for run_plot method of BasePlotter classes.
+
+    Parameters
+    ----------
+    plot_type : str
+        Plot type according to systems.
+    start_date: str
+        Start date, YYYYMMDD
+    start_time: str
+        Start hour, HH
+    forecast_time: str
+        Forecast time duration, such as 3h.
+
+    Returns
+    -------
+    dict
+        params directory for BasePlotter.run_plot method.
+    """
     start_datetime = datetime.datetime.strptime(f"{start_date}{start_time}", "%Y%m%d%H")
     start_datetime_4dvar = start_datetime - datetime.timedelta(hours=3)
     start_time_4dvar = start_datetime_4dvar.strftime("%Y%m%d%H")
@@ -60,6 +114,18 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
 
 
 def _get_plot_module(plot_type: str):
+    """Get plot module
+
+    Parameters
+    ----------
+    plot_type : str
+        Plot type according to systems.
+
+    Returns
+    -------
+    module or None
+        plotter module, return None if not found.
+    """
     try:
         plot_module = importlib.import_module(f"nwpc_graphics.systems.grapes_gfs_gmf.graphics.{plot_type}")
     except ImportError:
