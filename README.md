@@ -21,6 +21,10 @@ from nwpc_graphics.systems.grapes_gfs_gmf import show_plot
 show_plot("pwat_sfc_an_aea", "20200113", "00", "24h")
 ```
 
+在Jupyter Notebook中运行效果如下图所示
+
+![](./doc/nwpc-graphics-grapes-gfs-pwat-sfc-an-aea.png)
+
 ## LICENSE
 
 Copyright 2020, perillaroc, 数值预报中心系统业务室系统运行科。
