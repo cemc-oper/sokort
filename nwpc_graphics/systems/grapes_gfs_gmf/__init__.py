@@ -13,7 +13,7 @@ logger = get_logger()
 def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
     plot_module = _get_plot_module(plot_type)
     if plot_type is None:
-        raise Exception("plot type is not supported")
+        raise ValueError(f"plot type is not supported:{plot_type}")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
@@ -24,7 +24,7 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
     plot_module = _get_plot_module(plot_type)
     if plot_type is None:
-        raise Exception("plot type is not supported")
+        raise ValueError(f"plot type is not supported:{plot_type}")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
