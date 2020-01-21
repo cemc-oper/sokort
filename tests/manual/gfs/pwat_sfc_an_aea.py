@@ -1,4 +1,7 @@
 # coding: utf-8
+"""
+示例命令行程序，展示如何使用nwp_graphics包绘制图像
+"""
 import datetime
 
 import click
