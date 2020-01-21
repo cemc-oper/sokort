@@ -1,5 +1,6 @@
 # coding: utf-8
-"""GRAPES GFS 东亚 K指数
+"""
+GRAPES GFS 东亚 K指数
 
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=03130310
@@ -13,6 +14,10 @@ from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 
 
 class Plotter(BasePlotter):
+    plot_types = [
+        "k_sfc_an_aea"
+    ]
+
     def __init__(self, task: dict, work_dir: str, config: dict):
         BasePlotter.__init__(self, task, work_dir, config)
 

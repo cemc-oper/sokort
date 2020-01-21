@@ -14,6 +14,10 @@ from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 
 
 class Plotter(BasePlotter):
+    plot_types = [
+        "pwat_sfc_an_aea"
+    ]
+
     def __init__(self, task: dict, work_dir: str, config: dict):
         BasePlotter.__init__(self, task, work_dir, config)
 
