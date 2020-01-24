@@ -39,13 +39,13 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
     ValueError
         plot_type is not found
     """
-    plot_module = _get_plot_module(plot_type)
+    plot_module = _get_plotter_class(plot_type)
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    p = plot_module.Plotter
+    p = plot_module
     p(**params).run_plot()
 
 
@@ -68,13 +68,13 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
     ValueError
         plot_type is not found
     """
-    plot_module = _get_plot_module(plot_type)
+    plot_module = _get_plotter_class(plot_type)
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
 
     params = _get_params(plot_type, start_date, start_time, forecast_time)
 
-    p = plot_module.Plotter(**params)
+    p = plot_module(**params)
     p.run_plot()
 
     return p.show_plot()
@@ -123,7 +123,7 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
     }
 
 
-def _get_plot_module(plot_type: str):
+def _get_plotter_class(plot_type: str):
     """Get plot module
 
     Parameters
