@@ -2,12 +2,22 @@
 import datetime
 import tempfile
 import importlib
+import pathlib
 
 from nwpc_graphics.systems.grapes_gfs_gmf import plotter
 from nwpc_graphics.logging import get_logger
+from nwpc_graphics.systems.grapes_gfs_gmf.util import load_plotters_from_paths
 
 
 logger = get_logger()
+
+
+def _load_plotters():
+    plotters = load_plotters_from_paths([pathlib.Path(pathlib.Path(__file__).parent, "graphics")])
+    return plotters
+
+
+plotters = _load_plotters()
 
 
 def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
@@ -126,9 +136,7 @@ def _get_plot_module(plot_type: str):
     module or None
         plotter module, return None if not found.
     """
-    try:
-        plot_module = importlib.import_module(f"nwpc_graphics.systems.grapes_gfs_gmf.graphics.{plot_type}")
-    except ImportError:
-        logger.error(f'plot type is not found: {plot_type}')
+    if plot_type in plotters:
+        return plotters[plot_type]
+    else:
         return None
-    return plot_module

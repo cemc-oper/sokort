@@ -7,10 +7,6 @@ import inspect
 from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 
 
-def load_plotters(paths: list):
-    pass
-
-
 def load_plotters_from_paths(paths: list):
     plotters = dict()
     for path in paths:
