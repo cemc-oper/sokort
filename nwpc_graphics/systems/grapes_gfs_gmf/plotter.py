@@ -10,6 +10,8 @@ import pytimeparse
 
 
 class BasePlotter(object):
+    plot_types = None
+
     def __init__(self, task: dict, work_dir: str, config: dict):
         """Base class for plotter.
 

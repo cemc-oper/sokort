@@ -40,6 +40,8 @@ def load_plotters_from_paths(paths: list):
                                 and issubclass(an_object, BasePlotter)
                                 and an_object != BasePlotter
                         ):
+                            if an_object.plot_types is None:
+                                continue
                             for a_plot_type in an_object.plot_types:
                                 plotters[a_plot_type] = an_object
     return plotters
