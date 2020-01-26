@@ -3,7 +3,7 @@
 850hPa 假相当位温
 
 图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130309
+    http://nwpc.nmc.cn/list.jhtml?class_id=0313031802
 """
 
 from nwpc_graphics.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
