@@ -2,9 +2,14 @@
 """
 2m 温度
 
+003 时效开始
+
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=03130329
 """
+import datetime
+
+import pytimeparse
 
 from nwpc_graphics.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
@@ -18,3 +23,12 @@ class Plotter(AnAeaPlotter):
         AnAeaPlotter.__init__(self, task, work_dir, config)
 
         self.ncl_script_name = "GFS_GRAPES_T2M_SFC_AN_AEA.ncl"
+
+        if not self._check_forecast_time():
+            raise ValueError(f"forecast time must greater than 0h.")
+
+    def _check_forecast_time(self) -> bool:
+        forecast_timedelta = datetime.timedelta(
+            seconds=pytimeparse.parse(self.task["forecast_time"]))
+        forecast_hour = int(forecast_timedelta.total_seconds()) // 3600
+        return not forecast_hour == 0
