@@ -11,7 +11,7 @@ from nwpc_graphics.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 class Plotter(AnAeaPlotter):
     plot_types = [
-        "cape_an_aea"
+        "cape_sfc_an_aea"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):
