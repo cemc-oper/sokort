@@ -1,7 +1,6 @@
 # coding: utf-8
 import datetime
 import tempfile
-import importlib
 import pathlib
 
 from nwpc_graphics.systems.grapes_gfs_gmf import plotter

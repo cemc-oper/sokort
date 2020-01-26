@@ -40,13 +40,22 @@ class BasePlotter(object):
         self.config = config
         self.ncl_script_name = None
 
-    def run_plot(self):
-        """Run ncl script to draw plot in work_dir.
-        """
         # magic options
-        forecast_time_interval = 12
-        forecast_data_format = "grib2"
-        forecast_data_center = "ecmwf"
+        self.forecast_time_interval = 12
+        self.forecast_data_format = "grib2"
+        self.forecast_data_center = "ecmwf"
+
+        # time options for task.
+        self.start_datetime = datetime.datetime.fromisoformat(
+            self.task["start_datetime"])  # datetime.datetime(2020, 1, 11, 0)
+        self.forecast_timedelta = datetime.timedelta(
+            seconds=pytimeparse.parse(self.task["forecast_time"]))  # datetime.timedelta(hours=3)
+        self.forecast_datetime = self.start_datetime + self.forecast_timedelta
+
+    def run_plot(self):
+        """
+        Run ncl script to draw plot in work_dir.
+        """
         if self.ncl_script_name is None:
             raise ValueError("ncl_script_name should be set.")
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
@@ -62,14 +71,11 @@ class BasePlotter(object):
 
         data_path = self.task["data_path"]  # "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
-        start_datetime = datetime.datetime.fromisoformat(self.task["start_datetime"])  # datetime.datetime(2020, 1, 11, 0)
-        forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(self.task["forecast_time"]))  # datetime.timedelta(hours=3)
-        start_day = start_datetime.strftime("%Y%m%d")  # 20200111
-        start_time = start_datetime.strftime("%Y%m%d%H")  # 2020011100
-        start_hour = f"{start_datetime.hour:02}"  # 00
-        forecast_hour = f"{int(forecast_timedelta.total_seconds())//3600:03}"  # 003
-        forecast_datetime = start_datetime + forecast_timedelta
-        forecast_time = forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+        start_day = self.start_datetime.strftime("%Y%m%d")  # 20200111
+        start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
+        start_hour = f"{self.start_datetime.hour:02}"  # 00
+        forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
+        forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
 
         # create environment
         Path(self.work_dir).mkdir(parents=True, exist_ok=True)
@@ -93,11 +99,11 @@ class BasePlotter(object):
                 "GEODIAG_ROOT": geodiag_root,
                 "GEODIAG_TOOLS": geodiag_tools,
                 "GRAPHIC_PRODUCT_LIB_ROOT": graphic_product_lib_root,
-                "FORECAST_DATA_FORMAT": forecast_data_format,
-                "FORECAST_DATA_CENTER": forecast_data_center,
+                "FORECAST_DATA_FORMAT": self.forecast_data_format,
+                "FORECAST_DATA_CENTER": self.forecast_data_center,
                 "start_time": start_time,
                 "forecast_hour": forecast_hour,
-                "forecast_time_interval": f"{forecast_time_interval}",
+                "forecast_time_interval": f"{self.forecast_time_interval}",
                 "data_path": data_path,
                 "ncl_script_name": ncl_script_name,
         })

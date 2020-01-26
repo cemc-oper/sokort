@@ -7,10 +7,6 @@
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=03130329
 """
-import datetime
-
-import pytimeparse
-
 from nwpc_graphics.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
@@ -28,7 +24,5 @@ class Plotter(AnAeaPlotter):
             raise ValueError(f"forecast time must greater than 0h.")
 
     def _check_forecast_time(self) -> bool:
-        forecast_timedelta = datetime.timedelta(
-            seconds=pytimeparse.parse(self.task["forecast_time"]))
-        forecast_hour = int(forecast_timedelta.total_seconds()) // 3600
+        forecast_hour = int(self.forecast_timedelta.total_seconds()) // 3600
         return not forecast_hour == 0
