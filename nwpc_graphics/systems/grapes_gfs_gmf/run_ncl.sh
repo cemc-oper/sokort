@@ -39,8 +39,8 @@ echo $file_name
 # params
 #------------------
 initial_time=${start_time}
-min_forecast_time=${forecast_hour}
-max_forecast_time=${forecast_hour}
+min_forecast_time=${min_forecast_time}
+max_forecast_time=${max_forecast_time}
 forecast_time_interval=${forecast_time_interval}
 graphic_output_home=./  # path of pic
 

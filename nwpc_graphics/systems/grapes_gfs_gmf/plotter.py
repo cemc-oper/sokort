@@ -52,6 +52,14 @@ class BasePlotter(object):
             seconds=pytimeparse.parse(self.task["forecast_time"]))  # datetime.timedelta(hours=3)
         self.forecast_datetime = self.start_datetime + self.forecast_timedelta
 
+        # start_day = self.start_datetime.strftime("%Y%m%d")  # 20200111
+        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
+        # start_hour = f"{self.start_datetime.hour:02}"  # 00
+        self.forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
+        self.min_forecast_time = self.forecast_hour
+        self.max_forecast_time = self.forecast_hour
+        self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+
     def run_plot(self):
         """
         Run ncl script to draw plot in work_dir.
@@ -71,20 +79,14 @@ class BasePlotter(object):
 
         data_path = self.task["data_path"]  # "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
-        start_day = self.start_datetime.strftime("%Y%m%d")  # 20200111
-        start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
-        start_hour = f"{self.start_datetime.hour:02}"  # 00
-        forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
-        forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
-
         # create environment
         Path(self.work_dir).mkdir(parents=True, exist_ok=True)
 
         os.chdir(self.work_dir)
 
         with open("grapes_meso_date", "w") as f:
-            f.write(f"{start_time}{forecast_hour}\n")
-            f.write(f"{forecast_time}")
+            f.write(f"{self.start_time}{self.forecast_hour}\n")
+            f.write(f"{self.forecast_time}")
 
         shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
         shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
@@ -101,8 +103,9 @@ class BasePlotter(object):
                 "GRAPHIC_PRODUCT_LIB_ROOT": graphic_product_lib_root,
                 "FORECAST_DATA_FORMAT": self.forecast_data_format,
                 "FORECAST_DATA_CENTER": self.forecast_data_center,
-                "start_time": start_time,
-                "forecast_hour": forecast_hour,
+                "start_time": self.start_time,
+                "min_forecast_time": self.min_forecast_time,
+                "max_forecast_time": self.max_forecast_time,
                 "forecast_time_interval": f"{self.forecast_time_interval}",
                 "data_path": data_path,
                 "ncl_script_name": ncl_script_name,
