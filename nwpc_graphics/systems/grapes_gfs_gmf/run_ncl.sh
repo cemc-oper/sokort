@@ -15,7 +15,8 @@
 #
 # Parameters should be passed as environment variables.
 #   start_time: YYYYMMDDHH
-#   forecast_hour: FFF
+#   min_forecast_time: FFF
+#   max_forecast_time: FFF
 #   forecast_time_interval: forecast time interval, required by some graph.
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
 #   ncl_script_name: ncl script file
