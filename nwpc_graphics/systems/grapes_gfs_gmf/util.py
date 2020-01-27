@@ -1,9 +1,8 @@
 # coding: utf-8
 import pathlib
-import importlib.util
-import sys
 import inspect
 
+from nwpc_graphics._util import _load_module
 from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 
 
@@ -45,15 +44,6 @@ def load_plotters_from_paths(paths: list):
                             for a_plot_type in an_object.plot_types:
                                 plotters[a_plot_type] = an_object
     return plotters
-
-
-def _load_module(file_path: pathlib.Path):
-    module_name = file_path.stem
-    spec = importlib.util.spec_from_file_location(module_name, file_path)
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[module_name] = module
-    spec.loader.exec_module(module)
-    return module
 
 
 if __name__ == "__main__":
