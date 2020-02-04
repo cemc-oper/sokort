@@ -7,6 +7,18 @@ from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 
 
 def load_plotters_from_paths(paths: list):
+    """Load plotter classes from path list.
+
+    Parameters
+    ----------
+    paths: list(pathlib.Path or str)
+        path list to load plotter classes from.
+
+    Returns
+    -------
+    dict
+        A dict of BasePlotters.
+    """
     plotters = dict()
     for path in paths:
         path_object = pathlib.Path(path)

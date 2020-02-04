@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run ncl script to draw graph.
+# Run ncl script to draw graph for GRAEPS GFS GMF.
 #
 # Prepare:
 #   1. enter a work directory

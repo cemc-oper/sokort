@@ -10,11 +10,13 @@ import pytimeparse
 
 
 class BasePlotter(object):
+    """
+    Base class for plotter.
+    """
     plot_types = None
 
     def __init__(self, task: dict, work_dir: str, config: dict):
-        """Base class for plotter.
-
+        """
         Parameters
         ----------
         task: dict
