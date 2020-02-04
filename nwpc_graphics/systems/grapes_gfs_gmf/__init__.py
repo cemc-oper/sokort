@@ -4,7 +4,7 @@ import tempfile
 import pathlib
 
 from nwpc_graphics.systems.grapes_gfs_gmf import plotter
-from nwpc_graphics.logging import get_logger
+from nwpc_graphics._logging import get_logger
 from nwpc_graphics.systems.grapes_gfs_gmf.util import load_plotters_from_paths
 
 
