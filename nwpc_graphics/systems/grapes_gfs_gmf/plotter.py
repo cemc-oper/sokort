@@ -8,6 +8,8 @@ import subprocess
 
 import pytimeparse
 
+from nwpc_graphics._util import _get_load_env_script
+
 
 class BasePlotter(object):
     """
@@ -47,7 +49,7 @@ class BasePlotter(object):
         self.forecast_data_format = "grib2"
         self.forecast_data_center = "ecmwf"
         self.run_script_name = "run_ncl.sh"
-        self.load_env_script_name = "load_env.sh"
+        self.load_env_script_path = _get_load_env_script()
 
         # time options for task.
 
@@ -105,9 +107,8 @@ class BasePlotter(object):
 
         component_directory = Path(__file__).parent
         run_ncl_script_path = Path(component_directory, self.run_script_name)
-        load_env_script_path = Path(component_directory, self.load_env_script_name)
         shutil.copy2(f"{str(run_ncl_script_path)}", self.run_script_name)
-        shutil.copy2(f"{str(load_env_script_path)}", self.load_env_script_name)
+        shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
 
     def _generate_environ(self):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
