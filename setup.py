@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name='nwpc-graphics',
 
-    version='0.0.1',
+    version='0.1.0',
 
     description='NWPC Graphics project.',
     long_description=__doc__,
