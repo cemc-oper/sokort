@@ -4,6 +4,9 @@ import os
 import yaml
 
 
+CONFIG_ENVIRONMENT_VARIABLE_NAME = "NWPC_GRAPHICS_CONFIG"
+
+
 class Config(dict):
     def __init__(self, config_file_path: Path = None, **kwargs):
         super(Config).__init__(**kwargs)
@@ -36,7 +39,7 @@ class Config(dict):
 
 
 def load_config_from_env():
-    if "NWPC_GRAPHICS_CONFIG" in os.environ:
-        config = Config.load(os.environ["NWPC_GRAPHICS_CONFIG"])
+    if CONFIG_ENVIRONMENT_VARIABLE_NAME in os.environ:
+        config = Config.load(os.environ[CONFIG_ENVIRONMENT_VARIABLE_NAME])
         return config
     return None
