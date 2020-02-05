@@ -54,7 +54,7 @@ rename hgra gra ./*.grb2
 #------------------
 # run ncl script
 #------------------
-ncl ./grapes_meso_3km_reg_radar.ncl
+ncl ./${ncl_script_name}
 
 # convert image
 ./ps2gif_NoRotation_NoPlot.scr
