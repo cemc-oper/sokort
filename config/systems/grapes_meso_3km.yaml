@@ -1,0 +1,5 @@
+system:
+  script_dir: "/some/path/NWP_GRAPES_MESO_3KM_POST/tograph/script/"
+
+data:
+  data_path: "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_MESO_3KM/Prod-grib/{start_time}/ORIG/"
