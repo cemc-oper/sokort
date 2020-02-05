@@ -5,6 +5,7 @@ import pathlib
 from nwpc_graphics.systems.grapes_gfs_gmf import plotter
 from nwpc_graphics._logging import get_logger
 from nwpc_graphics.systems.grapes_gfs_gmf.util import load_plotters_from_paths
+from nwpc_graphics import get_config
 
 
 logger = get_logger()
@@ -97,21 +98,26 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
     dict
         params directory for BasePlotter.run_plot method.
     """
+    graphics_config = get_config()
+
     start_datetime = datetime.datetime.strptime(f"{start_date}{start_time}", "%Y%m%d%H")
     start_datetime_4dvar = start_datetime - datetime.timedelta(hours=3)
     start_time_4dvar = start_datetime_4dvar.strftime("%Y%m%d%H")
 
+    system_config = graphics_config["systems"]["grapes_gfs_gmf"]
     task = {
-        "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script/",
-        "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script/",
-        "data_path": f"/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/{start_time_4dvar}/ORIG/",
+        "ncl_dir": system_config["system"]["ncl_dir"],
+        "script_dir": system_config["system"]["script_dir"],
+        "data_path": system_config["data"]["data_path"].format(
+            start_time_4dvar=start_time_4dvar
+        ),
         "start_datetime": start_datetime.isoformat(),
         "forecast_time": forecast_time,
     }
     work_dir = tempfile.mkdtemp()
     config = {
-        "ncl_lib": "/home/wangdp/project/graph/ncllib/",
-        "geodiag_root": "/home/wangdp/project/graph/GEODIAG/",
+        "ncl_lib": graphics_config["ncl"]["ncl_lib"],
+        "geodiag_root": graphics_config["ncl"]["geodiag_root"],
     }
 
     return {
