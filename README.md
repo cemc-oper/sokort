@@ -10,9 +10,17 @@
 
 本项目针对气象局的内网环境开发，需要部署在挂载二级存储的服务器上。
 
+## 配置
+
+本项目使用配置文件设置业务系统绘图脚本库的位置，参看`config`文件夹。
+
+在运行前使用`NWPC_GRAPHICS_CONFIG`环境变量设置主配置文件`config.yaml`的路径，
+或者手动调用load_config()函数设置。
+
 ## 使用
 
-在安装好的Anaconda环境中启动 Jupyter Notebook。
+在 Anaconda 环境中启动 Jupyter Notebook。
+
 执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2020 年 1 月 13 日 00 时次 24 小时的整层可降水量。
 
 ```python
