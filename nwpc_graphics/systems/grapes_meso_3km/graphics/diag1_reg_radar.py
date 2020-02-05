@@ -1,7 +1,7 @@
 from nwpc_graphics.systems.grapes_meso_3km.plotter import BasePlotter
 
 
-class Diag1RegRadar(BasePlotter):
+class Plotter(BasePlotter):
     plot_types = [
         "diag1_reg_radar"
     ]
