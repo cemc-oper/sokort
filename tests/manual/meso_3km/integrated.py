@@ -7,7 +7,7 @@ def run():
     start_time = yesterday.strftime("%Y%m%d")
     start_hour = "00"
     forecast_time = "12h"
-    plot_type = "diag1_reg_radar"
+    plot_type = "prep_1h_10mw"
 
     show_plot(plot_type, start_time, start_hour, forecast_time)
 
