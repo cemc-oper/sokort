@@ -2,9 +2,9 @@ import datetime
 import tempfile
 import pathlib
 
-from nwpc_graphics.systems.grapes_gfs_gmf import plotter
+from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
 from nwpc_graphics._logging import get_logger
-from nwpc_graphics.systems.grapes_gfs_gmf.util import load_plotters_from_paths
+from nwpc_graphics._util import load_plotters_from_paths
 from nwpc_graphics import get_config
 
 
@@ -12,7 +12,10 @@ logger = get_logger()
 
 
 def _load_plotters():
-    plotters = load_plotters_from_paths([pathlib.Path(pathlib.Path(__file__).parent, "graphics")])
+    plotters = load_plotters_from_paths(
+        [pathlib.Path(pathlib.Path(__file__).parent, "graphics")],
+        BasePlotter,
+    )
     return plotters
 
 
