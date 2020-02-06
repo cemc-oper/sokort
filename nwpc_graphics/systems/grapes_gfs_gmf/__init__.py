@@ -2,7 +2,7 @@ import datetime
 import tempfile
 import pathlib
 
-from nwpc_graphics.systems.grapes_gfs_gmf.plotter import BasePlotter
+from nwpc_graphics.systems.grapes_gfs_gmf.plotter import SystemPlotter
 from nwpc_graphics._logging import get_logger
 from nwpc_graphics._util import load_plotters_from_paths
 from nwpc_graphics import get_config
@@ -14,7 +14,7 @@ logger = get_logger()
 def _load_plotters():
     plotters = load_plotters_from_paths(
         [pathlib.Path(pathlib.Path(__file__).parent, "graphics")],
-        BasePlotter,
+        SystemPlotter,
     )
     return plotters
 
@@ -83,7 +83,7 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
 
 def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time: str):
-    """Get params for run_plot method of BasePlotter classes.
+    """Get params for run_plot method of SystemPlotter classes.
 
     Parameters
     ----------
@@ -99,7 +99,7 @@ def _get_params(plot_type: str, start_date: str, start_time: str, forecast_time:
     Returns
     -------
     dict
-        params directory for BasePlotter.run_plot method.
+        params directory for SystemPlotter.run_plot method.
     """
     graphics_config = get_config()
 
