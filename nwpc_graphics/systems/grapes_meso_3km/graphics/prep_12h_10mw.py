@@ -1,3 +1,8 @@
+"""
+12小时降水
+
+图片暂时没有外网访问渠道。
+"""
 from nwpc_graphics.systems.grapes_meso_3km.plotter import BasePlotter
 
 

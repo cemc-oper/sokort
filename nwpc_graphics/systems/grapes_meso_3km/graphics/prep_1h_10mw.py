@@ -1,3 +1,9 @@
+"""
+1小时降水
+
+图片样例请访问NWPC/CMA官网：
+    http://nwpc.nmc.cn/list.jhtml?class_id=050301
+"""
 from nwpc_graphics.systems.grapes_meso_3km.plotter import BasePlotter
 
 
