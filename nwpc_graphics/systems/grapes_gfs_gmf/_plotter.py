@@ -7,7 +7,7 @@ from nwpc_graphics._plotter import BasePlotter
 
 class SystemPlotter(BasePlotter):
     """
-    Base class for plotter.
+    System plotter for GRAPES GFS GMF.
     """
     plot_types = None
 
@@ -35,6 +35,7 @@ class SystemPlotter(BasePlotter):
         """
         BasePlotter.__init__(self, task, work_dir, config)
 
+        # magic options
         self.forecast_time_interval = 12
         self.forecast_data_format = "grib2"
         self.forecast_data_center = "ecmwf"

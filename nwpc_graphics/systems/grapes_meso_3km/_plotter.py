@@ -7,7 +7,7 @@ from nwpc_graphics._plotter import BasePlotter
 
 class SystemPlotter(BasePlotter):
     """
-    Plotter for grapes_meso_3km
+    System plotter for GRAPES MESO 3KM
     """
     plot_types = None
 

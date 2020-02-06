@@ -4,7 +4,7 @@
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=050302
 """
-from nwpc_graphics.systems.grapes_meso_3km.plotter import SystemPlotter
+from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 
 
 class Plotter(SystemPlotter):

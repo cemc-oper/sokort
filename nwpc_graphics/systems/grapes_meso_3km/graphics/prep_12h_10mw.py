@@ -3,7 +3,7 @@
 
 图片暂时没有外网访问渠道。
 """
-from nwpc_graphics.systems.grapes_meso_3km.plotter import SystemPlotter
+from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 
 
 class Plotter(SystemPlotter):

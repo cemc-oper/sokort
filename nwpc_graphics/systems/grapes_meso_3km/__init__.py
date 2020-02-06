@@ -2,7 +2,7 @@ import datetime
 import tempfile
 import pathlib
 
-from nwpc_graphics.systems.grapes_meso_3km.plotter import SystemPlotter
+from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 from nwpc_graphics._logging import get_logger
 from nwpc_graphics._util import load_plotters_from_paths
 from nwpc_graphics import get_config

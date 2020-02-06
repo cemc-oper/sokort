@@ -1,4 +1,4 @@
-from nwpc_graphics.systems.grapes_gfs_gmf.plotter import SystemPlotter
+from nwpc_graphics.systems.grapes_gfs_gmf._plotter import SystemPlotter
 
 
 class AnAeaPlotter(SystemPlotter):
