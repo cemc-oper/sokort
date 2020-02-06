@@ -1,17 +1,13 @@
 from pathlib import Path
-import datetime
 import os
 import shutil
-import subprocess
 
-import pytimeparse
-
-from nwpc_graphics._util import _get_load_env_script
+from nwpc_graphics._plotter import BasePlotter
 
 
-class BasePlotter(object):
+class SystemPlotter(BasePlotter):
     """
-    Base class for plotter.
+    Plotter for grapes_meso_3km
     """
     plot_types = None
 
@@ -36,46 +32,12 @@ class BasePlotter(object):
                 "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
             }
         """
-        self.task = task
-        self.work_dir = work_dir
-        self.config = config
-        self.ncl_script_name = None
-
-        # magic options
-        self.run_script_name = "run_ncl.sh"
-        self.load_env_script_path = _get_load_env_script()
-
-        # time options for task.
-
-        self.start_datetime = datetime.datetime.fromisoformat(self.task["start_datetime"])
-        # datetime.datetime, such as datetime.datetime(2020, 1, 11, 0)
-
-        self.forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(self.task["forecast_time"]))
-        # datetime.timedelta, such as datetime.timedelta(hours=3)
-
-        self.forecast_datetime = self.start_datetime + self.forecast_timedelta
-
-        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
-        self.forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
-        self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
-
-    def run_plot(self):
-        """
-        Run ncl script to draw plot in work_dir.
-        """
-        if self.ncl_script_name is None:
-            raise ValueError("ncl_script_name should be set.")
-        self._prepare_environment()
-        envs = self._generate_environ()
-        self._run_process(envs)
-
-    def show_plot(self):
-        """Show images in IPython.
-        """
-        image_list = self._get_image_list()
-        from IPython.display import Image, display
-        for an_image in image_list:
-            display(Image(filename=f"./{an_image['path']}"))
+        BasePlotter.__init__(
+            self,
+            task=task,
+            work_dir=work_dir,
+            config=config,
+        )
 
     def _prepare_environment(self):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
@@ -120,26 +82,3 @@ class BasePlotter(object):
             "ncl_script_name": ncl_script_name,
         })
         return envs
-
-    def _run_process(self, envs: dict):
-        pipe = subprocess.Popen(
-            [f"./{self.run_script_name}"],
-            start_new_session=True,
-            env=envs
-        )
-
-        stdout, stderr = pipe.communicate()
-        pipe.wait()
-        pipe.terminate()
-
-    def _get_image_list(self):
-        """Get image list.
-
-        Should implemented by sub-class.
-
-        Returns
-        -------
-        image_list: list
-            Images list.
-        """
-        raise NotImplemented()
