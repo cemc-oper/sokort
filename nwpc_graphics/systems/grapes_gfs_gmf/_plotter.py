@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 import shutil
+import datetime
+import tempfile
 
 from nwpc_graphics._plotter import BasePlotter
 
@@ -42,6 +44,59 @@ class SystemPlotter(BasePlotter):
 
         self.min_forecast_time = self.forecast_hour
         self.max_forecast_time = self.forecast_hour
+
+    @classmethod
+    def create_plotter(
+            cls,
+            graphics_config: dict,
+            start_date: str,
+            start_time: str,
+            forecast_time: str):
+        """Create plotter
+
+        Parameters
+        ----------
+        graphics_config: dict
+            graphics config
+        start_date: str
+            Start date, YYYYMMDD
+        start_time: str
+            Start hour, HH
+        forecast_time: str
+            Forecast time duration, such as 3h.
+
+        Returns
+        -------
+        SystemPlotter
+        """
+        start_datetime = datetime.datetime.strptime(f"{start_date}{start_time}", "%Y%m%d%H")
+        start_datetime_4dvar = start_datetime - datetime.timedelta(hours=3)
+        start_time_4dvar = start_datetime_4dvar.strftime("%Y%m%d%H")
+
+        system_config = graphics_config["systems"]["grapes_gfs_gmf"]
+
+        task = {
+            "ncl_dir": system_config["system"]["ncl_dir"],
+            "script_dir": system_config["system"]["script_dir"],
+            "data_path": system_config["data"]["data_path"].format(
+                start_time_4dvar=start_time_4dvar
+            ),
+            "start_datetime": start_datetime.isoformat(),
+            "forecast_time": forecast_time,
+        }
+
+        work_dir = tempfile.mkdtemp()
+
+        config = {
+            "ncl_lib": graphics_config["ncl"]["ncl_lib"],
+            "geodiag_root": graphics_config["ncl"]["geodiag_root"],
+        }
+
+        return cls(
+            task=task,
+            work_dir=work_dir,
+            config=config,
+        )
 
     def _prepare_environment(self):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
