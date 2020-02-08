@@ -66,12 +66,6 @@ class GamsPlotter(SystemPlotter):
             config=config,
         )
 
-    def _generate_environ(self):
-        envs = SystemPlotter._generate_environ(self)
-        envs.update({
-            "output_path": "./"
-        })
-
     @classmethod
     def _get_run_ncl_script(cls):
         return Path(Path(__file__).parent, "run_ncl.sh")

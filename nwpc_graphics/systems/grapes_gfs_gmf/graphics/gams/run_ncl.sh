@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run ncl script to draw graph for GRAEPS GFS GMF.
+# Run ncl script to draw graph for GRAEPS GFS GMF GAMS.
 #
 # Prepare:
 #   1. enter a work directory
@@ -43,7 +43,7 @@ initial_time=${start_time}
 min_forecast_time=${min_forecast_time}
 max_forecast_time=${max_forecast_time}
 forecast_time_interval=${forecast_time_interval}
-graphic_output_home=./  # path of pic
+output_path=./  # path of pic
 
 #------------------
 # run ncl script
@@ -53,7 +53,7 @@ ncl -x initial_time=${initial_time} \
      max_forecast_time=${max_forecast_time} \
      forecast_time_interval=${forecast_time_interval} \
      data_path=\"${data_path}\" \
-     output_path=\"${graphic_output_home}\" \
+     output_path=\"${output_path}\" \
      ${file_name}
 
 # convert image
