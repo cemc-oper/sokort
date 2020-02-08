@@ -1,6 +1,7 @@
 import datetime
 import os
 import subprocess
+from pathlib import Path
 
 import pytimeparse
 
@@ -42,6 +43,7 @@ class BasePlotter(object):
         # magic options
         self.run_script_name = "run_ncl.sh"
         self.load_env_script_path = _get_load_env_script()
+        self.run_ncl_script_path = self._get_run_ncl_script()
 
         # time options for task.
         self.start_datetime = datetime.datetime.fromisoformat(self.task["start_datetime"])
@@ -100,3 +102,7 @@ class BasePlotter(object):
             Images list.
         """
         raise NotImplemented()
+
+    @classmethod
+    def _get_run_ncl_script(cls):
+        return Path(Path(__file__).parent, "run_ncl.sh")
