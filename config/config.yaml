@@ -1,3 +1,6 @@
 ncl:
   ncl_lib: "/some/path/ncllib/"
   geodiag_root: "/some/path/GEODIAG/"
+
+general:
+  run_base_dir: "/tmp"

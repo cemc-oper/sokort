@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import tempfile
 
 import yaml
 
@@ -19,7 +20,7 @@ class Config(dict):
         with open(config_file) as f:
             config_dict = yaml.safe_load(f)
             config = Config(config_file_path=Path(config_file))
-            config["ncl"] = config_dict["ncl"]
+            config.update(config_dict)
             config.load_systems()
             return config
 
@@ -36,6 +37,11 @@ class Config(dict):
             with open(item) as f:
                 c = yaml.safe_load(f)
                 self["systems"][item.stem] = c
+
+    def generate_run_dir(self):
+        run_base_dir = self["general"]["run_base_dir"]
+        run_dir = tempfile.mkdtemp(dir=run_base_dir)
+        return run_dir
 
 
 def load_config_from_env():

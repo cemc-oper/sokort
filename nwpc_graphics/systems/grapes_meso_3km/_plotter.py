@@ -2,9 +2,9 @@ from pathlib import Path
 import os
 import shutil
 import datetime
-import tempfile
 
 from nwpc_graphics._plotter import BasePlotter
+from nwpc_graphics._config import Config
 
 
 class SystemPlotter(BasePlotter):
@@ -44,7 +44,7 @@ class SystemPlotter(BasePlotter):
     @classmethod
     def create_plotter(
             cls,
-            graphics_config: dict,
+            graphics_config: Config,
             start_date: str,
             start_time: str,
             forecast_time: str):
@@ -52,7 +52,7 @@ class SystemPlotter(BasePlotter):
 
         Parameters
         ----------
-        graphics_config: dict
+        graphics_config: Config
             graphics config
         start_date: str
             Start date, YYYYMMDD
@@ -77,7 +77,7 @@ class SystemPlotter(BasePlotter):
             "start_datetime": start_datetime.isoformat(),
             "forecast_time": forecast_time,
         }
-        work_dir = tempfile.mkdtemp()
+        work_dir = graphics_config.generate_run_dir()
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
             "geodiag_root": graphics_config["ncl"]["geodiag_root"],
@@ -132,3 +132,7 @@ class SystemPlotter(BasePlotter):
             "ncl_script_name": ncl_script_name,
         })
         return envs
+
+    @classmethod
+    def _get_run_ncl_script(cls):
+        return Path(Path(__file__).parent, "run_ncl.sh")
