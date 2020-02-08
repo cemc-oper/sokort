@@ -1,7 +1,7 @@
 """
-200hPa DIV
+200hPa 散度
 
-图片样例暂时没有公网显示
+图片暂时没有外网访问渠道。
 """
 from nwpc_graphics.systems.grapes_gfs_gmf.graphics.gams import GamsPlotter
 
