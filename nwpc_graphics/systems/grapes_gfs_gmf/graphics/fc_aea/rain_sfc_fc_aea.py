@@ -24,5 +24,5 @@ class Plotter(FcAeaPlotter):
         self.forecast_time_interval = 24
 
     def _check_forecast_time(self) -> bool:
-        forecast_hour = int(self.forecast_timedelta.total_seconds()) // 3600
+        forecast_hour = int(self.forecast_hour)
         return forecast_hour >= 24 and (forecast_hour % 12 == 0)
