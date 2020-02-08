@@ -7,7 +7,7 @@ def run():
     start_time = yesterday.strftime("%Y%m%d")
     start_hour = "00"
     forecast_time = "24h"
-    plot_type = "pwat_sfc_an_aea"
+    plot_type = "gams.div_250"
 
     show_plot(plot_type, start_time, start_hour, forecast_time)
 

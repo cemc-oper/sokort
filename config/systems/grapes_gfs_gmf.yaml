@@ -2,5 +2,9 @@ system:
   ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/"
   script_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/"
 
+components:
+  gams:
+    ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
+
 data:
   data_path: "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/{start_time_4dvar}/ORIG/"
