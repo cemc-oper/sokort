@@ -134,5 +134,5 @@ class SystemPlotter(BasePlotter):
         return envs
 
     @classmethod
-    def _get_run_ncl_script(cls):
+    def _get_run_script(cls):
         return Path(Path(__file__).parent, "run_ncl.sh")

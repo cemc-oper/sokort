@@ -118,7 +118,7 @@ class SystemPlotter(BasePlotter):
         shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
         shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
 
-        shutil.copy2(f"{str(self.run_ncl_script_path)}", self.run_ncl_script_path.name)
+        shutil.copy2(f"{str(self.run_script_path)}", self.run_script_path.name)
         shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
 
     def _generate_environ(self):
@@ -150,5 +150,5 @@ class SystemPlotter(BasePlotter):
         return envs
 
     @classmethod
-    def _get_run_ncl_script(cls):
+    def _get_run_script(cls):
         return Path(Path(__file__).parent, "run_ncl.sh")

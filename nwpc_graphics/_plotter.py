@@ -1,7 +1,6 @@
 import datetime
 import os
 import subprocess
-from pathlib import Path
 
 import pytimeparse
 
@@ -10,7 +9,7 @@ from nwpc_graphics._util import _get_load_env_script
 
 class BasePlotter(object):
     """
-    Base class for plotter.
+    Base class for plotter using NCL.
     """
     plot_types = None
 
@@ -21,8 +20,6 @@ class BasePlotter(object):
         task: dict
             task config dict
             {
-                "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
-                "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
                 "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
                 "forecast_time": "3h", # optional
             }
@@ -43,7 +40,7 @@ class BasePlotter(object):
         # magic options
         self.run_script_name = "run_ncl.sh"
         self.load_env_script_path = _get_load_env_script()
-        self.run_ncl_script_path = self._get_run_ncl_script()
+        self.run_script_path = self._get_run_script()
 
         # time options for task.
         self.start_datetime = datetime.datetime.fromisoformat(self.task["start_datetime"])
@@ -57,13 +54,12 @@ class BasePlotter(object):
 
     def run_plot(self):
         """
-        Run ncl script to draw plot in work_dir.
+        Run process to draw plot in work_dir.
         """
-        if self.ncl_script_name is None:
-            raise ValueError("ncl_script_name should be set.")
+        self._check_validity()
         self._prepare_environment()
         envs = self._generate_environ()
-        self._run_process(envs)
+        self._run_process(envs=envs)
 
     def show_plot(self):
         """Show images in IPython.
@@ -72,6 +68,10 @@ class BasePlotter(object):
         from IPython.display import Image, display
         for an_image in image_list:
             display(Image(filename=f"./{an_image['path']}"))
+
+    def _check_validity(self):
+        if self.ncl_script_name is None:
+            raise ValueError("ncl_script_name should be set.")
 
     def _prepare_environment(self):
         pass
@@ -104,5 +104,5 @@ class BasePlotter(object):
         raise NotImplemented()
 
     @classmethod
-    def _get_run_ncl_script(cls):
-        return Path(Path(__file__).parent, "run_ncl.sh")
+    def _get_run_script(cls):
+        return None
