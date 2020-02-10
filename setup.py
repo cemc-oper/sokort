@@ -23,7 +23,7 @@ setup(
         'click',
         'pyyaml',
         "pytimeparse",
-        "matplotlib",
+        "IPython",
         "loguru",
     ],
 )

@@ -3,8 +3,6 @@ import os
 import subprocess
 
 import pytimeparse
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 
 from nwpc_graphics._util import _get_load_env_script
 
@@ -67,9 +65,9 @@ class BasePlotter(object):
         """Show images in IPython.
         """
         image_list = self._get_image_list()
+        from IPython.display import Image, display
         for an_image in image_list:
-            img = mpimg.imread(an_image['path'])
-            plt.imshow(img)
+            display(Image(filename=f"./{an_image['path']}"))
 
     def _check_validity(self):
         if self.ncl_script_name is None:
