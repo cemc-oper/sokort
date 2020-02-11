@@ -24,6 +24,8 @@
 
 ## 使用
 
+### Jupyter Notebook
+
 在 Anaconda 环境中启动 Jupyter Notebook。
 
 执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2020 年 1 月 13 日 00 时次 24 小时的整层可降水量。
@@ -37,6 +39,19 @@ show_plot("pwat_sfc_an_aea", "20200113", "00", "24h")
 在Jupyter Notebook中运行效果如下图所示
 
 ![](./doc/nwpc-graphics-grapes-gfs-pwat-sfc-an-aea.png)
+
+### 命令行程序
+
+本项目提供命令行程序`nwpc_graphics`。下面的代码使用改程序绘制上面的示例，并调用系统默认的图片浏览器显示图片。
+
+```bash
+nwpc_graphics show \
+    --system=grapes_gfs_gmf \
+    --plot-type=pwat_sfc_an_aea \
+    --start-date=20200113 \
+    --start-time=00 \
+    --forecast-time=24h
+```
 
 ## LICENSE
 
