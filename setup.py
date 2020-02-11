@@ -27,4 +27,10 @@ setup(
         "loguru",
         "pillow"
     ],
+
+    entry_points={
+        "console_scripts": [
+            "nwpc_graphics = nwpc_graphics._main:cli",
+        ],
+    },
 )
