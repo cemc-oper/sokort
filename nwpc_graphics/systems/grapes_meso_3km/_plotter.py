@@ -5,7 +5,6 @@ import datetime
 
 from nwpc_graphics._plotter import BasePlotter
 from nwpc_graphics._config import Config
-from nwpc_graphics._presenter import Presenter
 
 
 class SystemPlotter(BasePlotter):
