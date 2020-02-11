@@ -71,17 +71,19 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
     ValueError
         plot_type is not found
     """
-    plot_module = _get_plotter_class(plot_type)
-    if plot_module is None:
+    plotter_class = _get_plotter_class(plot_type)
+    if plotter_class is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
 
-    plotter = plot_module.create_plotter(
+    plotter = plotter_class.create_plotter(
         graphics_config=get_config(),
         start_date=start_date,
         start_time=start_time,
-        forecast_time=forecast_time)
+        forecast_time=forecast_time
+    )
 
     plotter.run_plot()
+
     return plotter.show_plot()
 
 
