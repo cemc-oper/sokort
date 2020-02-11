@@ -4,3 +4,6 @@ ncl:
 
 general:
   run_base_dir: "/tmp"
+
+config:
+  systems_dir: "./systems"

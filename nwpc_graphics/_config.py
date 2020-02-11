@@ -12,6 +12,7 @@ class Config(dict):
     def __init__(self, config_file_path: Path = None, **kwargs):
         super(Config).__init__(**kwargs)
         self["ncl"] = dict()
+        self["config"] = dict()
         self["systems"] = dict()
         self.config_file_path = config_file_path
 
@@ -25,7 +26,7 @@ class Config(dict):
             return config
 
     def load_systems(self):
-        systems_path = self.config_file_path.parent.joinpath("systems")
+        systems_path = self.config_file_path.parent.joinpath(self["config"]["systems_dir"])
         if not systems_path.exists():
             raise FileNotFoundError(f"systems directory is not found.")
 
