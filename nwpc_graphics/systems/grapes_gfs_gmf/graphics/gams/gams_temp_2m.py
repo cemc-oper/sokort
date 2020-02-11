@@ -16,7 +16,7 @@ class Plotter(GamsPlotter):
 
         self.ncl_script_name = "gams_temp_2m.ncl"
 
-    def _get_image_list(self):
+    def get_image_list(self):
         return [{
             "path": f"./EAT_ASIA_L2M_P9_{self.start_time}00{self.forecast_hour}00.png"
         }]

@@ -17,7 +17,7 @@ class Plotter(SystemPlotter):
 
         self.ncl_script_name = "grapes_meso_3km_reg_radar.ncl"
 
-    def _get_image_list(self):
+    def get_image_list(self):
         forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"
         return [{
             "path": f"GRAPES_MESO-radar-combination-reflectivity-{self.start_time}_{forecast_hour}.png"

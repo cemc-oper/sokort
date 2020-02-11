@@ -25,5 +25,6 @@ setup(
         "pytimeparse",
         "IPython",
         "loguru",
+        "pillow"
     ],
 )

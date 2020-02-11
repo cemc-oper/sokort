@@ -19,7 +19,7 @@ class Plotter(SystemPlotter):
         if not self._check_forecast_time():
             raise ValueError(f"forecast time must greater than 0h.")
 
-    def _get_image_list(self):
+    def get_image_list(self):
         return [{
             "path": f"GRAPES-MESOS-prep-{self.start_time}6hr_{self.forecast_hour}_China.png"
         }]

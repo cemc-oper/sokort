@@ -5,6 +5,7 @@ import datetime
 
 from nwpc_graphics._plotter import BasePlotter
 from nwpc_graphics._config import Config
+from nwpc_graphics._presenter import IPythonPresenter
 
 
 class SystemPlotter(BasePlotter):
@@ -35,7 +36,12 @@ class SystemPlotter(BasePlotter):
                 "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
             }
         """
-        BasePlotter.__init__(self, task, work_dir, config)
+        BasePlotter.__init__(
+            self,
+            task=task,
+            work_dir=work_dir,
+            config=config,
+        )
 
         # magic options
         self.forecast_time_interval = 12

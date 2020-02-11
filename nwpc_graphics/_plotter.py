@@ -13,7 +13,12 @@ class BasePlotter(object):
     """
     plot_types = None
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
+    def __init__(
+            self,
+            task: dict,
+            work_dir: str,
+            config: dict,
+    ):
         """
         Parameters
         ----------
@@ -61,14 +66,6 @@ class BasePlotter(object):
         envs = self._generate_environ()
         self._run_process(envs=envs)
 
-    def show_plot(self):
-        """Show images in IPython.
-        """
-        image_list = self._get_image_list()
-        from IPython.display import Image, display
-        for an_image in image_list:
-            display(Image(filename=f"./{an_image['path']}"))
-
     def _check_validity(self):
         if self.ncl_script_name is None:
             raise ValueError("ncl_script_name should be set.")
@@ -91,7 +88,7 @@ class BasePlotter(object):
         pipe.wait()
         pipe.terminate()
 
-    def _get_image_list(self):
+    def get_image_list(self):
         """Get image list.
 
         Should implemented by sub-class.

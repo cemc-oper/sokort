@@ -5,6 +5,7 @@ import datetime
 
 from nwpc_graphics._plotter import BasePlotter
 from nwpc_graphics._config import Config
+from nwpc_graphics._presenter import Presenter
 
 
 class SystemPlotter(BasePlotter):
@@ -13,7 +14,12 @@ class SystemPlotter(BasePlotter):
     """
     plot_types = None
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
+    def __init__(
+            self,
+            task: dict,
+            work_dir: str,
+            config: dict,
+    ):
         """
         Parameters
         ----------

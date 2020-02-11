@@ -3,6 +3,7 @@ import pathlib
 from nwpc_graphics.systems.grapes_gfs_gmf._plotter import SystemPlotter
 from nwpc_graphics._logging import get_logger
 from nwpc_graphics._util import load_plotters_from_paths
+from nwpc_graphics._presenter import Presenter, IPythonPresenter
 from nwpc_graphics import get_config
 
 
@@ -20,7 +21,12 @@ def _load_plotters():
 plotters = _load_plotters()
 
 
-def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+def draw_plot(
+        plot_type: str,
+        start_date: str,
+        start_time: str,
+        forecast_time: str,
+):
     """Draw images and save them in work directory.
 
     Parameters
@@ -53,7 +59,13 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
     plotter.run_plot()
 
 
-def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+def show_plot(
+        plot_type: str,
+        start_date: str,
+        start_time: str,
+        forecast_time: str,
+        presenter: Presenter = IPythonPresenter(),
+):
     """Draw images and show them in Jupyter Notebook.
 
     Parameters
@@ -66,6 +78,8 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
         Start hour, HH
     forecast_time: str
         Forecast time duration, such as 3h.
+    presenter: Presenter
+        image presenter
 
     Raises
     -------
@@ -85,7 +99,9 @@ def show_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
     plotter.run_plot()
 
-    return plotter.show_plot()
+    presenter.show_plot(plotter.get_image_list())
+
+    return
 
 
 def _get_plotter_class(plot_type: str):

@@ -16,7 +16,7 @@ class Plotter(GamsPlotter):
 
         self.ncl_script_name = "gams_wind_windbarb_700.ncl"
 
-    def _get_image_list(self):
+    def get_image_list(self):
         return [{
             "path": f"./EDA_ASIA_L70_P9_{self.start_time}00{self.forecast_hour}00.png"
         }]
