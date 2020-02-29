@@ -1,10 +1,14 @@
-# coding=utf-8
 from setuptools import setup, find_packages
+import io
+import re
+
+with io.open("nwpc_graphics/__init__.py", "rt", encoding="utf8") as f:
+    version = re.search(r'__version__ = "(.*?)"', f.read()).group(1)
 
 setup(
     name='nwpc-graphics',
 
-    version='0.1.0',
+    version=version,
 
     description='NWPC Graphics project.',
     long_description=__doc__,
