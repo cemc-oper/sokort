@@ -2,7 +2,7 @@ import datetime
 import os
 import subprocess
 
-import pytimeparse
+import pandas as pd
 
 from nwpc_graphics._util import _get_load_env_script
 
@@ -52,7 +52,7 @@ class BasePlotter(object):
         self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
 
         if "forecast_time" in self.task:
-            self.forecast_timedelta = datetime.timedelta(seconds=pytimeparse.parse(self.task["forecast_time"]))
+            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"]).to_pytimedelta()
             self.forecast_datetime = self.start_datetime + self.forecast_timedelta
             self.forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
             self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103

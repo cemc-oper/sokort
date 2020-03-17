@@ -26,10 +26,10 @@ setup(
     install_requires=[
         'click',
         'pyyaml',
-        "pytimeparse",
         "IPython",
         "loguru",
-        "pillow"
+        "pillow",
+        "pandas"
     ],
 
     entry_points={
