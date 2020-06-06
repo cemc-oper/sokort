@@ -1,3 +1,7 @@
+import ipywidgets as widgets
+from IPython.display import Image, display
+from PIL import Image
+
 
 class Presenter(object):
     def __init__(self):
@@ -12,9 +16,18 @@ class IPythonPresenter(Presenter):
         super(IPythonPresenter).__init__()
 
     def show_plot(self, images: list):
-        from IPython.display import Image, display
         for an_image in images:
             display(Image(filename=f"./{an_image['path']}"))
+
+
+class JupyterWidgetsPresenter(Presenter):
+    def __init__(self, out: widgets.Output):
+        super(JupyterWidgetsPresenter).__init__()
+        self.out = out
+
+    def show_plot(self, images: list):
+        for an_image in images:
+            self.out.append_display_data(Image(filename=f"./{an_image['path']}"))
 
 
 class PILPresenter(Presenter):
@@ -22,7 +35,6 @@ class PILPresenter(Presenter):
         super(PILPresenter).__init__()
 
     def show_plot(self, images: list):
-        from PIL import Image
         for an_image in images:
             image = Image.open(f"./{an_image['path']}")
             image.show()

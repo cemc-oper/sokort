@@ -29,7 +29,8 @@ setup(
         "IPython",
         "loguru",
         "pillow",
-        "pandas"
+        "pandas",
+        "ipywidgets"
     ],
 
     entry_points={
