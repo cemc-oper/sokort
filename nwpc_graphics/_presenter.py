@@ -1,6 +1,6 @@
 import ipywidgets as widgets
 from IPython.display import Image, display
-from PIL import Image
+from PIL import Image as PILImage
 
 
 class Presenter(object):
@@ -36,5 +36,5 @@ class PILPresenter(Presenter):
 
     def show_plot(self, images: list):
         for an_image in images:
-            image = Image.open(f"./{an_image['path']}")
+            image = PILImage.open(f"./{an_image['path']}")
             image.show()
