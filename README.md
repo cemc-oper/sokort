@@ -15,6 +15,12 @@
 
 本项目针对气象局的内网环境开发，需要部署在CMA-PI高性能计算机或挂载二级存储的服务器上。
 
+### 额外Python包
+
+请安装下面未使用pip管理的Python包：
+
+- [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
+
 ## 配置
 
 本项目使用配置文件设置业务系统绘图脚本库的位置，参看`config`文件夹。

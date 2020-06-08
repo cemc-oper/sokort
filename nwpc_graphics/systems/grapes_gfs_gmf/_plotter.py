@@ -3,6 +3,8 @@ import os
 import shutil
 import datetime
 
+from nwpc_data.data_finder import find_local_file
+
 from nwpc_graphics._plotter import BasePlotter
 from nwpc_graphics._config import Config
 
@@ -75,17 +77,20 @@ class SystemPlotter(BasePlotter):
         SystemPlotter
         """
         start_datetime = datetime.datetime.strptime(f"{start_date}{start_time}", "%Y%m%d%H")
-        start_datetime_4dvar = start_datetime - datetime.timedelta(hours=3)
-        start_time_4dvar = start_datetime_4dvar.strftime("%Y%m%d%H")
 
         system_config = graphics_config["systems"]["grapes_gfs_gmf"]
+
+        data_file = find_local_file(
+            "grapes_gfs_gmf/grib2/orig",
+            start_time=start_datetime,
+            forecast_time=forecast_time,
+        )
+        data_path = str(data_file.parent) + "/"
 
         task = {
             "ncl_dir": system_config["system"]["ncl_dir"],
             "script_dir": system_config["system"]["script_dir"],
-            "data_path": system_config["data"]["data_path"].format(
-                start_time_4dvar=start_time_4dvar
-            ),
+            "data_path": data_path,
             "start_datetime": start_datetime.isoformat(),
             "forecast_time": forecast_time,
         }
