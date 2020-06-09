@@ -92,6 +92,7 @@ class SystemPlotter(BasePlotter):
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
             "geodiag_root": graphics_config["ncl"]["geodiag_root"],
+            "load_env_script": graphics_config["ncl"]["load_env_script"],
         }
 
         return cls(

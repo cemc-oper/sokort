@@ -35,6 +35,7 @@ class BasePlotter(object):
             {
                 "ncl_lib": "/home/wangdp/project/graph/ncllib",
                 "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
+                "load_env_script": "",
             }
         """
         self.task = task
@@ -44,7 +45,11 @@ class BasePlotter(object):
 
         # magic options
         self.run_script_name = "run_ncl.sh"
-        self.load_env_script_path = _get_load_env_script()
+        if "load_env_script" not in config or len(config["load_env_script"]) == 0:
+            load_env_script = _get_load_env_script()
+        else:
+            load_env_script = config["load_env_script"]
+        self.load_env_script_path = load_env_script
         self.run_script_path = self._get_run_script()
 
         # time options for task.
