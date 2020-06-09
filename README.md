@@ -2,31 +2,31 @@
 
 封装中国气象局数值预报中心数值预报业务系统使用的图片制作脚本。
 
-仅支持使用NCL绘图脚本，目前已支持的数值预报业务系统如下：
+仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
 
-- GRAPES全球预报系统
-- GRAPES区域3km预报系统
+- GRAPES 全球预报系统
+- GRAPES 区域 3km 预报系统
 
 ## 安装
 
-从Github项目主页下载最新的代码，并使用pip安装。
+从 Github 项目主页下载最新的代码，并使用 pip 安装。
 
-本项目不包含业务系统使用的任何图片制作脚本，如果需要使用，请联系数值预报中心。
+本项目不包含业务系统使用的任何图片库及图形绘制脚本，如果需要使用，请联系数值预报中心。
 
-本项目针对气象局的内网环境开发，需要部署在CMA-PI高性能计算机或挂载二级存储的服务器上。
+本项目针对气象局的内网环境开发，需要部署在 CMA-PI 高性能计算机或挂载二级存储的服务器上。
 
-### 额外Python包
+### 额外 Python 包
 
-请安装下面未使用pip管理的Python包：
+请安装下面未使用 pip 管理的 Python 包：
 
 - [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
 
 ## 配置
 
-本项目使用配置文件设置业务系统绘图脚本库的位置，参看`config`文件夹。
+本项目使用配置文件设置业务系统绘图脚本库的位置，参看 `config` 文件夹。
 
-在运行前使用`NWPC_GRAPHICS_CONFIG`环境变量设置主配置文件`config.yaml`的路径，
-或者手动调用load_config()函数设置。
+在运行前使用 `NWPC_GRAPHICS_CONFIG` 环境变量设置主配置文件 `config.yaml` 的路径，
+或者手动调用 `load_config()` 函数设置。
 
 ## 使用
 
@@ -61,7 +61,7 @@ nwpc_graphics show \
 
 ## LICENSE
 
-Copyright 2020, perillaroc, 数值预报中心系统业务室系统运行科。
+Copyright 2020, perillaroc, 数值预报中心。
 
 `nwpc-graphics` 以 [GPL-3.0](./LICENSE.md) 协议授权。
 
