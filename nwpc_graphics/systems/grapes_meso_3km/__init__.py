@@ -1,4 +1,7 @@
 import pathlib
+import datetime
+
+import pandas as pd
 
 from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 from nwpc_graphics._logging import get_logger
@@ -21,18 +24,22 @@ def _load_plotters():
 plotters = _load_plotters()
 
 
-def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: str):
+def draw_plot(
+        plot_type: str,
+        start_time: str or datetime.datetime or pd.Timestamp,
+        forecast_time: str or pd.Timedelta
+):
     """Draw images and save them in work directory.
 
     Parameters
     ----------
     plot_type : str
         Plot type according to systems.
-    start_date: str
-        Start date, YYYYMMDD
-    start_time: str
-        Start hour, HH
-    forecast_time: str
+    start_time: str or datetime.datetime or pd.Timestamp
+        Start time:
+            - str: YYYYMMDDHH
+            - datetime.datetime or pd.Timestamp
+    forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
 
     Raises
@@ -44,9 +51,14 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
 
+    if isinstance(start_time, str):
+        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+
+    if isinstance(forecast_time, str):
+        forecast_time = pd.to_timedelta(forecast_time)
+
     plotter = plot_module.create_plotter(
         graphics_config=get_config(),
-        start_date=start_date,
         start_time=start_time,
         forecast_time=forecast_time)
 
@@ -55,9 +67,8 @@ def draw_plot(plot_type: str, start_date: str, start_time: str, forecast_time: s
 
 def show_plot(
         plot_type: str,
-        start_date: str,
-        start_time: str,
-        forecast_time: str,
+        start_time: str or datetime.datetime or pd.Timestamp,
+        forecast_time: str or pd.Timedelta,
         presenter: Presenter = IPythonPresenter(),
 ):
     """Draw images and show them in Jupyter Notebook.
@@ -66,11 +77,11 @@ def show_plot(
     ----------
     plot_type : str
         Plot type according to systems.
-    start_date: str
-        Start date, YYYYMMDD
-    start_time: str
-        Start hour, HH
-    forecast_time: str
+    start_time: str or datetime.datetime or pd.Timestamp
+        Start time:
+            - str: YYYYMMDDHH
+            - datetime.datetime or pd.Timestamp
+    forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
     presenter: Presenter
         image presenter
@@ -84,9 +95,14 @@ def show_plot(
     if plotter_class is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
 
+    if isinstance(start_time, str):
+        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+
+    if isinstance(forecast_time, str):
+        forecast_time = pd.to_timedelta(forecast_time)
+
     plotter = plotter_class.create_plotter(
         graphics_config=get_config(),
-        start_date=start_date,
         start_time=start_time,
         forecast_time=forecast_time
     )

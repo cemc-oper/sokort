@@ -3,6 +3,8 @@ import os
 import shutil
 import datetime
 
+import pandas as pd
+
 from nwpc_data.data_finder import find_local_file
 
 from nwpc_graphics._plotter import BasePlotter
@@ -56,33 +58,27 @@ class SystemPlotter(BasePlotter):
     def create_plotter(
             cls,
             graphics_config: Config,
-            start_date: str,
-            start_time: str,
-            forecast_time: str):
+            start_time: datetime.datetime or pd.Timestamp,
+            forecast_time: pd.Timedelta):
         """Create plotter
 
         Parameters
         ----------
         graphics_config: Config
             graphics config
-        start_date: str
-            Start date, YYYYMMDD
-        start_time: str
-            Start hour, HH
-        forecast_time: str
+        start_time: datetime.datetime or pd.Timestamp,
+        forecast_time: pd.Timedelta
             Forecast time duration, such as 3h.
 
         Returns
         -------
         SystemPlotter
         """
-        start_datetime = datetime.datetime.strptime(f"{start_date}{start_time}", "%Y%m%d%H")
-
         system_config = graphics_config["systems"]["grapes_gfs_gmf"]
 
         data_file = find_local_file(
             "grapes_gfs_gmf/grib2/orig",
-            start_time=start_datetime,
+            start_time=start_time,
             forecast_time=forecast_time,
         )
         data_path = str(data_file.parent) + "/"
@@ -91,7 +87,7 @@ class SystemPlotter(BasePlotter):
             "ncl_dir": system_config["system"]["ncl_dir"],
             "script_dir": system_config["system"]["script_dir"],
             "data_path": data_path,
-            "start_datetime": start_datetime.isoformat(),
+            "start_datetime": start_time.isoformat(),
             "forecast_time": forecast_time,
         }
 
