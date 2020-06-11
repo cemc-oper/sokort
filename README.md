@@ -39,7 +39,7 @@
 ```python
 from nwpc_graphics.systems.grapes_gfs_gmf import show_plot
 
-show_plot("pwat_sfc_an_aea", "20200113", "00", "24h")
+show_plot("pwat_sfc_an_aea", "2020011300", "24h")
 ```
 
 在Jupyter Notebook中运行效果如下图所示
@@ -54,8 +54,7 @@ show_plot("pwat_sfc_an_aea", "20200113", "00", "24h")
 nwpc_graphics show \
     --system=grapes_gfs_gmf \
     --plot-type=pwat_sfc_an_aea \
-    --start-date=20200113 \
-    --start-time=00 \
+    --start-time=2020011300 \
     --forecast-time=24h
 ```
 
