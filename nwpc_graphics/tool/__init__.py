@@ -20,7 +20,7 @@ def interactive_ui(system):
 
     plotters = system_module.plotters
 
-    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)\
+    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
 
     start_date_option = widgets.DatePicker(
         description='Start Date:',
