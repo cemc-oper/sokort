@@ -11,7 +11,7 @@ from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 from nwpc_graphics._config import Config
 
 
-class GrapesMeso3kmPlotter(SystemPlotter):
+class Meso3kmPlotter(SystemPlotter):
     """
     """
     plot_types = None

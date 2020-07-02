@@ -3,16 +3,16 @@
 
 图片暂时没有外网访问渠道。
 """
-from nwpc_graphics.systems.grapes_meso_3km.graphics.meso_3km import GrapesMeso3kmPlotter
+from nwpc_graphics.systems.grapes_meso_3km.graphics.meso_3km import Meso3kmPlotter
 
 
-class Plotter(GrapesMeso3kmPlotter):
+class Plotter(Meso3kmPlotter):
     plot_types = [
         "meso_3km.prep_12h_10mw"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):
-        GrapesMeso3kmPlotter.__init__(self, task, work_dir, config)
+        Meso3kmPlotter.__init__(self, task, work_dir, config)
 
         self.ncl_script_name = "grapes_meso_prep_12hr_10mw.ncl"
 
