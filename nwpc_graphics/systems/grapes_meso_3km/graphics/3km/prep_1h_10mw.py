@@ -4,16 +4,16 @@
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=050301
 """
-from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
+from . import GrapesMeso3kmPlotter
 
 
-class Plotter(SystemPlotter):
+class Plotter(GrapesMeso3kmPlotter):
     plot_types = [
         "3km.prep_1h_10mw"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):
-        SystemPlotter.__init__(self, task, work_dir, config)
+        GrapesMeso3kmPlotter.__init__(self, task, work_dir, config)
 
         self.ncl_script_name = "grapes_meso_prep_1hr_10mw.ncl"
 
