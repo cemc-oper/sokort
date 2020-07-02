@@ -7,7 +7,7 @@ def run():
     start_time = yesterday.strftime("%Y%m%d")
     start_hour = "00"
     forecast_time = "12h"
-    plot_type = "3km.prep_3h_10mw"
+    plot_type = "meso_3km.prep_3h_10mw"
 
     draw_plot(plot_type, start_time + start_hour, forecast_time)
 

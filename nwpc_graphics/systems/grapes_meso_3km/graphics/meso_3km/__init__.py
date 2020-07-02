@@ -57,7 +57,7 @@ class GrapesMeso3kmPlotter(SystemPlotter):
         data_path = str(data_file.parent) + "/"
 
         system_config = graphics_config["systems"]["grapes_meso_3km"]
-        component_config = system_config["components"]["3km"]
+        component_config = system_config["components"]["meso_3km"]
         task = {
             "script_dir": component_config["system"]["script_dir"],
             "data_path": data_path,

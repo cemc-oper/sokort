@@ -4,12 +4,12 @@
 图片样例请访问NWPC/CMA官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=050302
 """
-from . import GrapesMeso3kmPlotter
+from nwpc_graphics.systems.grapes_meso_3km.graphics.meso_3km import GrapesMeso3kmPlotter
 
 
 class Plotter(GrapesMeso3kmPlotter):
     plot_types = [
-        "3km.diag1_reg_radar"
+        "meso_3km.diag1_reg_radar"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):
