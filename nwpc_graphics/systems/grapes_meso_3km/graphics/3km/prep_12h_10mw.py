@@ -8,7 +8,7 @@ from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 
 class Plotter(SystemPlotter):
     plot_types = [
-        "prep_12h_10mw"
+        "3km.prep_12h_10mw"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):

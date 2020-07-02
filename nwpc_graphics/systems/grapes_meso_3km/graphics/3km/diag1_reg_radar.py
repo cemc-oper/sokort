@@ -9,7 +9,7 @@ from nwpc_graphics.systems.grapes_meso_3km._plotter import SystemPlotter
 
 class Plotter(SystemPlotter):
     plot_types = [
-        "diag1_reg_radar"
+        "3km.diag1_reg_radar"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict):

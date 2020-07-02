@@ -49,7 +49,7 @@ ln -sf ${ncl_lib}/lib .
 # link and rename data files
 #------------------------------
 ln -sf ${data_path}/* .
-rename hgra gra ./*.grb2
+#rename hgra gra ./*.grb2
 
 #------------------
 # run ncl script
