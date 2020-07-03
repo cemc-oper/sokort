@@ -16,14 +16,7 @@ class Plotter(SystemPlotter):
 
         self.ncl_script_name = "grapes_meso_3km_2m_rh.ncl"
 
-        if not self._check_forecast_time():
-            raise ValueError(f"forecast time must greater than 0h.")
-
     def get_image_list(self):
         return [{
             "path": f"GRAPES_MESO-3KM-2m-relative-humidity-{self.start_time}_{self.forecast_hour}.png"
         }]
-
-    def _check_forecast_time(self) -> bool:
-        forecast_hour = int(self.forecast_hour)
-        return not forecast_hour == 0
