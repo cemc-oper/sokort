@@ -8,7 +8,7 @@ def run():
     start_time = yesterday.strftime("%Y%m%d")
     start_hour = "00"
     forecast_time = "24h"
-    plot_type = "area_prep_12h_10mw"
+    plot_type = "area_shr6"
 
     show_plot(
         plot_type,
