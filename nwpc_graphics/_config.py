@@ -40,7 +40,7 @@ class Config(dict):
                 self["systems"][item.stem] = c
 
     def generate_run_dir(self):
-        run_base_dir = self["general"]["run_base_dir"]
+        run_base_dir = os.path.expandvars(self["general"]["run_base_dir"])
         run_dir = tempfile.mkdtemp(dir=run_base_dir)
         return run_dir
 
