@@ -1,0 +1,7 @@
+system:
+  ncl_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/"
+  script_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/"
+
+components:
+  gams:
+    ncl_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
