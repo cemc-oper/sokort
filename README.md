@@ -48,10 +48,11 @@ show_plot("pwat_sfc_an_aea", "2020011300", "24h")
 
 ### 命令行程序
 
-本项目提供命令行程序`nwpc_graphics`。下面的代码使用改程序绘制上面的示例，并调用系统默认的图片浏览器显示图片。
+本项目提供命令行接口。
+下面的代码使用改程序绘制上面的示例，并调用系统默认的图片浏览器显示图片。
 
 ```bash
-nwpc_graphics show \
+python -m nwpc_graphics show \
     --system=grapes_gfs_gmf \
     --plot-type=pwat_sfc_an_aea \
     --start-time=2020011300 \
