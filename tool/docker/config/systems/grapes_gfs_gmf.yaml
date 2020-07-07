@@ -1,0 +1,7 @@
+system:
+  ncl_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/"
+  script_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/"
+
+components:
+  gams:
+    ncl_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
