@@ -145,6 +145,7 @@ class SystemPlotter(BasePlotter):
             "GEODIAG_ROOT": geodiag_root,
             "GEODIAG_TOOLS": geodiag_tools,
             "GRAPHIC_PRODUCT_LIB_ROOT": graphic_product_lib_root,
+            "GRAPHIC_PRODUCT_SCRIPT_ROOT": graphic_product_lib_root,
             "FORECAST_DATA_FORMAT": self.forecast_data_format,
             "FORECAST_DATA_CENTER": self.forecast_data_center,
             "start_time": self.start_time,
