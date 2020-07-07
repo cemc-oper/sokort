@@ -1,0 +1,10 @@
+ncl:
+  ncl_lib: "/home/wangdp/project/graphics/operation/system/ncllib/"
+  geodiag_root: "/home/wangdp/project/graphics/operation/system/GEODIAG/"
+  load_env_script: ""
+
+general:
+  run_base_dir: "/home/wangdp/project/graphics/operation/data/"
+
+config:
+  systems_dir: "./systems"

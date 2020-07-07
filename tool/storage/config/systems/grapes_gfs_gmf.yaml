@@ -1,0 +1,7 @@
+system:
+  ncl_dir: "/home/wangdp/project/graphics/operation/system/GMF_GRAPES_GFS_POST/tograph/script/"
+  script_dir: "/home/wangdp/project/graphics/operation/system/GMF_GRAPES_GFS_POST/tograph/script/"
+
+components:
+  gams:
+    ncl_dir: "/home/wangdp/project/graphics/operation/system/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
