@@ -2,7 +2,7 @@ system:
   script_dir: "/home/wangdp/project/graphics/operation/system/NWP_GRAPES_MESO_3KM_GRAPH/graph/script"
 
 ncl:
-  ncl_lib: "/home/wangdp/project/graphics/operation/system/NWP_GRAPES_MESO_3KM_GRAPH/graph/script/nclib"
+  ncl_lib: "/home/wangdp/project/graphics/operation/system/NWP_GRAPES_MESO_3KM_GRAPH/graph/script/ncllib"
 
 components:
   meso_3km:

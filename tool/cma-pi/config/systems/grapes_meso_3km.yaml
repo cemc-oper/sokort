@@ -2,7 +2,7 @@ system:
   script_dir: "/g1/u/nwp_pd/NWP_GRAPES_MESO_3KM_GRAPH/graph/script"
 
 ncl:
-  ncl_lib: "/g1/u/nwp_pd/NWP_GRAPES_MESO_3KM_GRAPH/graph/script/nclib"
+  ncl_lib: "/g1/u/nwp_pd/NWP_GRAPES_MESO_3KM_GRAPH/graph/script/ncllib"
 
 components:
   meso_3km:
