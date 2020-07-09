@@ -21,13 +21,30 @@ class IPythonPresenter(Presenter):
 
 
 class JupyterWidgetsPresenter(Presenter):
-    def __init__(self, out: widgets.Output):
+    def __init__(self, out: widgets.Output = widgets.Output()):
         super(JupyterWidgetsPresenter).__init__()
         self.out = out
 
     def show_plot(self, images: list):
-        for an_image in images:
-            self.out.append_display_data(Image(filename=f"./{an_image['path']}"))
+        children = []
+        titles = []
+        for index, an_image in enumerate(images):
+            file = open(f"./{an_image['path']}", "rb")
+            image = file.read()
+            image_widget = widgets.Image(
+                value=image,
+                format='png',
+            )
+            children.append(image_widget)
+            if "name" in an_image:
+                titles.append(an_image["name"])
+            else:
+                titles.append(str(index))
+        tab = widgets.Tab()
+        tab.children = children
+        for index, title in enumerate(titles):
+            tab.set_title(index, title)
+        display(tab)
 
 
 class PILPresenter(Presenter):
