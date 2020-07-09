@@ -28,6 +28,8 @@
 在运行前使用 `NWPC_GRAPHICS_CONFIG` 环境变量设置主配置文件 `config.yaml` 的路径，
 或者手动调用 `load_config()` 函数设置。
 
+如果在 CMA-PI 中安装，可以直接使用 `tool/cma-pi` 下提供的预设配置文件和环境加载脚本。
+
 ## 使用
 
 ### Jupyter Notebook
@@ -45,6 +47,8 @@ show_plot("pwat_sfc_an_aea", "2020011300", "24h")
 在Jupyter Notebook中运行效果如下图所示
 
 ![](./doc/nwpc-graphics-grapes-gfs-pwat-sfc-an-aea.png)
+
+更多 Jupyter Notebook 示例请浏览 `example` 目录。
 
 ### 命令行程序
 
