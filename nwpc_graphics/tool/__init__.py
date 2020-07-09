@@ -7,6 +7,8 @@ from nwpc_graphics.systems import (
     grapes_meso_3km,
     grapes_gfs_gmf,
 )
+from nwpc_graphics._presenter import JupyterWidgetsPresenter
+
 
 system_mapper = {
     "grapes_gfs_gmf": grapes_gfs_gmf,
@@ -67,6 +69,7 @@ def interactive_ui(system):
             plot_type_options.value,
             start_time=f'{start_date.strftime("%Y%m%d")}{start_hour_option.value}',
             forecast_time=forecast_time_option.value,
+            presenter=JupyterWidgetsPresenter(),
         )
 
     button.on_click(plot)
