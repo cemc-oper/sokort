@@ -11,14 +11,23 @@ from nwpc_graphics._presenter import JupyterWidgetsPresenter
 
 
 system_mapper = {
-    "grapes_gfs_gmf": grapes_gfs_gmf,
-    "grapes_gfs": grapes_gfs_gmf,
-    "grapes_meso_3km": grapes_meso_3km,
+    "grapes_gfs_gmf": {
+        "module": grapes_gfs_gmf,
+        "start_hours": ['00', '06', '12', "18"],
+    },
+    "grapes_gfs": {
+        "module": grapes_gfs_gmf,
+        "start_hours": ['00', '06', '12', "18"],
+    },
+    "grapes_meso_3km": {
+        "module": grapes_meso_3km,
+        "start_hours": ['00', '03', '06', '09', '12', '15', "18", '21'],
+    }
 }
 
 
 def interactive_ui(system):
-    system_module = system_mapper[system]
+    system_module = system_mapper[system]["module"]
 
     plotters = system_module.plotters
 
@@ -31,7 +40,7 @@ def interactive_ui(system):
     )
 
     start_hour_option = widgets.Dropdown(
-        options=['00', '06', '12', "18"],
+        options=system_mapper[system]["start_hours"],
         value='00',
         description='Start Hour:',
         disabled=False,
