@@ -2,7 +2,7 @@ from pathlib import Path
 from nwpc_graphics._config import Config, load_config_from_env
 from nwpc_graphics._logging import get_logger
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 
 nwpc_graphics_config = load_config_from_env()
