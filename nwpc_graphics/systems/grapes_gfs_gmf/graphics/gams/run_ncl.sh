@@ -54,7 +54,7 @@ ncl -x initial_time=${initial_time} \
      forecast_time_interval=${forecast_time_interval} \
      data_path=\"${data_path}\" \
      output_path=\"${output_path}\" \
-     ${file_name}
+     ${file_name} > plot.log
 
 # convert image
 ./ps2gif_NoRotation_NoPlot.src
