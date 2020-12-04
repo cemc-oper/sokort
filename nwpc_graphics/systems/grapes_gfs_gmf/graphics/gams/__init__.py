@@ -55,7 +55,7 @@ class GamsPlotter(SystemPlotter):
             "forecast_time": forecast_time,
         }
 
-        work_dir = tempfile.mkdtemp()
+        work_dir = graphics_config.generate_run_dir()
 
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],

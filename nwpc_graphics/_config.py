@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
-import tempfile
+import datetime
+import uuid
 
 import yaml
 
@@ -42,7 +43,12 @@ class Config(dict):
     def generate_run_dir(self):
         run_base_dir = os.path.expandvars(self["general"]["run_base_dir"])
         Path(run_base_dir).mkdir(parents=True, exist_ok=True)
-        run_dir = tempfile.mkdtemp(dir=run_base_dir)
+
+        temp_string = str(uuid.uuid4())
+        current_datetime = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        temp_directory = f"{current_datetime}_{temp_string}"
+        run_dir = Path(run_base_dir, temp_directory)
+        run_dir.mkdir(parents=True, exist_ok=True)
         return run_dir
 
 
