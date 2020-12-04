@@ -16,6 +16,7 @@
 #   ncl_script_name: ncl script file
 #
 set -x
+set +x
 set -e
 
 #---------------
@@ -54,7 +55,7 @@ ln -sf ${data_path}/* .
 #------------------
 # run ncl script
 #------------------
-ncl ./${ncl_script_name}
+ncl ./${ncl_script_name} > plot.log
 
 # convert image
 ./ps2gif_NoRotation_NoPlot.scr
