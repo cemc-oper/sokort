@@ -13,6 +13,10 @@ setup(
     description='NWPC Graphics project.',
     long_description=__doc__,
 
+    url='https://github.com/nwpc-oper/sokort',
+    author='perillaroc',
+    author_email='perillaroc@gmail.com',
+
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
 
     include_package_data=True,
