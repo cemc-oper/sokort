@@ -1,5 +1,5 @@
 import datetime
-from nwpc_graphics.systems.grapes_meso_3km import show_plot
+from sokort.systems.grapes_meso_3km import show_plot
 
 
 def run():

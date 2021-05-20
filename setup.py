@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 import io
 import re
 
-with io.open("nwpc_graphics/__init__.py", "rt", encoding="utf8") as f:
+with io.open("sokort/__init__.py", "rt", encoding="utf8") as f:
     version = re.search(r'__version__ = "(.*?)"', f.read()).group(1)
 
 setup(
-    name='nwpc-graphics',
+    name='sokort',
 
     version=version,
 

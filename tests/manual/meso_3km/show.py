@@ -1,6 +1,6 @@
 import datetime
-from nwpc_graphics.systems.grapes_meso_3km import show_plot
-from nwpc_graphics._presenter import PILPresenter
+from sokort.systems.grapes_meso_3km import show_plot
+from sokort._presenter import PILPresenter
 
 
 def run():

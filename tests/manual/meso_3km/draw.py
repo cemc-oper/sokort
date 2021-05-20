@@ -1,14 +1,15 @@
 import datetime
-from nwpc_graphics.systems.grapes_meso_3km import draw_plot
+import pandas as pd
+from sokort.systems.grapes_meso_3km import draw_plot
 
 
 def run():
-    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
-    start_time = yesterday.strftime("%Y%m%d")
+    day = pd.to_datetime("2021-05-14 00:00:00")
+    start_time = day.strftime("%Y%m%d")
     start_hour = "00"
     forecast_time = "12h"
     # plot_type = "meso_3km.prep_3h_10mw"
-    plot_type = "cn_500height_850wind"
+    plot_type = "cn_radar_reflectivity"
 
     draw_plot(plot_type, start_time + start_hour, forecast_time)
 

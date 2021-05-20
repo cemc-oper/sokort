@@ -1,4 +1,4 @@
-# nwpc-graphics
+# sokort
 
 封装中国气象局数值预报中心数值预报业务系统使用的图片制作脚本。
 
@@ -39,7 +39,7 @@
 执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2020 年 1 月 13 日 00 时次 24 小时的整层可降水量。
 
 ```python
-from nwpc_graphics.systems.grapes_gfs_gmf import show_plot
+from sokort.systems.grapes_gfs_gmf import show_plot
 
 show_plot("pwat_sfc_an_aea", "2020011300", "24h")
 ```
@@ -56,7 +56,7 @@ show_plot("pwat_sfc_an_aea", "2020011300", "24h")
 下面的代码使用改程序绘制上面的示例，并调用系统默认的图片浏览器显示图片。
 
 ```bash
-python -m nwpc_graphics show \
+python -m sokort show \
     --system=grapes_gfs_gmf \
     --plot-type=pwat_sfc_an_aea \
     --start-time=2020011300 \
@@ -67,6 +67,6 @@ python -m nwpc_graphics show \
 
 Copyright 2020, perillaroc, 数值预报中心。
 
-`nwpc-graphics` 以 [GPL-3.0](./LICENSE.md) 协议授权。
+`sokort` 以 [GPL-3.0](./LICENSE.md) 协议授权。
 
 本项目涉及的数值预报业务系统及图片制作脚本版权均属于中国气象局数值预报中心。
