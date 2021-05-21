@@ -1,10 +1,10 @@
 import datetime
 import os
 import subprocess
+from typing import Union, Dict, List
+from pathlib import Path
 
 import pandas as pd
-
-from sokort._util import _get_load_env_script
 
 
 class BasePlotter(object):
@@ -15,9 +15,9 @@ class BasePlotter(object):
 
     def __init__(
             self,
-            task: dict,
+            task: Dict,
             work_dir: str,
-            config: dict,
+            config: Dict,
     ):
         """
         Parameters
@@ -45,10 +45,14 @@ class BasePlotter(object):
 
         # magic options
         self.run_script_name = "run_ncl.sh"
-        if "load_env_script" not in config or len(config["load_env_script"]) == 0:
+        if (
+                "load_env_script" not in config
+                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"])==0)
+        ):
             load_env_script = _get_load_env_script()
         else:
             load_env_script = config["load_env_script"]
+
         self.load_env_script_path = load_env_script
         self.run_script_path = self._get_run_script()
 
@@ -84,7 +88,7 @@ class BasePlotter(object):
 
     def _run_process(self, envs: dict):
         pipe = subprocess.Popen(
-            [f"./{self.run_script_name}"],
+            ["bash",  f"./{self.run_script_name}"],
             start_new_session=True,
             env=envs
         )
@@ -93,7 +97,7 @@ class BasePlotter(object):
         pipe.wait()
         pipe.terminate()
 
-    def get_image_list(self):
+    def get_image_list(self) -> List:
         """Get image list.
 
         Should implemented by sub-class.
@@ -108,3 +112,7 @@ class BasePlotter(object):
     @classmethod
     def _get_run_script(cls):
         return None
+
+
+def _get_load_env_script():
+    return Path(Path(__file__).parent, "load_env.sh")

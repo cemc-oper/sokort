@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional, Union, Dict
 import os
 import datetime
 import uuid
@@ -18,15 +19,29 @@ class Config(dict):
         self.config_file_path = config_file_path
 
     @classmethod
-    def load(cls, config_file: str or Path):
-        with open(config_file) as f:
-            config_dict = yaml.safe_load(f)
-            config = Config(config_file_path=Path(config_file))
-            config.update(config_dict)
-            config.load_systems()
-            return config
+    def load(cls, config_file: Union[str, Path]):
+        config = Config(config_file_path=Path(config_file))
+        config._load_config()
+        config._load_systems()
+        return config
 
-    def load_systems(self):
+    def _load_config(self):
+        with open(self.config_file_path) as f:
+            config_dict = yaml.safe_load(f)
+            self.update(config_dict)
+            self._expand_ncl_config(self["ncl"])
+
+    def _expand_ncl_config(self, ncl_config: Dict):
+        if "load_env_script" not in ncl_config:
+            return ncl_config
+        load_env_script = ncl_config["load_env_script"]
+        if len(load_env_script) == 0:
+            return ncl_config
+
+        ncl_config["load_env_script"] = self.config_file_path.parent.joinpath(load_env_script).absolute()
+        return ncl_config
+
+    def _load_systems(self):
         systems_path = self.config_file_path.parent.joinpath(self["config"]["systems_dir"])
         if not systems_path.exists():
             raise FileNotFoundError(f"systems directory is not found.")
@@ -40,7 +55,10 @@ class Config(dict):
                 c = yaml.safe_load(f)
                 self["systems"][item.stem] = c
 
-    def generate_run_dir(self):
+    def generate_run_dir(self) -> Path:
+        """
+        Create a temporary run directory under `general.run_base_dir` in config.
+        """
         run_base_dir = os.path.expandvars(self["general"]["run_base_dir"])
         Path(run_base_dir).mkdir(parents=True, exist_ok=True)
 
@@ -52,7 +70,10 @@ class Config(dict):
         return run_dir
 
 
-def load_config_from_env():
+def load_config_from_env() -> Optional[Config]:
+    """
+    Load ``Config`` object from file path set in environment variable ``CONFIG_ENVIRONMENT_VARIABLE_NAME``.
+    """
     if CONFIG_ENVIRONMENT_VARIABLE_NAME in os.environ:
         config = Config.load(os.environ[CONFIG_ENVIRONMENT_VARIABLE_NAME])
         return config

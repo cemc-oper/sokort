@@ -2,10 +2,14 @@ import inspect
 import pathlib
 import importlib.util
 import sys
+from typing import List, Type, Dict
+
+from ._plotter import BasePlotter
 
 
 def _load_module(file_path: pathlib.Path):
-    """Load module in file.
+    """
+    Load module in file.
     """
     module_name = file_path.stem
     spec = importlib.util.spec_from_file_location(module_name, file_path)
@@ -15,15 +19,12 @@ def _load_module(file_path: pathlib.Path):
     return module
 
 
-def _get_load_env_script():
-    return pathlib.Path(pathlib.Path(__file__).parent, "load_env.sh")
-
-
 def load_plotters_from_paths(
-        paths: list,
-        plotter_class,
-):
-    """Load plotter classes from path list.
+        paths: List,
+        plotter_class: Type[BasePlotter],
+) -> Dict[str, Type[BasePlotter]]:
+    """
+    Load plotter classes from path list.
 
     Parameters
     ----------

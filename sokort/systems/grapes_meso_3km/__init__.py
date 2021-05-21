@@ -1,5 +1,6 @@
 import pathlib
 import datetime
+from typing import Union, List, Type, Dict
 
 import pandas as pd
 
@@ -13,12 +14,15 @@ from sokort import get_config
 logger = get_logger()
 
 
-def _load_plotters():
-    plotters = load_plotters_from_paths(
+def _load_plotters() -> Dict[str, Type[SystemPlotter]]:
+    """
+    Load plotter in graphics directory.
+    """
+    p = load_plotters_from_paths(
         [pathlib.Path(pathlib.Path(__file__).parent, "graphics")],
         SystemPlotter,
     )
-    return plotters
+    return p
 
 
 plotters = _load_plotters()
@@ -26,10 +30,11 @@ plotters = _load_plotters()
 
 def draw_plot(
         plot_type: str,
-        start_time: str or datetime.datetime or pd.Timestamp,
-        forecast_time: str or pd.Timedelta
+        start_time: Union[str, datetime.datetime, pd.Timestamp],
+        forecast_time: Union[str, pd.Timedelta]
 ):
-    """Draw images and save them in work directory.
+    """
+    Draw images and save them in work directory.
 
     Parameters
     ----------
@@ -37,8 +42,9 @@ def draw_plot(
         Plot type according to systems.
     start_time: str or datetime.datetime or pd.Timestamp
         Start time:
-            - str: YYYYMMDDHH
-            - datetime.datetime or pd.Timestamp
+            - str: YYYYMMDDHH, or other time strings (supported by ``pd.to_datetime``)
+            - datetime.datetime
+            - pd.Timestamp
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
 
@@ -52,7 +58,10 @@ def draw_plot(
         raise ValueError(f"plot type is not supported:{plot_type}")
 
     if isinstance(start_time, str):
-        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        if len(start_time) == 10:
+            start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        else:
+            start_time = pd.to_datetime(start_time)
 
     if isinstance(forecast_time, str):
         forecast_time = pd.to_timedelta(forecast_time)
@@ -67,11 +76,12 @@ def draw_plot(
 
 def show_plot(
         plot_type: str,
-        start_time: str or datetime.datetime or pd.Timestamp,
-        forecast_time: str or pd.Timedelta,
+        start_time: Union[str, datetime.datetime, pd.Timestamp],
+        forecast_time: Union[str, pd.Timedelta],
         presenter: Presenter = IPythonPresenter(),
 ):
-    """Draw images and show them in Jupyter Notebook.
+    """
+    Draw images and show them in Jupyter Notebook.
 
     Parameters
     ----------
@@ -79,7 +89,7 @@ def show_plot(
         Plot type according to systems.
     start_time: str or datetime.datetime or pd.Timestamp
         Start time:
-            - str: YYYYMMDDHH
+            - str: YYYYMMDDHH, or other time strings (supported by ``pd.to_datetime``)
             - datetime.datetime or pd.Timestamp
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
@@ -96,7 +106,10 @@ def show_plot(
         raise ValueError(f"plot type is not supported:{plot_type}")
 
     if isinstance(start_time, str):
-        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        if len(start_time) == 10:
+            start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        else:
+            start_time = pd.to_datetime(start_time)
 
     if isinstance(forecast_time, str):
         forecast_time = pd.to_timedelta(forecast_time)
@@ -114,8 +127,9 @@ def show_plot(
     return
 
 
-def _get_plotter_class(plot_type: str):
-    """Get plot module
+def _get_plotter_class(plot_type: str) -> Type[SystemPlotter]:
+    """
+    Get plot module.
 
     Parameters
     ----------

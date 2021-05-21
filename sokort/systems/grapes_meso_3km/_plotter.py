@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Dict, Union
 import os
 import shutil
 import datetime
@@ -19,9 +20,9 @@ class SystemPlotter(BasePlotter):
 
     def __init__(
             self,
-            task: dict,
+            task: Dict,
             work_dir: str,
-            config: dict,
+            config: Dict,
     ):
         """
         Parameters
@@ -54,7 +55,7 @@ class SystemPlotter(BasePlotter):
     def create_plotter(
             cls,
             graphics_config: Config,
-            start_time: datetime.datetime or pd.Timestamp,
+            start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta):
         """Create plotter
 
