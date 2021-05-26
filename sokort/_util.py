@@ -28,7 +28,7 @@ def load_plotters_from_paths(
 
     Parameters
     ----------
-    paths: list(pathlib.Path or str)
+    paths: List[Union[pathlib.Path, str]]
         path list to load plotter classes from.
 
     plotter_class: object
@@ -36,7 +36,7 @@ def load_plotters_from_paths(
 
     Returns
     -------
-    dict
+    Dict
         A dict of BasePlotters.
     """
     plotters = dict()
