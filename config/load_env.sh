@@ -6,5 +6,5 @@
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-#source /home/wangdp/.pyenv/versions/anaconda3-2019.10/etc/profile.d/conda.sh
-#conda activate ncl_stable
+#source /home/wangdp/lang/anaconda3/etc/profile.d/conda.sh
+#conda activate py39-dev
