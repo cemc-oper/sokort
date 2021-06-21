@@ -6,6 +6,9 @@ import uuid
 
 import yaml
 
+from sokort._logging import get_logger
+logger = get_logger()
+
 
 CONFIG_ENVIRONMENT_VARIABLE_NAME = "NWPC_GRAPHICS_CONFIG"
 
@@ -70,11 +73,19 @@ class Config(dict):
         return run_dir
 
 
-def load_config_from_env() -> Optional[Config]:
+def load_config_from_env_or_home() -> Optional[Config]:
     """
     Load ``Config`` object from file path set in environment variable ``CONFIG_ENVIRONMENT_VARIABLE_NAME``.
+    Or load from ``${HOME}/.config/nwpc-oper/sokort/config.yaml``.
     """
     if CONFIG_ENVIRONMENT_VARIABLE_NAME in os.environ:
         config = Config.load(os.environ[CONFIG_ENVIRONMENT_VARIABLE_NAME])
         return config
-    return None
+    else:
+        home_config = Path(Path.home(), ".config", "nwpc-oper", "sokort", "config.yaml")
+        logger.info(f"config file path: {home_config}")
+        if home_config.exists():
+            config = Config.load(home_config)
+            return config
+        else:
+            return None

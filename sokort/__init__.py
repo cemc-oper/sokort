@@ -1,13 +1,13 @@
 from pathlib import Path
 from typing import Union
 
-from sokort._config import Config, load_config_from_env
+from sokort._config import Config, load_config_from_env_or_home
 from sokort._logging import get_logger
 
 __version__ = "0.3.0"
 
 
-nwpc_graphics_config: Config = load_config_from_env()
+nwpc_graphics_config: Config = load_config_from_env_or_home()
 logger = get_logger()
 
 
