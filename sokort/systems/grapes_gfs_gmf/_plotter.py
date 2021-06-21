@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import shutil
 import datetime
+from typing import Dict, Union
 
 import pandas as pd
 
@@ -9,6 +10,10 @@ from nwpc_data.data_finder import find_local_file
 
 from sokort._plotter import BasePlotter
 from sokort._config import Config
+from sokort._logging import get_logger
+
+
+logger = get_logger("grapes_gfs_gmf")
 
 
 class SystemPlotter(BasePlotter):
@@ -17,7 +22,13 @@ class SystemPlotter(BasePlotter):
     """
     plot_types = None
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
+    def __init__(
+            self,
+            task: Dict,
+            work_dir: Union[str, Path],
+            config: Dict,
+            verbose: Union[bool, int] = False
+    ):
         """
         Parameters
         ----------
@@ -44,6 +55,7 @@ class SystemPlotter(BasePlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            verbose=verbose
         )
 
         # magic options
@@ -58,8 +70,10 @@ class SystemPlotter(BasePlotter):
     def create_plotter(
             cls,
             graphics_config: Config,
-            start_time: datetime.datetime or pd.Timestamp,
-            forecast_time: pd.Timedelta):
+            start_time: Union[datetime.datetime, pd.Timestamp],
+            forecast_time: pd.Timedelta,
+            verbose: Union[bool, int] = False
+    ):
         """Create plotter
 
         Parameters
@@ -69,6 +83,8 @@ class SystemPlotter(BasePlotter):
         start_time: datetime.datetime or pd.Timestamp,
         forecast_time: pd.Timedelta
             Forecast time duration, such as 3h.
+        verbose:
+            logger setting
 
         Returns
         -------
@@ -92,6 +108,8 @@ class SystemPlotter(BasePlotter):
         }
 
         work_dir = graphics_config.generate_run_dir()
+        if verbose:
+            logger.debug(f"create work directory: {work_dir.absolute()}")
 
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
@@ -103,6 +121,7 @@ class SystemPlotter(BasePlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            verbose=verbose
         )
 
     def _prepare_environment(self):

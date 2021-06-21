@@ -13,7 +13,7 @@ class Plotter(FcAhnePlotter):
         "mslp_sfc_fc_ahne"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        FcAhnePlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        FcAhnePlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "GFS_GRAPES_MSLP_SFC_FC_AHNE.ncl"

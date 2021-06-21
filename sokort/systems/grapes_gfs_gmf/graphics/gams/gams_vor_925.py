@@ -11,8 +11,8 @@ class Plotter(GamsPlotter):
         "gams.vor_925"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        GamsPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        GamsPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "gams_vor_925.ncl"
 

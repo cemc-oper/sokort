@@ -6,6 +6,11 @@ from pathlib import Path
 
 import pandas as pd
 
+from ._logging import get_logger
+
+
+logger = get_logger()
+
 
 class BasePlotter(object):
     """
@@ -16,38 +21,53 @@ class BasePlotter(object):
     def __init__(
             self,
             task: Dict,
-            work_dir: str,
+            work_dir: Union[str, Path],
             config: Dict,
+            verbose: Union[bool, int] = False
     ):
         """
         Parameters
         ----------
         task: dict
             task config dict
-            {
-                "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
-                "forecast_time": "3h", # optional
-            }
+
+                {
+                    "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
+                    "forecast_time": "3h", # optional
+                }
         work_dir: str
             work directory
         config: dict
             service config
-            {
-                "ncl_lib": "/home/wangdp/project/graph/ncllib",
-                "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
-                "load_env_script": "",
-            }
+                {
+                    "ncl_lib": "/home/wangdp/project/graph/ncllib",
+                    "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
+                    "load_env_script": "",
+                }
+        verbose:
+            print setting
+
+                - `0`: hide all prints
+                - `1`: only print logger outputs
+                - `2`: print logger and script outputs
         """
         self.task = task
         self.work_dir = work_dir
         self.config = config
         self.ncl_script_name = None
 
+        self.verbose = verbose
+        if isinstance(self.verbose, bool):
+            if self.verbose:
+                self.verbose = 1
+            else:
+                self.verbose = 0
+
         # magic options
         self.run_script_name = "run_ncl.sh"
         if (
                 "load_env_script" not in config
-                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"])==0)
+                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"]) == 0)
         ):
             load_env_script = _get_load_env_script()
         else:
@@ -87,15 +107,26 @@ class BasePlotter(object):
         return envs
 
     def _run_process(self, envs: dict):
+        if self.verbose >= 1:
+            logger.debug(f"run process: {self.run_script_name}")
+        process_stdout = subprocess.DEVNULL
+        process_stderr = subprocess.DEVNULL
+        if self.verbose >= 2:
+            process_stdout = None
+            process_stderr = None
         pipe = subprocess.Popen(
             ["bash",  f"./{self.run_script_name}"],
             start_new_session=True,
-            env=envs
+            env=envs,
+            stdout=process_stdout,
+            stderr=process_stderr
         )
 
         stdout, stderr = pipe.communicate()
         pipe.wait()
         pipe.terminate()
+        if self.verbose >= 1:
+            logger.debug(f"run process done: {self.run_script_name}")
 
     def get_image_list(self) -> List:
         """Get image list.

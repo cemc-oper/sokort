@@ -79,13 +79,15 @@ def load_config_from_env_or_home() -> Optional[Config]:
     Or load from ``${HOME}/.config/nwpc-oper/sokort/config.yaml``.
     """
     if CONFIG_ENVIRONMENT_VARIABLE_NAME in os.environ:
-        config = Config.load(os.environ[CONFIG_ENVIRONMENT_VARIABLE_NAME])
+        config_path = os.environ[CONFIG_ENVIRONMENT_VARIABLE_NAME]
+        logger.debug(f"config file path: {config_path}")
+        config = Config.load(config_path)
         return config
     else:
-        home_config = Path(Path.home(), ".config", "nwpc-oper", "sokort", "config.yaml")
-        logger.info(f"config file path: {home_config}")
-        if home_config.exists():
-            config = Config.load(home_config)
+        config_path = Path(Path.home(), ".config", "nwpc-oper", "sokort", "config.yaml")
+        if config_path.exists():
+            logger.debug(f"config file path: {config_path}")
+            config = Config.load(config_path)
             return config
         else:
             return None

@@ -13,7 +13,7 @@ class Plotter(FcAeuaPlotter):
         "hgt_p500_temp_p500_fc_aeua"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        FcAeuaPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        FcAeuaPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "GFS_GRAPES_HGT_P500+TEMP_P500_FC_AEUA.ncl"

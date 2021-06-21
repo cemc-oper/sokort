@@ -13,8 +13,8 @@ class GamsPlotter(SystemPlotter):
     """
     Plotter for component GAMS.
     """
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        SystemPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
 
     @classmethod
     def create_plotter(

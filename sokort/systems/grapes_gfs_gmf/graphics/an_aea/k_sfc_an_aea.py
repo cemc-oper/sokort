@@ -14,7 +14,7 @@ class Plotter(AnAeaPlotter):
         "k_sfc_an_aea"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        AnAeaPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        AnAeaPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "GFS_GRAPES_K_SFC_AN_AEA.ncl"
