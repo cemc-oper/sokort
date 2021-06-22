@@ -6,7 +6,7 @@ import pandas as pd
 
 from sokort.systems.grapes_meso_3km._plotter import SystemPlotter
 from sokort._logging import get_logger
-from sokort._util import load_plotters_from_paths
+from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
 from sokort import get_config
 

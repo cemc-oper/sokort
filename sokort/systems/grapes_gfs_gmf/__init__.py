@@ -6,7 +6,7 @@ import pandas as pd
 
 from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
 from sokort._logging import get_logger, convert_verbose
-from sokort._util import load_plotters_from_paths
+from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
 from sokort import get_config
 
@@ -56,7 +56,10 @@ def draw_plot(
         raise ValueError(f"plot type is not supported:{plot_type}")
 
     if isinstance(start_time, str):
-        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        if len(start_time) == 10:
+            start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        else:
+            start_time = pd.to_datetime(start_time)
 
     if isinstance(forecast_time, str):
         forecast_time = pd.to_timedelta(forecast_time)

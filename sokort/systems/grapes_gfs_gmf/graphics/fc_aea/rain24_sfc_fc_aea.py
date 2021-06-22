@@ -6,6 +6,7 @@
     http://nwpc.nmc.cn/list.jhtml?class_id=03130302
 """
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
+from sokort._util import get_forecast_hour
 
 
 class Plotter(FcAeaPlotter):
@@ -21,10 +22,10 @@ class Plotter(FcAeaPlotter):
         if not self._check_forecast_time():
             raise ValueError(f"forecast time must greater than 24h.")
 
-        forecast_hour = int(self.forecast_timedelta.total_seconds()) // 3600
+        forecast_hour = get_forecast_hour(self.forecast_timedelta)
         self.min_forecast_time = f"{forecast_hour - 24:03}"
         self.max_forecast_time = f"{forecast_hour:03}"
 
     def _check_forecast_time(self) -> bool:
-        forecast_hour = int(self.forecast_timedelta.total_seconds()) // 3600
+        forecast_hour = get_forecast_hour(self.forecast_timedelta)
         return forecast_hour >= 24

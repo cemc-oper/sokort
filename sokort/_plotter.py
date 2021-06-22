@@ -1,4 +1,3 @@
-import datetime
 import os
 import subprocess
 from typing import Union, Dict, List
@@ -7,6 +6,7 @@ from pathlib import Path
 import pandas as pd
 
 from ._logging import get_logger
+from ._util import get_forecast_hour
 
 
 logger = get_logger()
@@ -32,24 +32,25 @@ class BasePlotter(object):
             task config dict
 
                 {
-                    "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
+                    "start_datetime": "2020-11-12 00:00:00", # time string supported by ``pd.to_datetime``
                     "forecast_time": "3h", # optional
                 }
         work_dir: str
             work directory
         config: dict
             service config
+
                 {
                     "ncl_lib": "/home/wangdp/project/graph/ncllib",
                     "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
                     "load_env_script": "",
                 }
-        verbose:
+        verbose: bool or int
             print setting
 
                 - `0`: hide all prints
                 - `1`: only print logger outputs
-                - `2`: print logger and script outputs
+                - `2`: print both logger and script outputs
         """
         self.task = task
         self.work_dir = work_dir
@@ -77,13 +78,13 @@ class BasePlotter(object):
         self.run_script_path = self._get_run_script()
 
         # time options for task.
-        self.start_datetime = datetime.datetime.fromisoformat(self.task["start_datetime"])
+        self.start_datetime = pd.to_datetime(self.task["start_datetime"])
         self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
 
         if "forecast_time" in self.task:
-            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"]).to_pytimedelta()
+            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
             self.forecast_datetime = self.start_datetime + self.forecast_timedelta
-            self.forecast_hour = f"{int(self.forecast_timedelta.total_seconds()) // 3600:03}"  # 003
+            self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
             self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
 
     def run_plot(self):
@@ -106,7 +107,7 @@ class BasePlotter(object):
         envs = os.environ
         return envs
 
-    def _run_process(self, envs: dict):
+    def _run_process(self, envs: Dict):
         if self.verbose >= 1:
             logger.debug(f"run process: {self.run_script_name}")
         process_stdout = subprocess.DEVNULL
@@ -129,14 +130,15 @@ class BasePlotter(object):
             logger.debug(f"run process done: {self.run_script_name}")
 
     def get_image_list(self) -> List:
-        """Get image list.
+        """
+        Get image list.
 
         Should implemented by sub-class.
 
         Returns
         -------
         image_list: list
-            Images list.
+            Image list.
         """
         raise NotImplemented()
 
