@@ -31,9 +31,17 @@ setup(
         'click',
         'pyyaml',
         "IPython",
-        "loguru",
         "pillow",
         "pandas",
         "ipywidgets"
     ],
+
+    extras_require={
+        "all": {
+            "loguru"
+        },
+        # "jupyter": {
+        #     "ipywidgets",
+        # }
+    }
 )
