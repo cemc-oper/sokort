@@ -2,15 +2,14 @@ from pathlib import Path
 import os
 import shutil
 import datetime
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 
 import pandas as pd
-
-from nwpc_data.data_finder import find_local_file
 
 from sokort._plotter import BasePlotter
 from sokort._config import Config
 from sokort._logging import get_logger
+from sokort._data_finder import find_local_file
 
 
 logger = get_logger("grapes_gfs_gmf")
@@ -38,7 +37,7 @@ class SystemPlotter(BasePlotter):
                 "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
                 "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
                 "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
-                "start_datetime": datetime.datetime(2020, 1, 11, 0).isoformat(),
+                "start_datetime": "2021-06-23 00:00:00",
                 "forecast_time": "3h",
             }
         work_dir: str
@@ -72,6 +71,8 @@ class SystemPlotter(BasePlotter):
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta,
+            data_directory: Optional[Union[str, Path]] = None,
+            work_directory: Optional[Union[str, Path]] = None,
             verbose: Union[bool, int] = False
     ):
         """Create plotter
@@ -83,6 +84,10 @@ class SystemPlotter(BasePlotter):
         start_time: datetime.datetime or pd.Timestamp,
         forecast_time: pd.Timedelta
             Forecast time duration, such as 3h.
+        data_directory:
+            data directory for whole cycle.
+        work_directory:
+            work directory to run plot script.
         verbose:
             logger setting
 
@@ -92,13 +97,24 @@ class SystemPlotter(BasePlotter):
         """
         system_config = graphics_config["systems"]["grapes_gfs_gmf"]
 
-        data_file = find_local_file(
-            "grapes_gfs_gmf/grib2/orig",
-            start_time=start_time,
-            forecast_time=forecast_time,
-        )
-        data_path = str(data_file.parent) + "/"
+        # get data file using nwpc-data.
+        if data_directory is None:
+            data_file = find_local_file(
+                "grapes_gfs_gmf/grib2/orig",
+                start_time=start_time,
+                forecast_time=forecast_time,
+            )
+            data_path = str(data_file.parent) + "/"
+            if verbose:
+                logger.debug(f"find data directory: {data_path}")
+        else:
+            data_path = data_directory
+            if data_path[-1] != "/":
+                data_path = data_path + "/"
+            if verbose:
+                logger.debug(f"use data directory: {data_path}")
 
+        # task
         task = {
             "ncl_dir": system_config["system"]["ncl_dir"],
             "script_dir": system_config["system"]["script_dir"],
@@ -107,10 +123,17 @@ class SystemPlotter(BasePlotter):
             "forecast_time": forecast_time,
         }
 
-        work_dir = graphics_config.generate_run_dir()
-        if verbose:
-            logger.debug(f"create work directory: {work_dir.absolute()}")
+        # work dir
+        if work_directory is None:
+            work_dir = graphics_config.generate_run_dir()
+            if verbose:
+                logger.debug(f"create work directory: {work_dir.absolute()}")
+        else:
+            work_dir = work_directory
+            if verbose:
+                logger.debug(f"use work directory: {work_dir.absolute()}")
 
+        # config settings
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
             "geodiag_root": graphics_config["ncl"]["geodiag_root"],
