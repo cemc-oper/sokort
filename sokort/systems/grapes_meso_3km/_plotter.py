@@ -1,15 +1,21 @@
 from pathlib import Path
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 import os
 import shutil
 import datetime
 
 import pandas as pd
 
-from nwpc_data.data_finder import find_local_file
-
 from sokort._plotter import BasePlotter
 from sokort._config import Config
+from sokort._logging import get_logger
+from sokort._util import (
+    get_work_dir,
+    get_data_path
+)
+
+
+logger = get_logger("grapes_gfs_gmf")
 
 
 class SystemPlotter(BasePlotter):
@@ -17,12 +23,14 @@ class SystemPlotter(BasePlotter):
     System plotter for GRAPES MESO 3KM
     """
     plot_types = None
+    system_name = "grapes_meso_3km"
 
     def __init__(
             self,
             task: Dict,
             work_dir: str,
             config: Dict,
+            verbose: Union[bool, int] = False
     ):
         """
         Parameters
@@ -43,12 +51,15 @@ class SystemPlotter(BasePlotter):
                 "ncl_lib": "/home/wangdp/project/graph/ncllib",
                 "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
             }
+        verbose:
+            print setting
         """
         BasePlotter.__init__(
             self,
             task=task,
             work_dir=work_dir,
             config=config,
+            verbose=verbose,
         )
 
     @classmethod
@@ -56,7 +67,11 @@ class SystemPlotter(BasePlotter):
             cls,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
-            forecast_time: pd.Timedelta):
+            forecast_time: pd.Timedelta,
+            data_directory: Optional[Union[str, Path]] = None,
+            work_directory: Optional[Union[str, Path]] = None,
+            verbose: Union[bool, int] = False
+    ):
         """Create plotter
 
         Parameters
@@ -66,26 +81,40 @@ class SystemPlotter(BasePlotter):
         start_time: datetime.datetime or pd.Timestamp
         forecast_time: pd.Timedelta
             Forecast time duration, such as 3h.
+        data_directory
+        work_directory
+        verbose
 
         Returns
         -------
         SystemPlotter
         """
-        data_file = find_local_file(
-            "grapes_meso_3km/grib2/orig",
+        system_config = graphics_config["systems"][self.system_name]
+
+        data_path = get_data_path(
+            system_name=cls.system_name,
             start_time=start_time,
             forecast_time=forecast_time,
+            data_directory=data_directory
         )
-        data_path = str(data_file.parent) + "/"
+        if verbose:
+            logger.debug(f"data directory: {data_path}")
 
-        system_config = graphics_config["systems"]["grapes_meso_3km"]
         task = {
             "script_dir": system_config["system"]["script_dir"],
             "data_path": data_path,
             "start_datetime": start_time.isoformat(),
             "forecast_time": forecast_time,
         }
-        work_dir = graphics_config.generate_run_dir()
+
+        # work dir
+        work_dir = get_work_dir(
+            graphics_config=graphics_config,
+            work_directory=work_directory
+        )
+        if verbose:
+            logger.debug(f"work directory: {work_dir.absolute()}")
+
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
             "geodiag_root": graphics_config["ncl"]["geodiag_root"],
@@ -95,7 +124,8 @@ class SystemPlotter(BasePlotter):
         return cls(
             task=task,
             work_dir=work_dir,
-            config=config
+            config=config,
+            verbose=verbose
         )
 
     def _prepare_environment(self):

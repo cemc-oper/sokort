@@ -9,7 +9,10 @@ import pandas as pd
 from sokort._plotter import BasePlotter
 from sokort._config import Config
 from sokort._logging import get_logger
-from sokort._data_finder import find_local_file
+from sokort._util import (
+    get_work_dir,
+    get_data_path
+)
 
 
 logger = get_logger("grapes_gfs_gmf")
@@ -20,6 +23,7 @@ class SystemPlotter(BasePlotter):
     System plotter for GRAPES GFS GMF.
     """
     plot_types = None
+    system_name = "grapes_gfs_gmf"
 
     def __init__(
             self,
@@ -95,24 +99,16 @@ class SystemPlotter(BasePlotter):
         -------
         SystemPlotter
         """
-        system_config = graphics_config["systems"]["grapes_gfs_gmf"]
+        system_config = graphics_config["systems"][cls.system_name]
 
-        # get data file using nwpc-data.
-        if data_directory is None:
-            data_file = find_local_file(
-                "grapes_gfs_gmf/grib2/orig",
-                start_time=start_time,
-                forecast_time=forecast_time,
-            )
-            data_path = str(data_file.parent) + "/"
-            if verbose:
-                logger.debug(f"find data directory: {data_path}")
-        else:
-            data_path = data_directory
-            if data_path[-1] != "/":
-                data_path = data_path + "/"
-            if verbose:
-                logger.debug(f"use data directory: {data_path}")
+        data_path = get_data_path(
+            system_name=cls.system_name,
+            start_time=start_time,
+            forecast_time=forecast_time,
+            data_directory=data_directory
+        )
+        if verbose:
+            logger.debug(f"data directory: {data_path}")
 
         # task
         task = {
@@ -124,14 +120,12 @@ class SystemPlotter(BasePlotter):
         }
 
         # work dir
-        if work_directory is None:
-            work_dir = graphics_config.generate_run_dir()
-            if verbose:
-                logger.debug(f"create work directory: {work_dir.absolute()}")
-        else:
-            work_dir = work_directory
-            if verbose:
-                logger.debug(f"use work directory: {work_dir.absolute()}")
+        work_dir = get_work_dir(
+            graphics_config=graphics_config,
+            work_directory=work_directory
+        )
+        if verbose:
+            logger.debug(f"work directory: {work_dir.absolute()}")
 
         # config settings
         config = {
