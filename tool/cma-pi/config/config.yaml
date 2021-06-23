@@ -1,7 +1,7 @@
 ncl:
   ncl_lib: "/g1/u/nwp_pd/GRAPH/ncllib/"
   geodiag_root: "/g1/u/nwp_pd/GEODIAG/"
-  load_env_script: ""
+  load_env_script: "./load_env.sh"
 
 general:
   run_base_dir: "${JOBDIR}/graphics"
