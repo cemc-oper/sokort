@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from ._logging import get_logger
+from ._logging import get_logger, convert_verbose
 from ._util import get_forecast_hour
 
 
@@ -57,12 +57,7 @@ class BasePlotter(object):
         self.config = config
         self.ncl_script_name = None
 
-        self.verbose = verbose
-        if isinstance(self.verbose, bool):
-            if self.verbose:
-                self.verbose = 1
-            else:
-                self.verbose = 0
+        self.verbose = convert_verbose(verbose)
 
         # magic options
         self.run_script_name = "run_ncl.sh"
@@ -110,11 +105,13 @@ class BasePlotter(object):
     def _run_process(self, envs: Dict):
         if self.verbose >= 1:
             logger.debug(f"run process: {self.run_script_name}")
+
         process_stdout = subprocess.DEVNULL
         process_stderr = subprocess.DEVNULL
         if self.verbose >= 2:
             process_stdout = None
             process_stderr = None
+
         pipe = subprocess.Popen(
             ["bash",  f"./{self.run_script_name}"],
             start_new_session=True,
