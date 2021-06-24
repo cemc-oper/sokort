@@ -104,7 +104,7 @@ def show_plot(
     )
 
 
-def _get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:
+def get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:
     """
     Get plot module.
 

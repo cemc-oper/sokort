@@ -14,11 +14,11 @@ logger = get_logger()
 
 def get_plotter_class(system, plot_type):
     if system == "grapes_gfs_gmf":
-        from sokort.systems.grapes_gfs_gmf import _get_plotter_class
-        return _get_plotter_class(plot_type)
+        from sokort.systems.grapes_gfs_gmf import get_plotter_class as get_plotter_class_for_system
+        return get_plotter_class_for_system(plot_type)
     elif system == "grapes_meso_3km":
-        from sokort.systems.grapes_meso_3km import _get_plotter_class
-        return _get_plotter_class(plot_type)
+        from sokort.systems.grapes_meso_3km import get_plotter_class as get_plotter_class_for_system
+        return get_plotter_class_for_system(plot_type)
     else:
         raise ValueError(f"system is not supported: {system}")
 
