@@ -8,14 +8,10 @@ from sokort.systems import (
     grapes_gfs_gmf,
 )
 from sokort._presenter import JupyterWidgetsPresenter
-
+from sokort._util import fix_system_name
 
 system_mapper = {
     "grapes_gfs_gmf": {
-        "module": grapes_gfs_gmf,
-        "start_hours": ['00', '06', '12', "18"],
-    },
-    "grapes_gfs": {
         "module": grapes_gfs_gmf,
         "start_hours": ['00', '06', '12', "18"],
     },
@@ -27,6 +23,7 @@ system_mapper = {
 
 
 def interactive_ui(system):
+    system = fix_system_name(system)
     system_module = system_mapper[system]["module"]
 
     plotters = system_module.plotters
