@@ -1,12 +1,19 @@
 import datetime
-import tempfile
 from pathlib import Path
+from typing import Dict, Union, Optional
 
 import pandas as pd
 
-from nwpc_data.data_finder import find_local_file
-
+from sokort._logging import get_logger
+from sokort.config import Config
 from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
+from sokort._util import (
+    get_work_dir,
+    get_data_path
+)
+
+
+logger = get_logger("grapes_gfs_gmf")
 
 
 class GamsPlotter(SystemPlotter):
@@ -19,9 +26,13 @@ class GamsPlotter(SystemPlotter):
     @classmethod
     def create_plotter(
             cls,
-            graphics_config: dict,
+            graphics_config: Config,
             start_time: datetime.datetime or pd.Timestamp,
-            forecast_time: pd.Timedelta):
+            forecast_time: pd.Timedelta,
+            data_directory: Optional[Union[str, Path]] = None,
+            work_directory: Optional[Union[str, Path]] = None,
+            verbose: Union[bool, int] = False
+    ):
         """Create plotter
 
         Parameters
@@ -32,17 +43,22 @@ class GamsPlotter(SystemPlotter):
             Start hour
         forecast_time: pd.Timedelta
             Forecast time duration, such as 3h.
+        data_directory:
+        work_directory:
+        verbose:
 
         Returns
         -------
         SystemPlotter
         """
-        data_file = find_local_file(
-            "grapes_gfs_gmf/grib2/orig",
+        data_path = get_data_path(
+            system_name=cls.system_name,
             start_time=start_time,
             forecast_time=forecast_time,
+            data_directory=data_directory
         )
-        data_path = str(data_file.parent) + "/"
+        if verbose:
+            logger.debug(f"data directory: {data_path}")
 
         system_config = graphics_config["systems"]["grapes_gfs_gmf"]
         component_config = system_config["components"]["gams"]
@@ -55,7 +71,13 @@ class GamsPlotter(SystemPlotter):
             "forecast_time": forecast_time,
         }
 
-        work_dir = graphics_config.generate_run_dir()
+        # work dir
+        work_dir = get_work_dir(
+            graphics_config=graphics_config,
+            work_directory=work_directory
+        )
+        if verbose:
+            logger.debug(f"work directory: {work_dir.absolute()}")
 
         config = {
             "ncl_lib": graphics_config["ncl"]["ncl_lib"],
@@ -67,6 +89,7 @@ class GamsPlotter(SystemPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            verbose=verbose
         )
 
     @classmethod
