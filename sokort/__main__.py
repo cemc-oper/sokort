@@ -1,9 +1,9 @@
-import importlib
-
 import click
 
-from sokort import load_config
+from sokort.config import load_config
+from sokort.interface import draw_plot, show_plot
 from sokort._presenter import PILPresenter
+from sokort._util import fix_system_name
 
 
 @click.group("sokort")
@@ -24,15 +24,16 @@ def draw(
         start_time: str,
         forecast_time: str
 ):
+    system_name = fix_system_name(system_name)
     if config_file_path is not None:
         load_config(config_file_path)
 
-    module = importlib.import_module(f"sokort.systems.{system_name}")
-    draw_plot = module.draw_plot
     draw_plot(
+        system=system_name,
         plot_type=plot_type,
         start_time=start_time,
         forecast_time=forecast_time,
+        verbose=2
     )
 
 
@@ -49,16 +50,17 @@ def show(
         start_time: str,
         forecast_time: str
 ):
+    system_name = fix_system_name(system_name)
     if config_file_path is not None:
         load_config(config_file_path)
 
-    module = importlib.import_module(f"sokort.systems.{system_name}")
-    show_plot = module.show_plot
     show_plot(
+        system=system_name,
         plot_type=plot_type,
         start_time=start_time,
         forecast_time=forecast_time,
         presenter=PILPresenter(),
+        verbose=2,
     )
 
 
