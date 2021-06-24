@@ -5,7 +5,7 @@ import datetime
 import pandas as pd
 
 from ._data_finder import find_local_file
-from ._config import Config
+from .config import Config
 
 
 def get_forecast_hour(forecast_time: pd) -> int:

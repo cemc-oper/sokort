@@ -8,7 +8,7 @@ from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
 from sokort._logging import get_logger, convert_verbose
 from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
-from sokort import get_config
+from sokort.config import get_config
 
 
 logger = get_logger()

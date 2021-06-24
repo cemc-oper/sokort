@@ -7,7 +7,7 @@ from typing import Dict, Union, Optional
 import pandas as pd
 
 from sokort._plotter import BasePlotter
-from sokort._config import Config
+from sokort.config import Config
 from sokort._logging import get_logger
 from sokort._util import (
     get_work_dir,

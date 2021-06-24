@@ -8,7 +8,7 @@ import pandas as pd
 from nwpc_data.data_finder import find_local_file
 
 from sokort.systems.grapes_meso_3km._plotter import SystemPlotter
-from sokort._config import Config
+from sokort.config import Config
 
 
 class Meso3kmPlotter(SystemPlotter):

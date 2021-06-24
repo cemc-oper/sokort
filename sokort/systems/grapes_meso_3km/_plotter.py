@@ -7,7 +7,7 @@ import datetime
 import pandas as pd
 
 from sokort._plotter import BasePlotter
-from sokort._config import Config
+from sokort.config import Config
 from sokort._logging import get_logger
 from sokort._util import (
     get_work_dir,
@@ -89,7 +89,7 @@ class SystemPlotter(BasePlotter):
         -------
         SystemPlotter
         """
-        system_config = graphics_config["systems"][self.system_name]
+        system_config = graphics_config["systems"][cls.system_name]
 
         data_path = get_data_path(
             system_name=cls.system_name,
