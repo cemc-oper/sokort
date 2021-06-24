@@ -1,6 +1,6 @@
 import pathlib
 import datetime
-from typing import Union, Dict
+from typing import Union, Dict, Optional, Type
 
 import pandas as pd
 
@@ -39,10 +39,12 @@ def draw_plot(
         Plot type according to systems.
     start_time: str or datetime.datetime or pd.Timestamp
         Start time:
-            - str: YYYYMMDDHH
-            - datetime.datetime or pd.Timestamp
+            - str: YYYYMMDDHH or other strings supported by ``pandas.to_datetime``
+            - ``datetime.datetime`` or ``pd.Timestamp``
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
+    verbose:
+        print setting
 
     Raises
     -------
@@ -126,7 +128,7 @@ def show_plot(
     return
 
 
-def _get_plotter_class(plot_type: str):
+def _get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:
     """Get plot module
 
     Parameters

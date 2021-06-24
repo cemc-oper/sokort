@@ -15,7 +15,7 @@ from sokort._util import (
 )
 
 
-logger = get_logger("grapes_gfs_gmf")
+logger = get_logger("grapes_meso_3km")
 
 
 class SystemPlotter(BasePlotter):

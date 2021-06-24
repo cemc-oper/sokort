@@ -1,11 +1,11 @@
 import pathlib
 import datetime
-from typing import Union, List, Type, Dict
+from typing import Union, List, Type, Dict, Optional
 
 import pandas as pd
 
 from sokort.systems.grapes_meso_3km._plotter import SystemPlotter
-from sokort._logging import get_logger
+from sokort._logging import get_logger, convert_verbose
 from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
 from sokort import get_config
@@ -31,10 +31,10 @@ plotters = _load_plotters()
 def draw_plot(
         plot_type: str,
         start_time: Union[str, datetime.datetime, pd.Timestamp],
-        forecast_time: Union[str, pd.Timedelta]
+        forecast_time: Union[str, pd.Timedelta],
+        verbose: Union[bool, int] = False
 ):
     """
-    Draw images and save them in work directory.
 
     Parameters
     ----------
@@ -42,17 +42,20 @@ def draw_plot(
         Plot type according to systems.
     start_time: str or datetime.datetime or pd.Timestamp
         Start time:
-            - str: YYYYMMDDHH, or other time strings (supported by ``pd.to_datetime``)
-            - datetime.datetime
-            - pd.Timestamp
+            - str: YYYYMMDDHH or other strings supported by ``pandas.to_datetime``
+            - ``datetime.datetime`` or ``pd.Timestamp``
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
+    verbose:
+        print setting
 
     Raises
     -------
     ValueError
         plot_type is not found
     """
+    verbose = convert_verbose(verbose)
+
     plot_module = _get_plotter_class(plot_type)
     if plot_type is None:
         raise ValueError(f"plot type is not supported:{plot_type}")
@@ -69,9 +72,14 @@ def draw_plot(
     plotter = plot_module.create_plotter(
         graphics_config=get_config(),
         start_time=start_time,
-        forecast_time=forecast_time)
+        forecast_time=forecast_time,
+        verbose=verbose
+    )
 
     plotter.run_plot()
+
+    if verbose >= 1:
+        logger.info(f"image list: {plotter.get_image_list()}")
 
 
 def show_plot(
@@ -127,7 +135,7 @@ def show_plot(
     return
 
 
-def _get_plotter_class(plot_type: str) -> Type[SystemPlotter]:
+def _get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:
     """
     Get plot module.
 
