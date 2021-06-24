@@ -12,8 +12,8 @@ class Plotter(SystemPlotter):
         "area_prep_1h_10mw"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        SystemPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "grapes_meso_3km_prep_1hr_10mw_region.ncl"
 

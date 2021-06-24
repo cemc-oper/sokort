@@ -11,8 +11,8 @@ class Plotter(Meso3kmPlotter):
         "meso_3km.prep_12h_10mw"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        Meso3kmPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        Meso3kmPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "grapes_meso_prep_12hr_10mw.ncl"
 

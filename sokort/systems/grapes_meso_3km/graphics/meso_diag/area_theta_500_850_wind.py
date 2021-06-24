@@ -12,8 +12,8 @@ class Plotter(SystemPlotter):
         "area_theta_500_850_wind"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        SystemPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "grapes_meso_reg_theta_500_850_wind.ncl"
 

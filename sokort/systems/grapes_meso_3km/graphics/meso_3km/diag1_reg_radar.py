@@ -13,8 +13,8 @@ class Plotter(Meso3kmPlotter):
         "meso_3km.diag1_reg_radar"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        Meso3kmPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        Meso3kmPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "grapes_meso_reg_radar.ncl"
 

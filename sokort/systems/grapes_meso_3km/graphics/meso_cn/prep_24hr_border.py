@@ -12,8 +12,8 @@ class Plotter(SystemPlotter):
         "prep_24hr_border"
     ]
 
-    def __init__(self, task: dict, work_dir: str, config: dict):
-        SystemPlotter.__init__(self, task, work_dir, config)
+    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
+        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
 
         self.ncl_script_name = "grapes_meso_prep_24hr_border.ncl"
 
