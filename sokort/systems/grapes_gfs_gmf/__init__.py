@@ -5,13 +5,11 @@ from typing import Union, Dict, Optional, Type
 import pandas as pd
 
 from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
-from sokort._logging import get_logger, convert_verbose
 from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
-from sokort.config import get_config
 
 
-logger = get_logger()
+SYSTEM_NAME = "grapes_gfs_gmf"
 
 
 def _load_plotters():
@@ -51,32 +49,15 @@ def draw_plot(
     ValueError
         plot_type is not found
     """
-    verbose = convert_verbose(verbose)
-
-    plotter_class = _get_plotter_class(plot_type)
-    if plotter_class is None:
-        raise ValueError(f"plot type is not supported:{plot_type}")
-
-    if isinstance(start_time, str):
-        if len(start_time) == 10:
-            start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
-        else:
-            start_time = pd.to_datetime(start_time)
-
-    if isinstance(forecast_time, str):
-        forecast_time = pd.to_timedelta(forecast_time)
-
-    plotter = plotter_class.create_plotter(
-        graphics_config=get_config(),
+    system = SYSTEM_NAME
+    from sokort.interface import draw_plot as base_draw_plot
+    return base_draw_plot(
+        system=system,
+        plot_type=plot_type,
         start_time=start_time,
         forecast_time=forecast_time,
         verbose=verbose
     )
-
-    plotter.run_plot()
-
-    if verbose >= 1:
-        logger.info(f"image list: {plotter.get_image_list()}")
 
 
 def show_plot(
@@ -84,6 +65,7 @@ def show_plot(
         start_time: str or datetime.datetime or pd.Timestamp,
         forecast_time: str or pd.Timedelta,
         presenter: Presenter = IPythonPresenter(),
+        verbose: Union[bool, int] = False
 ):
     """Draw images and show them in Jupyter Notebook.
 
@@ -92,40 +74,30 @@ def show_plot(
     plot_type : str
         Plot type according to systems.
     start_time: str or datetime.datetime or pd.Timestamp
-        Start time:
+        Start time:`
             - str: YYYYMMDDHH
             - datetime.datetime or pd.Timestamp
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
     presenter: Presenter
         image presenter
+    verbose
 
     Raises
     -------
     ValueError
         plot_type is not found
     """
-    plotter_class = _get_plotter_class(plot_type)
-    if plotter_class is None:
-        raise ValueError(f"plot type is not supported:{plot_type}")
-
-    if isinstance(start_time, str):
-        start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
-
-    if isinstance(forecast_time, str):
-        forecast_time = pd.to_timedelta(forecast_time)
-
-    plotter = plotter_class.create_plotter(
-        graphics_config=get_config(),
+    system = SYSTEM_NAME
+    from sokort.interface import show_plot as base_show_plot
+    return base_show_plot(
+        system=system,
+        plot_type=plot_type,
         start_time=start_time,
-        forecast_time=forecast_time
+        forecast_time=forecast_time,
+        presenter=presenter,
+        verbose=verbose
     )
-
-    plotter.run_plot()
-
-    presenter.show_plot(plotter.get_image_list())
-
-    return
 
 
 def _get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:

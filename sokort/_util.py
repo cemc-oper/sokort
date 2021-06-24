@@ -45,3 +45,25 @@ def get_work_dir(
     else:
         work_dir = work_directory
     return work_dir
+
+
+def fix_system_name(system):
+    system_mapper = {
+        "grapes_gfs": "grapes_gfs_gmf"
+    }
+    return system_mapper.get(system, system)
+
+
+def parse_start_time(start_time: Union[str, datetime.datetime, pd.Timestamp]):
+    if isinstance(start_time, str):
+        if len(start_time) == 10:
+            start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
+        else:
+            start_time = pd.to_datetime(start_time)
+    return start_time
+
+
+def parse_forecast_time(forecast_time: Union[str, pd.Timedelta]):
+    if isinstance(forecast_time, str):
+        forecast_time = pd.to_timedelta(forecast_time)
+    return forecast_time
