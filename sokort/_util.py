@@ -43,7 +43,7 @@ def get_work_dir(
     if work_directory is None:
         work_dir = graphics_config.generate_run_dir()
     else:
-        work_dir = work_directory
+        work_dir = Path(work_directory)
     return work_dir
 
 
