@@ -145,9 +145,11 @@ class SystemPlotter(BasePlotter):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
 
         ncl_dir = self.task["ncl_dir"]
+        ncl_dir = os.path.expandvars(ncl_dir)
         # str, "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
 
         script_dir = self.task["script_dir"]
+        script_dir = os.path.expandvars(script_dir)
         # str "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
 
         # create environment
