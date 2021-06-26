@@ -111,9 +111,12 @@ class SystemPlotter(BasePlotter):
             logger.debug(f"data directory: {data_path}")
 
         # task
+
+        ncl_dir = os.path.expandvars(system_config["system"]["ncl_dir"])
+        script_dir = os.path.expandvars(system_config["system"]["script_dir"])
         task = {
-            "ncl_dir": system_config["system"]["ncl_dir"],
-            "script_dir": system_config["system"]["script_dir"],
+            "ncl_dir": ncl_dir,
+            "script_dir": script_dir,
             "data_path": data_path,
             "start_datetime": start_time.isoformat(),
             "forecast_time": forecast_time,
@@ -128,9 +131,12 @@ class SystemPlotter(BasePlotter):
             logger.debug(f"work directory: {work_dir.absolute()}")
 
         # config settings
+
+        ncl_lib_dir = os.path.expandvars(graphics_config["ncl"]["ncl_lib"])
+        geodiag_root = os.path.expandvars(graphics_config["ncl"]["geodiag_root"])
         config = {
-            "ncl_lib": graphics_config["ncl"]["ncl_lib"],
-            "geodiag_root": graphics_config["ncl"]["geodiag_root"],
+            "ncl_lib": ncl_lib_dir,
+            "geodiag_root": geodiag_root,
             "load_env_script": graphics_config["ncl"]["load_env_script"],
         }
 
@@ -145,11 +151,9 @@ class SystemPlotter(BasePlotter):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
 
         ncl_dir = self.task["ncl_dir"]
-        ncl_dir = os.path.expandvars(ncl_dir)
         # str, "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
 
         script_dir = self.task["script_dir"]
-        script_dir = os.path.expandvars(script_dir)
         # str "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script"
 
         # create environment
@@ -161,7 +165,7 @@ class SystemPlotter(BasePlotter):
             f.write(f"{self.forecast_time}")
 
         shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
-        shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
+        shutil.copy2(f"{script_dir}/{ncl_script_name}", f"{ncl_script_name}")
 
         shutil.copy2(f"{str(self.run_script_path)}", self.run_script_path.name)
         shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
@@ -171,6 +175,7 @@ class SystemPlotter(BasePlotter):
 
         ncl_lib = self.config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
         graphic_product_lib_root = ncl_lib
+        print(graphic_product_lib_root)
 
         geodiag_root = self.config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
         geodiag_tools = str(Path(geodiag_root, "tools"))

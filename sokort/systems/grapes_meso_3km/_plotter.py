@@ -100,8 +100,9 @@ class SystemPlotter(BasePlotter):
         if verbose:
             logger.debug(f"data directory: {data_path}")
 
+        script_dir = os.path.expandvars(system_config["system"]["script_dir"])
         task = {
-            "script_dir": system_config["system"]["script_dir"],
+            "script_dir": script_dir,
             "data_path": data_path,
             "start_datetime": start_time.isoformat(),
             "forecast_time": forecast_time,
@@ -115,9 +116,11 @@ class SystemPlotter(BasePlotter):
         if verbose:
             logger.debug(f"work directory: {work_dir.absolute()}")
 
+        ncl_lib_dir = os.path.expandvars(graphics_config["ncl"]["ncl_lib"])
+        geodiag_root = os.path.expandvars(graphics_config["ncl"]["geodiag_root"])
         config = {
-            "ncl_lib": graphics_config["ncl"]["ncl_lib"],
-            "geodiag_root": graphics_config["ncl"]["geodiag_root"],
+            "ncl_lib": ncl_lib_dir,
+            "geodiag_root": geodiag_root,
             "load_env_script": graphics_config["ncl"]["load_env_script"],
         }
 
@@ -132,7 +135,6 @@ class SystemPlotter(BasePlotter):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
 
         script_dir = self.task["script_dir"]
-        script_dir = os.path.expandvars(script_dir)
         # str /home/wangdp/project/graph/operation/NWP_GRAPES_MESO_3KM_POST/tograph/script/
 
         # create environment
