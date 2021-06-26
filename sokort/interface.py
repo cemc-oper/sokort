@@ -28,6 +28,8 @@ def draw_plot(
         plot_type: str,
         start_time: Union[str, datetime.datetime, pd.Timestamp],
         forecast_time: Union[str, pd.Timedelta],
+        data_directory = None,
+        work_directory = None,
         verbose: Union[bool, int] = False
 ):
     """Draw images and save them in work directory.
@@ -65,6 +67,8 @@ def draw_plot(
         graphics_config=get_config(),
         start_time=start_time,
         forecast_time=forecast_time,
+        data_directory=data_directory,
+        work_directory=work_directory,
         verbose=verbose
     )
 
