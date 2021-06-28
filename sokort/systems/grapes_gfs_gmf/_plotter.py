@@ -165,7 +165,7 @@ class SystemPlotter(BasePlotter):
             f.write(f"{self.forecast_time}")
 
         shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
-        shutil.copy2(f"{script_dir}/{ncl_script_name}", f"{ncl_script_name}")
+        shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
 
         shutil.copy2(f"{str(self.run_script_path)}", self.run_script_path.name)
         shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
