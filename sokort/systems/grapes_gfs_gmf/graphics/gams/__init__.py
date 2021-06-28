@@ -1,6 +1,7 @@
 import datetime
 from pathlib import Path
 from typing import Dict, Union, Optional
+import os
 
 import pandas as pd
 
@@ -64,8 +65,8 @@ class GamsPlotter(SystemPlotter):
         component_config = system_config["components"]["gams"]
 
         task = {
-            "ncl_dir": component_config["ncl_dir"],
-            "script_dir": system_config["system"]["script_dir"],
+            "ncl_dir": os.path.expandvars(component_config["ncl_dir"]),
+            "script_dir": os.path.expandvars(system_config["system"]["script_dir"]),
             "data_path": data_path,
             "start_datetime": start_time.isoformat(),
             "forecast_time": forecast_time,
@@ -80,8 +81,8 @@ class GamsPlotter(SystemPlotter):
             logger.debug(f"work directory: {work_dir.absolute()}")
 
         config = {
-            "ncl_lib": graphics_config["ncl"]["ncl_lib"],
-            "geodiag_root": graphics_config["ncl"]["geodiag_root"],
+            "ncl_lib": os.path.expandvars(graphics_config["ncl"]["ncl_lib"]),
+            "geodiag_root": os.path.expandvars(graphics_config["ncl"]["geodiag_root"]),
             "load_env_script": graphics_config["ncl"]["load_env_script"],
         }
 

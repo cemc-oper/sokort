@@ -48,13 +48,13 @@ output_path=./  # path of pic
 #------------------
 # run ncl script
 #------------------
-ncl -x initial_time=${initial_time} \
+ncl initial_time=${initial_time} \
      min_forecast_time=${min_forecast_time} \
      max_forecast_time=${max_forecast_time} \
      forecast_time_interval=${forecast_time_interval} \
      data_path=\"${data_path}\" \
      output_path=\"${output_path}\" \
-     ${file_name} > plot.log
+     ${file_name}
 
 # convert image
 ./ps2gif_NoRotation_NoPlot.src
