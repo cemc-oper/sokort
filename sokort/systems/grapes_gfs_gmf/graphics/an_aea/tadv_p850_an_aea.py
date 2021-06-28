@@ -11,7 +11,7 @@ from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 class Plotter(AnAeaPlotter):
     plot_types = [
-        "tada_p850_an_aea"
+        "tadv_p850_an_aea"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
