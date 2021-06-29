@@ -66,15 +66,19 @@ class SystemPlotter(BasePlotter):
         self.forecast_data_format = "grib2"
         self.forecast_data_center = "ecmwf"
 
-        self.min_forecast_time = self.forecast_hour
-        self.max_forecast_time = self.forecast_hour
+        if self.forecast_hour is not None:
+            self.min_forecast_time = self.forecast_hour
+            self.max_forecast_time = self.forecast_hour
+        else:
+            self.min_forecast_time = None
+            self.max_forecast_time = None
 
     @classmethod
     def create_plotter(
             cls,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
-            forecast_time: pd.Timedelta,
+            forecast_time: pd.Timedelta = None,
             data_directory: Optional[Union[str, Path]] = None,
             work_directory: Optional[Union[str, Path]] = None,
             verbose: Union[bool, int] = False
@@ -159,11 +163,6 @@ class SystemPlotter(BasePlotter):
         # create environment
         Path(self.work_dir).mkdir(parents=True, exist_ok=True)
         os.chdir(self.work_dir)
-
-        # NOTE: grapes_meso_data is needed by T2MMAX/T2MMIN plots.
-        with open("grapes_meso_date", "w") as f:
-            f.write(f"{self.start_time}{self.forecast_hour}\n")
-            f.write(f"{self.forecast_time}")
 
         # shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
         shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")

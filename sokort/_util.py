@@ -15,11 +15,13 @@ def get_forecast_hour(forecast_time: pd) -> int:
 def get_data_path(
         system_name: str,
         start_time: Union[datetime.datetime, pd.Timestamp],
-        forecast_time: pd.Timedelta,
+        forecast_time: pd.Timedelta = None,
         data_directory: Optional[Union[str, Path]] = None,
 ):
     if data_directory is None:
         # get data file using nwpc-data.
+        if forecast_time is None:
+            forecast_time = pd.to_timedelta("0h")
         data_file = find_local_file(
             f"{system_name}/grib2/orig",
             start_time=start_time,

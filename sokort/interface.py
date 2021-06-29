@@ -27,7 +27,7 @@ def draw_plot(
         system: str,
         plot_type: str,
         start_time: Union[str, datetime.datetime, pd.Timestamp],
-        forecast_time: Union[str, pd.Timedelta],
+        forecast_time: Union[str, pd.Timedelta] = None,
         data_directory = None,
         work_directory = None,
         verbose: Union[bool, int] = False

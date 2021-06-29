@@ -76,10 +76,15 @@ class BasePlotter(object):
         self.start_datetime = pd.to_datetime(self.task["start_datetime"])
         self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
 
-        if "forecast_time" in self.task:
+        if "forecast_time" in self.task and self.task["forecast_time"] is not None:
             self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
-            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
             self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
+            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
+            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+        else:
+            self.forecast_timedelta = None
+            self.forecast_hour = None
+            self.forecast_datetime = self.start_datetime
             self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
 
     def run_plot(self):

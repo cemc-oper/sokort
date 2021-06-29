@@ -16,7 +16,7 @@ def cli():
 @click.option("--system", "system_name", required=True, help="operation system name")
 @click.option("--plot-type", required=True, help="plot type")
 @click.option("--start-time", required=True, help="start time, YYYYMMDDHH")
-@click.option("--forecast-time", required=True, help="forecast time in string format, 24h")
+@click.option("--forecast-time", default=None, help="forecast time in string format, 24h")
 @click.option("--data-dir", default=None, help="data directory.")
 @click.option("--work-dir", default=None, help="work directory.")
 def draw(
