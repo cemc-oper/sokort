@@ -160,9 +160,10 @@ class SystemPlotter(BasePlotter):
         Path(self.work_dir).mkdir(parents=True, exist_ok=True)
         os.chdir(self.work_dir)
 
-        # with open("grapes_meso_date", "w") as f:
-        #     f.write(f"{self.start_time}{self.forecast_hour}\n")
-        #     f.write(f"{self.forecast_time}")
+        # NOTE: grapes_meso_data is needed by T2MMAX/T2MMIN plots.
+        with open("grapes_meso_date", "w") as f:
+            f.write(f"{self.start_time}{self.forecast_hour}\n")
+            f.write(f"{self.forecast_time}")
 
         # shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
         shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
