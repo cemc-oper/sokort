@@ -165,10 +165,20 @@ class SystemPlotter(BasePlotter):
         os.chdir(self.work_dir)
 
         # shutil.copy2(f"{script_dir}/ps2gif_NoRotation_NoPlot.scr", "ps2gif_NoRotation_NoPlot.src")
-        shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
+        try:
+            shutil.copy2(f"{ncl_dir}/{ncl_script_name}", f"{ncl_script_name}")
+        except shutil.SameFileError:
+            pass
 
-        shutil.copy2(f"{str(self.run_script_path)}", self.run_script_path.name)
-        shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
+        try:
+            shutil.copy2(f"{str(self.run_script_path)}", self.run_script_path.name)
+        except shutil.SameFileError:
+            pass
+
+        try:
+            shutil.copy2(f"{str(self.load_env_script_path)}", self.load_env_script_path.name)
+        except shutil.SameFileError:
+            pass
 
     def _generate_environ(self):
         ncl_script_name = self.ncl_script_name  # "GFS_GRAPES_PWAT_SFC_AN_AEA.ncl"
