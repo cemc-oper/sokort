@@ -58,4 +58,4 @@ ln -sf ${data_path}/* .
 ncl ./${ncl_script_name}
 
 # convert image
-./ps2gif_NoRotation_NoPlot.scr
+#./ps2gif_NoRotation_NoPlot.scr

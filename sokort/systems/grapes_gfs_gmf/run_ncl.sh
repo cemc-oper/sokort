@@ -57,4 +57,4 @@ ncl initial_time=${initial_time} \
      ${file_name}
 
 # convert image
-./ps2gif_NoRotation_NoPlot.src
+#./ps2gif_NoRotation_NoPlot.src

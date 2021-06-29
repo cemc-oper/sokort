@@ -90,6 +90,7 @@ class BasePlotter(object):
         self._prepare_environment()
         envs = self._generate_environ()
         self._run_process(envs=envs)
+        self._do_postprocess()
 
     def _check_validity(self):
         if self.ncl_script_name is None:
@@ -126,6 +127,14 @@ class BasePlotter(object):
         if self.verbose >= 1:
             logger.debug(f"run process done: {self.run_script_name}")
 
+    def _do_postprocess(self):
+        image_list = self.get_image_list()
+        for item in image_list:
+            image_path = Path(item["path"])
+            image_name = image_path.stem
+            ps_image_path = f"{image_name}.ps"
+            self.convert_image(ps_image_path)
+
     def get_image_list(self) -> List:
         """
         Get image list.
@@ -139,6 +148,29 @@ class BasePlotter(object):
         """
         raise NotImplemented()
 
+    def convert_image(self, file_path):
+        if self.verbose >= 1:
+            logger.debug(f"convert image: {file_path}")
+
+        process_stdout = subprocess.DEVNULL
+        process_stderr = subprocess.DEVNULL
+        if self.verbose >= 2:
+            process_stdout = None
+            process_stderr = None
+
+        pipe = subprocess.Popen(
+            ["sh",  _get_convert_image_script(), file_path],
+            start_new_session=True,
+            stdout=process_stdout,
+            stderr=process_stderr
+        )
+
+        stdout, stderr = pipe.communicate()
+        pipe.wait()
+        pipe.terminate()
+        if self.verbose >= 1:
+            logger.debug(f"convert image done: {file_path}")
+
     @classmethod
     def _get_run_script(cls):
         return None
@@ -146,3 +178,7 @@ class BasePlotter(object):
 
 def _get_load_env_script():
     return Path(Path(__file__).parent, "load_env.sh")
+
+
+def _get_convert_image_script():
+    return Path(Path(__file__).parent, "convert_image.sh")
