@@ -36,14 +36,7 @@ def draw(
         data_dir,
         work_dir
 ):
-    additional_options = {}
-    for arg in ctx.args:
-        if arg[:2] == "--":
-            tokens = arg[2:].split("=")
-            key = tokens[0]
-            key = key.replace("-", "_")
-            value = tokens[1]
-            additional_options[key] = value
+    additional_options = _parse_additional_options(ctx.args)
 
     system_name = fix_system_name(system_name)
     if config_file_path is not None:
@@ -86,6 +79,18 @@ def show(
         presenter=PILPresenter(),
         verbose=2,
     )
+
+
+def _parse_additional_options(args):
+    additional_options = {}
+    for arg in args:
+        if arg[:2] == "--":
+            tokens = arg[2:].split("=")
+            key = tokens[0]
+            key = key.replace("-", "_")
+            value = tokens[1]
+            additional_options[key] = value
+    return additional_options
 
 
 if __name__ == "__main__":
