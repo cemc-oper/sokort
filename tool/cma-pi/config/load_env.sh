@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------
-# load NCL environment in CMA-PI.
+# load NCL environment.
 #-------------------------------------
 
 set -x

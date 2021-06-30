@@ -1,7 +1,9 @@
 system:
-  ncl_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/"
-  script_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/"
+  ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
+  script_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
 
 components:
   gams:
-    ncl_dir: "/g1/u/nwp_pd/NWP_PST/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
+    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/script/GAMS-A/"
+  typhoon:
+    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
