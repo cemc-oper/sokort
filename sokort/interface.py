@@ -30,7 +30,8 @@ def draw_plot(
         forecast_time: Union[str, pd.Timedelta] = None,
         data_directory = None,
         work_directory = None,
-        verbose: Union[bool, int] = False
+        verbose: Union[bool, int] = False,
+        **kwargs
 ):
     """Draw images and save them in work directory.
 
@@ -69,7 +70,8 @@ def draw_plot(
         forecast_time=forecast_time,
         data_directory=data_directory,
         work_directory=work_directory,
-        verbose=verbose
+        verbose=verbose,
+        **kwargs,
     )
 
     plotter.run_plot()
