@@ -9,7 +9,7 @@ from sokort.systems.grapes_meso_3km import SystemPlotter
 
 class Plotter(SystemPlotter):
     plot_types = [
-        "cn_500height_850wind"
+        "cn_500height_mslp"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
