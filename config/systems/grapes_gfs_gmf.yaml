@@ -5,3 +5,5 @@ system:
 components:
   gams:
     ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
+  typhoon:
+    ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/typhoon/"
