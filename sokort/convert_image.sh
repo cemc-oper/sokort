@@ -1,4 +1,13 @@
 #!/bin/ksh
+#-------------------
+# Convert ps to png and trim the image using ImageMagick tools
+#
+# Usage:
+#     ./convert_image.sh some.ps
+#
+# Input: some.ps
+# Output: some.png
+#-------------------
 set -x
 INPUT=$1
 convert -density 200 "${INPUT[0]}" plot_${INPUT%.*}.png
