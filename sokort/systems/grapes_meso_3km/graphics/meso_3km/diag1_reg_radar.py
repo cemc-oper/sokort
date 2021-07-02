@@ -10,7 +10,7 @@ from sokort._util import get_forecast_hour
 
 class Plotter(Meso3kmPlotter):
     plot_types = [
-        "meso_3km.diag1_reg_radar"
+        "meso_3km.reg_radar"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
