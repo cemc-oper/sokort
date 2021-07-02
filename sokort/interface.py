@@ -1,5 +1,6 @@
 import datetime
 from typing import Union
+from pathlib import Path
 
 import pandas as pd
 
@@ -28,8 +29,8 @@ def draw_plot(
         plot_type: str,
         start_time: Union[str, datetime.datetime, pd.Timestamp],
         forecast_time: Union[str, pd.Timedelta] = None,
-        data_directory = None,
-        work_directory = None,
+        data_directory: Union[str, Path] = None,
+        work_directory: Union[str, Path] = None,
         verbose: Union[bool, int] = False,
         **kwargs
 ):
@@ -46,6 +47,10 @@ def draw_plot(
             - ``datetime.datetime`` or ``pd.Timestamp``
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
+    data_directory:
+        Dir for model GIRB2 data.
+    work_directory:
+        Dir to run plot script.
     verbose:
         print setting
 
@@ -86,7 +91,10 @@ def show_plot(
         start_time: Union[str, datetime.datetime, pd.Timestamp],
         forecast_time: Union[str, pd.Timedelta],
         presenter: Presenter = IPythonPresenter(),
-        verbose: Union[bool, int] = False
+        data_directory: Union[str, Path] = None,
+        work_directory: Union[str, Path] = None,
+        verbose: Union[bool, int] = False,
+        **kwargs
 ):
     """
     Draw images and show them in Jupyter Notebook.
@@ -104,6 +112,8 @@ def show_plot(
         Forecast time duration, such as 3h.
     presenter: Presenter
         image presenter
+    data_directory
+    work_directory
     verbose
 
     Raises
@@ -125,7 +135,10 @@ def show_plot(
         graphics_config=get_config(),
         start_time=start_time,
         forecast_time=forecast_time,
-        verbose=verbose
+        data_directory=data_directory,
+        work_directory=work_directory,
+        verbose=verbose,
+        **kwargs
     )
 
     plotter.run_plot()
