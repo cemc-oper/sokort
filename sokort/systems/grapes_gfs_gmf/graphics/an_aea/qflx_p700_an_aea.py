@@ -1,6 +1,9 @@
 # coding: utf-8
 """
-700hPa 水汽通量散度
+700hPa 水汽通量
+
+图片样例请访问NWPC/CMA官网：
+    http://nwpc.nmc.cn/list.jhtml?class_id=03130320
 """
 
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
