@@ -178,3 +178,43 @@ class SystemPlotter(BasePlotter):
     @classmethod
     def _get_run_script(cls):
         return Path(Path(__file__).parent, "run_ncl.sh")
+
+
+AREA_LIST = [
+    {
+        "name": "east_china",
+        "image_path_name": "EastChina"
+    },
+    {
+        "name": "east_north_west",
+        "image_path_name": "East_NorthWest"
+    },
+    {
+        "name": "east_south_west",
+        "image_path_name": "East_SouthWest"
+    },
+    {
+        "name": "north_china",
+        "image_path_name": "NorthChina"
+    },
+    {
+        "name": "north_east",
+        "image_path_name": "NorthEast"
+    },
+    {
+        "name": "south_china",
+        "image_path_name": "SouthChina"
+    },
+    {
+        "name": "xi_zang",
+        "image_path_name": "XiZang"
+    },
+    {
+        "name": "xin_jiang",
+        "image_path_name": "XinJiang"
+    },
+    {
+        "name": "central_china",
+        "image_path_name": "CentralChina"
+    },
+]

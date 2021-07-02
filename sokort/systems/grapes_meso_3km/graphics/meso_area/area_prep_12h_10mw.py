@@ -4,7 +4,7 @@
 图片样例请访问 NMC 官网：
     http://www.nmc.cn/publish/area/hs/12h10mw.html
 """
-from sokort.systems.grapes_meso_3km import SystemPlotter
+from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
@@ -23,41 +23,9 @@ class Plotter(SystemPlotter):
     def get_image_list(self):
         return [
             {
-                "name": "east_china",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_EastChina.png"
-            },
-            {
-                "name": "east_north_west",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_East_NorthWest.png"
-            },
-            {
-                "name": "east_south_west",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_East_SouthWest.png"
-            },
-            {
-                "name": "north_china",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_NorthChina.png"
-            },
-            {
-                "name": "north_east",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_NorthEast.png"
-            },
-            {
-                "name": "south_china",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_SouthChina.png"
-            },
-            {
-                "name": "xi_zang",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_XiZang.png"
-            },
-            {
-                "name": "xin_jiang",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_XinJiang.png"
-            },
-            {
-                "name": "central_china",
-                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_CentralChina.png"
-            },
+                "name": area["name"],
+                "path": f"GRAPES_MESO-3KM-prep-{self.start_time}12hr_{self.forecast_hour}_{area['image_path_name']}.png"
+            } for area in AREA_LIST
         ]
 
     def _check_forecast_time(self) -> bool:
