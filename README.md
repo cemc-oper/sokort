@@ -39,9 +39,9 @@
 执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2020 年 1 月 13 日 00 时次 24 小时的整层可降水量。
 
 ```python
-from sokort.systems.grapes_gfs_gmf import show_plot
+from sokort import show_plot
 
-show_plot("pwat_sfc_an_aea", "2020011300", "24h")
+show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2020011300", "24h")
 ```
 
 在Jupyter Notebook中运行效果如下图所示
@@ -65,7 +65,7 @@ python -m sokort show \
 
 ## LICENSE
 
-Copyright 2020, perillaroc, 数值预报中心。
+Copyright 2020-2021, perillaroc at nwpc-oper。
 
 `sokort` 以 [GPL-3.0](./LICENSE.md) 协议授权。
 
