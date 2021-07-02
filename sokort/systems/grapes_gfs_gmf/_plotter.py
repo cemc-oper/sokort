@@ -185,7 +185,6 @@ class SystemPlotter(BasePlotter):
 
         ncl_lib = self.config["ncl_lib"]  # "/home/wangdp/project/graph/ncllib"
         graphic_product_lib_root = ncl_lib
-        print(graphic_product_lib_root)
 
         geodiag_root = self.config["geodiag_root"]  # "/home/wangdp/project/graph/GEODIAG"
         geodiag_tools = str(Path(geodiag_root, "tools"))
