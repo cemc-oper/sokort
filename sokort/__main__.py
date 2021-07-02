@@ -1,7 +1,7 @@
 import click
 
 from sokort.config import load_config
-from sokort.interface import draw_plot, show_plot
+from sokort.interface import draw_plot, show_plot, list_plot_type
 from sokort._presenter import PILPresenter
 from sokort._util import fix_system_name
 
@@ -96,6 +96,13 @@ def show(
         verbose=2,
         **additional_options
     )
+
+
+@cli.command("list")
+@click.option("--system", "system_name", required=True, help="operation system name")
+def list_plot_types(system_name: str,):
+    system_name = fix_system_name(system_name)
+    list_plot_type(system=system_name)
 
 
 def _parse_additional_options(args):

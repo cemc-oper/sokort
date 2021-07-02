@@ -13,6 +13,17 @@ from ._presenter import Presenter, IPythonPresenter
 logger = get_logger()
 
 
+def get_system_module(system):
+    if system == "grapes_gfs_gmf":
+        from sokort.systems import grapes_gfs_gmf
+        return grapes_gfs_gmf
+    elif system == "grapes_meso_3km":
+        from sokort.systems import grapes_meso_3km
+        return grapes_meso_3km
+    else:
+        raise ValueError(f"system is not supported: {system}")
+
+
 def get_plotter_class(system, plot_type):
     if system == "grapes_gfs_gmf":
         from sokort.systems.grapes_gfs_gmf import get_plotter_class as get_plotter_class_for_system
@@ -146,3 +157,14 @@ def show_plot(
     presenter.show_plot(plotter.get_image_list())
 
     return
+
+
+def list_plot_type(
+        system: str,
+):
+    system = fix_system_name(system)
+    system_module = get_system_module(system)
+
+    plotters = system_module.plotters
+    for key in plotters.keys():
+        print(key)
