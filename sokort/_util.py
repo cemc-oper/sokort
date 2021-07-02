@@ -27,6 +27,8 @@ def get_data_path(
             start_time=start_time,
             forecast_time=forecast_time,
         )
+        if data_file is None:
+            raise FileNotFoundError(f"data file not found: {system_name}, {start_time}, {forecast_time}")
         data_path = str(data_file.parent) + "/"
     else:
         data_path = data_directory
