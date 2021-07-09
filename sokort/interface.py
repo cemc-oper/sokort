@@ -20,6 +20,9 @@ def get_system_module(system):
     elif system == "grapes_meso_3km":
         from sokort.systems import grapes_meso_3km
         return grapes_meso_3km
+    elif system == "grapes_tym":
+        from sokort.systems import grapes_tym
+        return grapes_tym
     else:
         raise ValueError(f"system is not supported: {system}")
 
