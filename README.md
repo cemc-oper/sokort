@@ -36,12 +36,12 @@
 
 在 Anaconda 环境中启动 Jupyter Notebook。
 
-执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2020 年 1 月 13 日 00 时次 24 小时的整层可降水量。
+执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2021 年 7 月 11 日 00 时次 24 小时的整层可降水量。
 
 ```python
 from sokort import show_plot
 
-show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2020011300", "24h")
+show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2021071100", "24h")
 ```
 
 在Jupyter Notebook中运行效果如下图所示
@@ -59,7 +59,7 @@ show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2020011300", "24h")
 python -m sokort show \
     --system=grapes_gfs_gmf \
     --plot-type=pwat_sfc_an_aea \
-    --start-time=2020011300 \
+    --start-time=2021071100 \
     --forecast-time=24h
 ```
 
