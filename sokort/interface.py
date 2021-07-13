@@ -153,8 +153,6 @@ def show_plot(
 
     presenter.show_plot(plotter.get_image_list())
 
-    return
-
 
 def list_plot_type(
         system: str,
