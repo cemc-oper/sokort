@@ -14,7 +14,7 @@
 - GRAPES 区域预报系统
 - GRAPES 区域台风预报系统
 
-开始使用
+用户指南
 ---------
 
 .. toctree::
@@ -22,6 +22,8 @@
 
    usage/installation
    usage/quickstart
+   usage/cli
+   usage/notebook
 
 API 参考
 ---------
