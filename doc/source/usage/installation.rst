@@ -6,6 +6,8 @@
 
 .. code-block:: bash
 
+    git clone https://github.com/nwpc-oper/sokort
+    cd sokort
     pip install .
 
 本项目不包含业务系统使用的任何图片库及图形绘制脚本，如果需要使用，请联系数值预报中心。
@@ -17,4 +19,4 @@
 
 请安装下面未使用 pip 管理的 Python 包：
 
-- [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
+- `nwpc-data <https://github.com/nwpc-oper/nwpc-data>`_
