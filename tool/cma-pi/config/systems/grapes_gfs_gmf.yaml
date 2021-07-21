@@ -1,9 +1,9 @@
 system:
-  ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST_V2021/tograph/script/"
-  script_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST_V2021/tograph/script/"
+  ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
+  script_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
 
 components:
   gams:
-    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST_V2021/script/GAMS-A/"
+    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/script/GAMS-A/"
   typhoon:
-    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST_V2021/tograph/script/typhoon/"
+    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
