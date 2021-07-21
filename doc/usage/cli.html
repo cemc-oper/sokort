@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>命令行工具 &#8212; sokort  文档</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Notebook" href="notebook.html" />
+    <link rel="prev" title="开始使用" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>命令行工具<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>sokort 提供命令行工具，用于绘制或显示图片。</p>
+<section id="id2">
+<h2>使用<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">sokort</span></code> 运行命令行工具，如下所示：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m sokort show <span class="se">\</span>
+    --system<span class="o">=</span>grapes_gfs_gmf <span class="se">\</span>
+    --plot-type<span class="o">=</span>pwat_sfc_an_aea <span class="se">\</span>
+    --start-time<span class="o">=</span><span class="m">2021071100</span> <span class="se">\</span>
+    --forecast-time<span class="o">=</span>24h
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>命令<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>包含三个子命令：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">draw</span></code>：绘图图片</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show</span></code>：绘制并显示图片</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>：列出支持的绘图类型</p></li>
+</ul>
+<section id="id4">
+<h3>参数说明<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">draw</span></code> 与 <code class="docutils literal notranslate"><span class="pre">show</span></code> 命令共享通用参数</p>
+<ul class="simple">
+<li><p><cite>–config</cite>：配置文件路径</p></li>
+<li><dl class="simple">
+<dt><cite>–system</cite>：业务系统名称，例如</dt><dd><ul>
+<li><p><cite>grapes_gfs</cite></p></li>
+<li><p><cite>grapes_meso_3km</cite></p></li>
+<li><p><cite>grapes_tym</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><cite>–plot-type</cite>：绘图类型，例如 <cite>pwat_sfc_an_aea</cite> 表示整层可降水量</p></li>
+<li><p><cite>–start-time</cite>：起报时刻，<cite>YYYYMMDDHH</cite> 或 <cite>pd.to_timestamp</cite> 支持的时间字符串</p></li>
+<li><p><cite>–forecast-time</cite>：预报时效，<cite>HHh</cite> 或 <cite>pd.to_timedelta</cite> 支持的时间段字符串</p></li>
+<li><p><cite>–data-dir</cite>：预报数据保存位置，默认由系统自动查找 (使用 nwpc-data 库)</p></li>
+<li><p><cite>–work-dir</cite>：绘图运行目录，默认由系统根据配置文件中的设置自动创建</p></li>
+</ul>
+</section>
+<section id="list">
+<h3>list<a class="headerlink" href="#list" title="永久链接至标题">¶</a></h3>
+<p>列出支持的绘图类型</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m sokort list --system grapes_gfs_gmf
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hgt_p500_fc_ahne</span>
+<span class="n">wind_p200_fc_ahne</span>
+<span class="n">temp_p850_fc_ahne</span>
+<span class="n">mslp_sfc_fc_ahne</span>
+<span class="n">hgt_p200_fc_ahne</span>
+<span class="n">t2m_extrems</span><span class="o">.</span><span class="n">max_sfc_an_aea</span>
+<span class="n">t2m_extrems</span><span class="o">.</span><span class="n">min_sfc_an_aea</span>
+<span class="n">hgt_p500_wind_p850_fc_aeua</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">sokort</a></h1>
+
+
+
+
+
+
+
+
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">命令行工具</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">命令</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">配置</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickstart.html" title="上一章">开始使用</a></li>
+      <li>Next: <a href="notebook.html" title="下一章">Notebook</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, perillaroc.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/usage/cli.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
