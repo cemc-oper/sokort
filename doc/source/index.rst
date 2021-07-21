@@ -24,6 +24,7 @@
    usage/quickstart
    usage/cli
    usage/notebook
+   usage/config
 
 API 参考
 ---------
