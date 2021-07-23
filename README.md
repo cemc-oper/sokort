@@ -4,8 +4,9 @@
 
 仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
 
-- GRAPES 全球预报系统
-- GRAPES 区域 3km 预报系统
+- GRAPES 全球预报系统 (grapes_gfs)
+- GRAPES 区域预报系统 (grapes_meso_3km)
+- GRAPES 区域台风预报系统 (grapes_tym)
 
 ## 安装
 
@@ -13,11 +14,11 @@
 
 本项目不包含业务系统使用的任何图片库及图形绘制脚本，如果需要使用，请联系数值预报中心。
 
-本项目针对气象局的内网环境开发，需要部署在 CMA-PI 高性能计算机或挂载二级存储的服务器上。
+推荐部署在 CMA-PI 高性能计算机或挂载二级存储的服务器上。
 
 ### 额外 Python 包
 
-请安装下面未使用 pip 管理的 Python 包：
+如果使用自动数据查找功能，请安装下面 Python 包：
 
 - [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
 
@@ -28,7 +29,7 @@
 在运行前使用 `NWPC_GRAPHICS_CONFIG` 环境变量设置主配置文件 `config.yaml` 的路径，
 或者手动调用 `load_config()` 函数设置。
 
-如果在 CMA-PI 中安装，可以直接使用 `tool/cma-pi` 下提供的预设配置文件和环境加载脚本。
+如果在 CMA-PI 中使用，可以直接使用 `tool/cma-pi` 下提供的预设配置文件和环境加载脚本。
 
 ## 使用
 
