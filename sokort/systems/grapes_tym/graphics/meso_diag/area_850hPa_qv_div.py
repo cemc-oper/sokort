@@ -1,4 +1,8 @@
 """
+700 hPa / 850 hPa 水汽通量散度
+
+图片样例请访问 NWPC/CMA 官网：
+    http://nwpc.nmc.cn/list.jhtml?class_id=0302160311
 """
 from sokort.systems.grapes_tym import SystemPlotter, AREA_LIST
 

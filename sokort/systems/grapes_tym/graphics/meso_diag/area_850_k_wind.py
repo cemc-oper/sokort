@@ -1,5 +1,5 @@
 """
-K 指数 + 850 hPa 风场
+K 指数 + 850 hPa 风场 / 750 hPa 风场
 
 图片样例请访问 NWPC/CMA 官网：
     http://nwpc.nmc.cn/list.jhtml?class_id=0302160307
