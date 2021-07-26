@@ -1,7 +1,7 @@
 system:
-  ncl_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/"
-  script_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/"
+  ncl_dir: "/srv/system/gmf-grapes-gfs-post-program/tograph/script/"
+  script_dir: "/srv/system/gmf-grapes-gfs-post-program/tograph/script/"
 
 components:
   gams:
-    ncl_dir: "/srv/system/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
+    ncl_dir: "/srv/system/gmf-grapes-gfs-post-program/tograph/script/GAMS-A/"

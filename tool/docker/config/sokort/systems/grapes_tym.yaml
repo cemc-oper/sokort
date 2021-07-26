@@ -1,0 +1,5 @@
+system:
+  script_dir: "/g1/u/nwp_pd/grapes-meso-9km-graph-program/graph/script"
+
+ncl:
+  ncl_lib: "/g1/u/nwp_pd/grapes-meso-9km-graph-program/graph/script/nclib"

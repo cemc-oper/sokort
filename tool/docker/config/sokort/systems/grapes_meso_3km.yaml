@@ -1,10 +1,10 @@
 system:
-  script_dir: "/srv/system/NWP_GRAPES_MESO_3KM_GRAPH/graph/script"
+  script_dir: "/srv/system/grapes-meso-3km-graph-program/graph/script"
 
 ncl:
-  ncl_lib: "/srv/system/NWP_GRAPES_MESO_3KM_GRAPH/graph/script/ncllib"
+  ncl_lib: "/srv/system/grapes-meso-3km-graph-program/graph/script/ncllib"
 
 components:
   meso_3km:
     system:
-      script_dir: "/srv/system/NWP_GRAPES_MESO_3KM_POST/tograph/script"
+      script_dir: "/srv/system/grapes-meso-3km-graph-program/graph/script"
