@@ -164,7 +164,7 @@ class BasePlotter(object):
             process_stderr = None
 
         pipe = subprocess.Popen(
-            ["sh",  _get_convert_image_script(), file_path],
+            ["ksh",  _get_convert_image_script(), file_path],
             start_new_session=True,
             stdout=process_stdout,
             stderr=process_stderr
