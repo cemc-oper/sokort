@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ksh
 #-------------------
 # Convert ps to png and trim the image using ImageMagick tools
 #
