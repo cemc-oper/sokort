@@ -1,0 +1,10 @@
+deb http://mirrors.cma.cn/debian/ buster main contrib non-free
+# deb-src http://mirrors.cma.cn/debian/ buster main contrib non-free
+deb http://mirrors.cma.cn/debian/ buster-updates main contrib non-free
+# deb-src http://mirrors.cma.cn/debian/ buster-updates main contrib non-free
+deb http://mirrors.cma.cn/debian/ buster-backports main contrib non-free
+# deb-src http://mirrors.cma.cn/debian/ buster-backports main contrib non-free
+deb http://mirrors.cma.cn/debian-security buster/updates main contrib non-free
+# deb-src http://mirrors.cma.cn/debian-security buster/updates main contrib non-free
+
+deb http://mirrors.cma.cn/debian stretch main contrib non-free

@@ -24,6 +24,16 @@
 
 - [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
 
+### 其他软件
+
+需要使用到的系统软件：
+
+- NCL
+- imagemagick
+- ksh
+
+请使用操作系统软件管理器或 conda 安装。
+
 ## 配置
 
 本项目使用配置文件设置业务系统绘图脚本库的位置，参看 `config` 文件夹。

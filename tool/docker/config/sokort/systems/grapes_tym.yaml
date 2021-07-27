@@ -2,4 +2,4 @@ system:
   script_dir: "/srv/system/grapes-meso-9km-graph-program/graph/script"
 
 ncl:
-  ncl_lib: "/srv/system/grapes-meso-9km-graph-program/graph/script/nclib"
+  ncl_lib: "/srv/system/grapes-meso-9km-graph-program/graph/script/ncllib"
