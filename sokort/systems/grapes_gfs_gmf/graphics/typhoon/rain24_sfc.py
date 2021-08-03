@@ -23,12 +23,8 @@ class Plotter(TyphoonPlotter):
         self.forecast_time_interval = 24
 
     def get_image_list(self):
-        if self.typhoon_area == "global":
-            typhoon_area = "Global"
-        else:
-            typhoon_area = self.typhoon_area
         return [{
-            "path": f"./{typhoon_area}_FC_{self.forecast_hour}.png"
+            "path": f"./{self.typhoon_area}_FC_{self.forecast_hour}.png"
         }]
 
     def _check_forecast_time(self) -> bool:
