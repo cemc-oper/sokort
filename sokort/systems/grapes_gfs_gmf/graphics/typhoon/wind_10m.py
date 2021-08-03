@@ -14,6 +14,10 @@ class Plotter(TyphoonPlotter):
         self.ncl_script_name = f"GFS_GRAPES_WIND_10M_FC_{self.typhoon_area}.ncl"
 
     def get_image_list(self):
+        if self.typhoon_area == "global":
+            typhoon_area = "Global"
+        else:
+            typhoon_area = self.typhoon_area
         return [{
-            "path": f"./{self.typhoon_area}_FC_{self.forecast_hour}.png"
+            "path": f"./{typhoon_area}_FC_{self.forecast_hour}.png"
         }]
