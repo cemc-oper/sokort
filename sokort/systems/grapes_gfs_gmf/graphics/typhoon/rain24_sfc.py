@@ -12,7 +12,7 @@ class Plotter(TyphoonPlotter):
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
         super(Plotter, self).__init__(task, work_dir, config, **kwargs)
-        self.ncl_script_name = f"GFS_GRAPES_RAIN24_SFC_FC_{self.typhoon_area.upper()}.ncl"
+        self.ncl_script_name = f"GFS_GRAPES_RAIN24_SFC_FC_{self.typhoon_area}.ncl"
 
         if not self._check_forecast_time():
             raise ValueError(f"forecast time must greater than 24h.")
