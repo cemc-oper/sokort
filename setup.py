@@ -10,7 +10,7 @@ setup(
 
     version=version,
 
-    description='NWPC Graphics project.',
+    description='NWPC Graphics Script Tool.',
     long_description=__doc__,
 
     url='https://github.com/nwpc-oper/sokort',

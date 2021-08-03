@@ -6,9 +6,9 @@
 
 仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
 
-- GRAPES 全球预报系统 (grapes_gfs)
-- GRAPES 区域预报系统 (grapes_meso_3km)
-- GRAPES 区域台风预报系统 (grapes_tym)
+- GRAPES 全球预报系统 (`grapes_gfs`)
+- GRAPES 区域预报系统 (`grapes_meso_3km`)
+- GRAPES 区域台风预报系统 (`grapes_tym`)
 
 ## 安装
 
@@ -20,7 +20,7 @@
 
 ### 额外 Python 包
 
-如果使用自动数据查找功能，请安装下面 Python 包：
+如果使用 CMA-PI 或二级存储中的自动数据查找功能，请安装下面 Python 包：
 
 - [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
 
@@ -28,9 +28,9 @@
 
 需要使用到的系统软件：
 
-- NCL
-- imagemagick
-- ksh
+- NCL (绘图)
+- ImageMagick (图片转格式，裁剪图片)
+- ksh (执行脚本)
 
 请使用操作系统软件管理器或 conda 安装。
 
@@ -47,9 +47,8 @@
 
 ### Jupyter Notebook
 
-在 Anaconda 环境中启动 Jupyter Notebook。
-
-执行下面的代码绘制并显示 GRAPES GFS 全球预报系统 2021 年 7 月 11 日 00 时次 24 小时的整层可降水量。
+启动 Jupyter Notebook，执行下面代码。
+绘制并显示 GRAPES GFS 全球预报系统 2021 年 7 月 11 日 00 时次 24 小时的整层可降水量。
 
 ```python
 from sokort import show_plot
@@ -66,9 +65,9 @@ show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2021071100", "24h")
 ### 命令行程序
 
 本项目提供命令行接口。
-下面的代码使用改程序绘制上面的示例，并调用系统默认的图片浏览器显示图片。
+下面的命令行代码绘制上面的示例，并调用系统默认的图片浏览器显示图片。
 
-```bash
+```shell
 python -m sokort show \
     --system=grapes_gfs_gmf \
     --plot-type=pwat_sfc_an_aea \
