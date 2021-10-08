@@ -67,7 +67,7 @@ class BasePlotter(object):
         ):
             load_env_script = _get_load_env_script()
         else:
-            load_env_script = config["load_env_script"]
+            load_env_script = Path(config["load_env_script"])
 
         self.load_env_script_path = load_env_script
         self.run_script_path = self._get_run_script()
@@ -102,13 +102,26 @@ class BasePlotter(object):
             raise ValueError("ncl_script_name should be set.")
 
     def _prepare_environment(self):
+        """
+        Prepare working directory environment. Such as:
+
+            * copy scripts
+            * link resources
+            * create config files
+        """
         pass
 
     def _generate_environ(self):
+        """
+        Generate environment variables for running plotting script.
+        """
         envs = os.environ
         return envs
 
     def _run_process(self, envs: Dict):
+        """
+        Run plotting script (usually it is a shell script) under environment variables ``envs``.
+        """
         if self.verbose >= 1:
             logger.debug(f"run process: {self.run_script_name}")
 

@@ -3,6 +3,9 @@ ncl:
   geodiag_root: "/some/path/GEODIAG/"
   load_env_script: "./load_env.sh"
 
+python:
+  load_env_script: "./load_python_env.sh"
+
 general:
   run_base_dir: "/tmp"
 

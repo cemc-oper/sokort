@@ -3,6 +3,9 @@ ncl:
   geodiag_root: "/g1/u/nwp_pd/GEODIAG/"
   load_env_script: "./load_env.sh"
 
+python:
+  load_env_script: "./load_python_env.sh"
+
 general:
   run_base_dir: "${JOBDIR}/graphics"
 
