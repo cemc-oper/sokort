@@ -125,7 +125,7 @@ class SystemPythonPlotter(SystemPlotter):
 
         # config settings
         config = {
-            "load_env_script": Path(graphics_config.config_file_path.parent, graphics_config["python"]["load_env_script"]),
+            "load_env_script": graphics_config["python"]["load_env_script"],
         }
 
         return cls(

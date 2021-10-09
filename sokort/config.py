@@ -12,13 +12,16 @@ logger = get_logger()
 
 CONFIG_ENVIRONMENT_VARIABLE_NAME = "NWPC_GRAPHICS_CONFIG"
 
+PLOT_ENGINE = ["ncl", "python"]
+
 
 class Config(dict):
     def __init__(self, config_file_path: Path = None, **kwargs):
         super(Config).__init__(**kwargs)
-        self["ncl"] = dict()
         self["config"] = dict()
         self["systems"] = dict()
+        for engine in PLOT_ENGINE:
+            self[engine] = dict()
         self.config_file_path = config_file_path
 
     @classmethod
@@ -32,17 +35,20 @@ class Config(dict):
         with open(self.config_file_path) as f:
             config_dict = yaml.safe_load(f)
             self.update(config_dict)
-            self._expand_ncl_config(self["ncl"])
+            for engine in PLOT_ENGINE:
+                Config.expand_program_config(self.config_file_path, self[engine])
 
-    def _expand_ncl_config(self, ncl_config: Dict):
-        if "load_env_script" not in ncl_config:
-            return ncl_config
-        load_env_script = ncl_config["load_env_script"]
+    @classmethod
+    def expand_program_config(cls, config_file_path: Path, program_config: Dict) -> Dict:
+        if "load_env_script" not in program_config:
+            return program_config
+
+        load_env_script = program_config["load_env_script"]
         if len(load_env_script) == 0:
-            return ncl_config
+            return program_config
 
-        ncl_config["load_env_script"] = self.config_file_path.parent.joinpath(load_env_script).absolute()
-        return ncl_config
+        program_config["load_env_script"] = expand_path_in_config(load_env_script, config_file_path)
+        return program_config
 
     def _load_systems(self):
         systems_path = self.config_file_path.parent.joinpath(self["config"]["systems_dir"])
@@ -54,9 +60,19 @@ class Config(dict):
                 continue
             if item.suffix != ".yaml":
                 continue
-            with open(item) as f:
-                c = yaml.safe_load(f)
-                self["systems"][item.stem] = c
+            self["systems"][item.stem] = Config.load_system_config(item)
+
+    @classmethod
+    def load_system_config(cls, file_path):
+        with open(file_path) as f:
+            c = yaml.safe_load(f)
+            c["config_file_path"] = file_path
+
+            for engine in PLOT_ENGINE:
+                if engine in c:
+                    Config.expand_program_config(file_path, c[engine])
+
+            return c
 
     def generate_run_dir(self) -> Path:
         """
@@ -71,6 +87,12 @@ class Config(dict):
         run_dir = Path(run_base_dir, temp_directory)
         run_dir.mkdir(parents=True, exist_ok=True)
         return run_dir
+
+
+def expand_path_in_config(path, config_file_path):
+    expanded_path = os.path.expandvars(path)
+    expanded_path = config_file_path.parent.joinpath(expanded_path).absolute()
+    return expanded_path
 
 
 def load_config_from_env_or_home() -> Optional[Config]:

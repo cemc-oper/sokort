@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # An example script to load python environment.
+# In this example, we use anaconda.
 #
 
 #---------------

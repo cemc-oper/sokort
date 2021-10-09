@@ -1,13 +1,17 @@
-ncl:
-  ncl_lib: "/some/path/ncllib/"
-  geodiag_root: "/some/path/GEODIAG/"
-  load_env_script: "./load_env.sh"
-
-python:
-  load_env_script: "./load_python_env.sh"
-
 general:
   run_base_dir: "/tmp"
 
 config:
   systems_dir: "./systems"
+
+# Plot program configs
+# - `ncl`: NCL
+# - `python`: Python
+
+ncl:
+  load_env_script: "./load_ncl_env.sh"
+  ncl_lib: "/some/path/ncllib/"
+  geodiag_root: "/some/path/GEODIAG/"
+
+python:
+  load_env_script: "./load_python_env.sh"
