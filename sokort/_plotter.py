@@ -2,6 +2,7 @@ import os
 import subprocess
 from typing import Union, Dict, List
 from pathlib import Path
+from abc import ABC, abstractmethod
 
 import pandas as pd
 
@@ -12,80 +13,17 @@ from ._util import get_forecast_hour
 logger = get_logger()
 
 
-class BasePlotter(object):
-    """
-    Base class for plotter using NCL.
-    """
-    plot_types = None
-
+class BasePlotter(ABC):
     def __init__(
-            self,
-            task: Dict,
-            work_dir: Union[str, Path],
-            config: Dict,
-            verbose: Union[bool, int] = False
+            self, task: Dict, work_dir: Union[str, Path], config: Dict, verbose: Union[bool, int] = False,
+            **kwargs
     ):
-        """
-        Parameters
-        ----------
-        task: dict
-            task config dict
-
-                {
-                    "start_datetime": "2020-11-12 00:00:00", # time string supported by ``pd.to_datetime``
-                    "forecast_time": "3h", # optional
-                }
-        work_dir: str
-            work directory
-        config: dict
-            service config
-
-                {
-                    "ncl_lib": "/home/wangdp/project/graph/ncllib",
-                    "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
-                    "load_env_script": "",
-                }
-        verbose: bool or int
-            print setting
-
-                - `0`: hide all prints
-                - `1`: only print logger outputs
-                - `2`: print both logger and script outputs
-        """
         self.task = task
         self.work_dir = work_dir
         self.config = config
-        self.ncl_script_name = None
-
         self.verbose = convert_verbose(verbose)
 
-        # magic options
-        self.run_script_name = "run_ncl.sh"
-        if (
-                "load_env_script" not in config
-                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"]) == 0)
-        ):
-            load_env_script = _get_load_env_script()
-        else:
-            load_env_script = Path(config["load_env_script"])
-
-        self.load_env_script_path = load_env_script
-        self.run_script_path = self._get_run_script()
-
-        # time options for task.
-        self.start_datetime = pd.to_datetime(self.task["start_datetime"])
-        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
-
-        if "forecast_time" in self.task and self.task["forecast_time"] is not None:
-            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
-            self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
-            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
-            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
-        else:
-            self.forecast_timedelta = None
-            self.forecast_hour = None
-            self.forecast_datetime = self.start_datetime
-            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+        self.run_script_name = None
 
     def run_plot(self):
         """
@@ -98,8 +36,7 @@ class BasePlotter(object):
         self._do_postprocess()
 
     def _check_validity(self):
-        if self.ncl_script_name is None:
-            raise ValueError("ncl_script_name should be set.")
+        pass
 
     def _prepare_environment(self):
         """
@@ -146,12 +83,7 @@ class BasePlotter(object):
             logger.debug(f"run process done: {self.run_script_name}")
 
     def _do_postprocess(self):
-        image_list = self.get_image_list()
-        for item in image_list:
-            image_path = Path(item["path"])
-            image_name = image_path.stem
-            ps_image_path = f"{image_name}.ps"
-            self.convert_image(ps_image_path)
+        pass
 
     def get_image_list(self) -> List:
         """
@@ -165,6 +97,92 @@ class BasePlotter(object):
             Image list.
         """
         raise NotImplemented()
+
+    @classmethod
+    def _get_run_script(cls):
+        return None
+
+
+class NclPlotter(BasePlotter):
+    """
+    Base class for plotter using NCL.
+    """
+    plot_types = None
+
+    def __init__(
+            self,
+            task: Dict,
+            work_dir: Union[str, Path],
+            config: Dict,
+            verbose: Union[bool, int] = False,
+            **kwargs
+    ):
+        """
+        Parameters
+        ----------
+        task: dict
+            task config dict
+
+                {
+                    "start_datetime": "2020-11-12 00:00:00", # time string supported by ``pd.to_datetime``
+                    "forecast_time": "3h", # optional
+                }
+        work_dir: str
+            work directory
+        config: dict
+            service config
+
+                {
+                    "ncl_lib": "/home/wangdp/project/graph/ncllib",
+                    "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
+                    "load_env_script": "",
+                }
+        verbose: bool or int
+            print setting
+
+                - `0`: hide all prints
+                - `1`: only print logger outputs
+                - `2`: print both logger and script outputs
+        """
+        super(NclPlotter, self).__init__(task, work_dir, config, verbose, **kwargs)
+
+        self.ncl_script_name = None
+
+        # magic options
+        self.run_script_name = "run_ncl.sh"
+        if (
+                "load_env_script" not in config
+                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"]) == 0)
+        ):
+            load_env_script = _get_load_env_script()
+        else:
+            load_env_script = Path(config["load_env_script"])
+
+        self.load_env_script_path = load_env_script
+        self.run_script_path = self._get_run_script()
+
+        # time options for task.
+        self.start_datetime = pd.to_datetime(self.task["start_datetime"])
+        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
+
+        if "forecast_time" in self.task and self.task["forecast_time"] is not None:
+            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
+            self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
+            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
+            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+        else:
+            self.forecast_timedelta = None
+            self.forecast_hour = None
+            self.forecast_datetime = self.start_datetime
+            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+
+    def _do_postprocess(self):
+        image_list = self.get_image_list()
+        for item in image_list:
+            image_path = Path(item["path"])
+            image_name = image_path.stem
+            ps_image_path = f"{image_name}.ps"
+            self.convert_image(ps_image_path)
 
     def convert_image(self, file_path):
         if self.verbose >= 1:
@@ -189,9 +207,51 @@ class BasePlotter(object):
         if self.verbose >= 1:
             logger.debug(f"convert image done: {file_path}")
 
-    @classmethod
-    def _get_run_script(cls):
-        return None
+
+class PythonPlotter(BasePlotter):
+    def __init__(
+            self,
+            task: Dict,
+            work_dir: Union[str, Path],
+            config: Dict,
+            verbose: Union[bool, int] = False,
+            **kwargs
+    ):
+        """
+        Parameters
+        ----------
+        task: dict
+            task config dict
+            {
+                "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
+                "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
+                "start_datetime": "2021-06-23 00:00:00",
+                "forecast_time": "3h",
+            }
+        work_dir: str
+            work directory
+        config: dict
+            service config
+            {
+                "ncl_lib": "/home/wangdp/project/graph/ncllib",
+                "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
+            }
+        """
+        super(PythonPlotter, self).__init__(
+            task=task,
+            work_dir=work_dir,
+            config=config,
+            verbose=verbose,
+            **kwargs
+        )
+        self.python_script_name = None
+
+        # magic options
+        self.run_script_name = "run_python.sh"
+
+    def _check_validity(self):
+        if self.python_script_name is None:
+            raise ValueError("python_script_name should be set.")
 
 
 def _get_load_env_script():

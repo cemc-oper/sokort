@@ -6,7 +6,7 @@ import datetime
 
 import pandas as pd
 
-from sokort._plotter import BasePlotter
+from sokort._plotter import NclPlotter
 from sokort.config import Config
 from sokort._logging import get_logger
 from sokort._util import (
@@ -18,7 +18,7 @@ from sokort._util import (
 logger = get_logger("grapes_meso_3km")
 
 
-class SystemPlotter(BasePlotter):
+class SystemPlotter(NclPlotter):
     """
     System plotter for GRAPES MESO 3KM
     """
@@ -54,7 +54,7 @@ class SystemPlotter(BasePlotter):
         verbose:
             print setting
         """
-        BasePlotter.__init__(
+        NclPlotter.__init__(
             self,
             task=task,
             work_dir=work_dir,

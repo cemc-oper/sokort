@@ -7,7 +7,7 @@ import pandas as pd
 
 from sokort._logging import get_logger
 from sokort.config import Config
-from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
+from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
 from sokort._util import (
     get_work_dir,
     get_data_path
@@ -17,12 +17,12 @@ from sokort._util import (
 logger = get_logger("grapes_gfs_gmf")
 
 
-class GamsPlotter(SystemPlotter):
+class GamsPlotter(SystemNclPlotter):
     """
     Plotter for component GAMS.
     """
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
-        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
+        SystemNclPlotter.__init__(self, task, work_dir, config, **kwargs)
 
     @classmethod
     def create_plotter(
@@ -50,7 +50,7 @@ class GamsPlotter(SystemPlotter):
 
         Returns
         -------
-        SystemPlotter
+        SystemNclPlotter
         """
         data_path = get_data_path(
             system_name=cls.system_name,

@@ -11,17 +11,17 @@ from sokort._util import (
     get_data_path
 )
 from sokort.config import Config
-from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
+from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
 
 logger = get_logger("grapes_gfs_gmf")
 
 
-class TyphoonPlotter(SystemPlotter):
+class TyphoonPlotter(SystemNclPlotter):
     """
     Plotter for component typhoon.
     """
     def __init__(self, task: Dict, work_dir: str, config: Dict, **kwargs):
-        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
+        SystemNclPlotter.__init__(self, task, work_dir, config, **kwargs)
         self.typhoon_area = task["typhoon_area"]
 
     @classmethod
@@ -51,7 +51,7 @@ class TyphoonPlotter(SystemPlotter):
 
         Returns
         -------
-        SystemPlotter
+        SystemNclPlotter
         """
         data_path = get_data_path(
             system_name=cls.system_name,

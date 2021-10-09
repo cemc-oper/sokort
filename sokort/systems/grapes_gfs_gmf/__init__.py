@@ -4,7 +4,7 @@ from typing import Union, Dict, Optional, Type
 
 import pandas as pd
 
-from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
+from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter, SystemPythonPlotter
 from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
 
@@ -15,7 +15,7 @@ SYSTEM_NAME = "grapes_gfs_gmf"
 def _load_plotters():
     _plotters = load_plotters_from_paths(
         [pathlib.Path(pathlib.Path(__file__).parent, "graphics")],
-        SystemPlotter,
+        (SystemNclPlotter, SystemPythonPlotter),
     )
     return _plotters
 
@@ -100,7 +100,7 @@ def show_plot(
     )
 
 
-def get_plotter_class(plot_type: str) -> Optional[Type[SystemPlotter]]:
+def get_plotter_class(plot_type: str) -> Optional[Type[SystemNclPlotter]]:
     """Get plot module
 
     Parameters

@@ -1,10 +1,10 @@
-from sokort.systems.grapes_gfs_gmf._plotter import SystemPlotter
+from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
 from sokort._util import get_forecast_hour
 
 
-class FcAeaPlotter(SystemPlotter):
+class FcAeaPlotter(SystemNclPlotter):
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
-        SystemPlotter.__init__(self, task, work_dir, config, **kwargs)
+        SystemNclPlotter.__init__(self, task, work_dir, config, **kwargs)
 
     def get_image_list(self):
         forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"

@@ -1,7 +1,7 @@
 """
 
 """
-from sokort.systems.grapes_gfs_gmf.python_plotter import SystemPythonPlotter
+from sokort.systems.grapes_gfs_gmf._plotter import SystemPythonPlotter
 
 
 class Plotter(SystemPythonPlotter):
@@ -18,9 +18,6 @@ class Plotter(SystemPythonPlotter):
     def get_image_list(self):
         return [
             {
-                "path": f"./{self.typhoon_area_lower}.TB.CH2.{self.start_time}{self.forecast_hour}.png"
-            },
-            {
-                "path": f"./{self.typhoon_area_lower}.TB.CH4.{self.start_time}{self.forecast_hour}.png"
-            },
+                "path": f"./{self.typhoon_area_lower}.TB.{channel}.{self.start_time}{self.forecast_hour}.png"
+            } for channel in ["CH2", "CH4"]
         ]
