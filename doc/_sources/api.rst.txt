@@ -21,3 +21,9 @@ API
 
 .. autoclass:: sokort._plotter.BasePlotter
     :members:
+
+.. autoclass:: sokort._plotter.NclPlotter
+    :members:
+
+.. autoclass:: sokort._plotter.PythonPlotter
+    :members:
