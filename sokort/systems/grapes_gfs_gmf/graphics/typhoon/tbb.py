@@ -1,10 +1,10 @@
 """
 
 """
-from sokort.systems.grapes_gfs_gmf._plotter import SystemPythonPlotter
+from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPythonPlotter
 
 
-class Plotter(SystemPythonPlotter):
+class Plotter(TyphoonPythonPlotter):
     plot_types = [
         "typhoon.tbb"
     ]
