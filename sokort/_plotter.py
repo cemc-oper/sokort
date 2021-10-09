@@ -14,16 +14,66 @@ logger = get_logger()
 
 
 class BasePlotter(ABC):
+    """
+    Base plotter for all plot engines.
+    """
     def __init__(
             self, task: Dict, work_dir: Union[str, Path], config: Dict, verbose: Union[bool, int] = False,
             **kwargs
     ):
+        """
+
+        Parameters
+        ----------
+        task
+            task config dict
+
+                {
+                    "start_datetime": "2020-11-12 00:00:00", # time string supported by ``pd.to_datetime``
+                    "forecast_time": "3h", # optional
+                }
+
+        work_dir
+            work directory
+        config
+            service config
+
+                {
+                    "ncl_lib": "/home/wangdp/project/graph/ncllib",
+                    "load_env_script": "",
+                }
+
+        verbose
+            print setting
+
+                - `0`: hide all prints
+                - `1`: only print logger outputs
+                - `2`: print both logger and script outputs
+        **kwargs
+        """
         self.task = task
         self.work_dir = work_dir
         self.config = config
         self.verbose = convert_verbose(verbose)
 
         self.run_script_name = None
+        self.run_script_path = None
+        self.load_env_script_path = None
+
+        # time options for task.
+        self.start_datetime = pd.to_datetime(self.task["start_datetime"])
+        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
+
+        if "forecast_time" in self.task and self.task["forecast_time"] is not None:
+            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
+            self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
+            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
+            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
+        else:
+            self.forecast_timedelta = None
+            self.forecast_hour = None
+            self.forecast_datetime = self.start_datetime
+            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
 
     def run_plot(self):
         """
@@ -161,21 +211,6 @@ class NclPlotter(BasePlotter):
         self.load_env_script_path = load_env_script
         self.run_script_path = self._get_run_script()
 
-        # time options for task.
-        self.start_datetime = pd.to_datetime(self.task["start_datetime"])
-        self.start_time = self.start_datetime.strftime("%Y%m%d%H")  # 2020011100
-
-        if "forecast_time" in self.task and self.task["forecast_time"] is not None:
-            self.forecast_timedelta = pd.Timedelta(self.task["forecast_time"])
-            self.forecast_hour = f"{get_forecast_hour(self.forecast_timedelta):03}"  # 003
-            self.forecast_datetime = self.start_datetime + self.forecast_timedelta
-            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
-        else:
-            self.forecast_timedelta = None
-            self.forecast_hour = None
-            self.forecast_datetime = self.start_datetime
-            self.forecast_time = self.forecast_datetime.strftime("%Y%m%d%H")  # 2020011103
-
     def _do_postprocess(self):
         image_list = self.get_image_list()
         for item in image_list:
@@ -249,9 +284,20 @@ class PythonPlotter(BasePlotter):
         # magic options
         self.run_script_name = "run_python.sh"
 
+        if (
+                "load_env_script" not in config
+                or (isinstance(config["load_env_script"], str) and len(config["load_env_script"]) == 0)
+        ):
+            load_env_script = _get_load_env_script()
+        else:
+            load_env_script = Path(config["load_env_script"])
+        self.load_env_script_path = load_env_script
+
+        self.run_script_path = self._get_run_script()
+
     def _check_validity(self):
         if self.python_script_name is None:
-            raise ValueError("python_script_name should be set.")
+            raise AttributeError("python_script_name should be set.")
 
 
 def _get_load_env_script():
