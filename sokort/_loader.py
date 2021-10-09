@@ -2,7 +2,7 @@ import inspect
 import pathlib
 import importlib.util
 import sys
-from typing import List, Type, Dict
+from typing import List, Type, Dict, Union, Tuple
 
 from ._plotter import BasePlotter
 
@@ -21,7 +21,7 @@ def _load_module(file_path: pathlib.Path):
 
 def load_plotters_from_paths(
         paths: List,
-        plotter_class: Type[BasePlotter],
+        plotter_class: Union[Type[BasePlotter], Tuple[Type[BasePlotter]]],
 ) -> Dict[str, Type[BasePlotter]]:
     """
     Load plotter classes from path list.
@@ -68,7 +68,7 @@ def load_plotters_from_paths(
                         an_object = getattr(mod, object_name)
                         if (
                                 inspect.isclass(an_object)
-                                and issubclass(an_object, plotter_class)
+                                and _is_subclass(an_object, plotter_class)
                                 and an_object != plotter_class
                         ):
                             if an_object.plot_types is None:
@@ -76,3 +76,12 @@ def load_plotters_from_paths(
                             for a_plot_type in an_object.plot_types:
                                 plotters[a_plot_type] = an_object
     return plotters
+
+
+def _is_subclass(an_object, plotter_class: Union[Type[BasePlotter], Tuple[Type[BasePlotter]]]) -> bool:
+    if not isinstance(plotter_class, tuple):
+        plotter_class = (plotter_class, )
+    for c in plotter_class:
+        if issubclass(an_object, c):
+            return True
+    return False
