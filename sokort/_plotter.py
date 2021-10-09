@@ -85,6 +85,19 @@ class BasePlotter(ABC):
         self._run_process(envs=envs)
         self._do_postprocess()
 
+    def get_image_list(self) -> List:
+        """
+        Get image list.
+
+        Should implemented by sub-class.
+
+        Returns
+        -------
+        image_list: list
+            Image list.
+        """
+        raise NotImplemented()
+
     def _check_validity(self):
         pass
 
@@ -134,19 +147,6 @@ class BasePlotter(ABC):
 
     def _do_postprocess(self):
         pass
-
-    def get_image_list(self) -> List:
-        """
-        Get image list.
-
-        Should implemented by sub-class.
-
-        Returns
-        -------
-        image_list: list
-            Image list.
-        """
-        raise NotImplemented()
 
     @classmethod
     def _get_run_script(cls):
