@@ -86,16 +86,16 @@ class SystemNclPlotter(NclPlotter):
 
         Parameters
         ----------
-        graphics_config: Config
+        graphics_config
             graphics config
-        start_time: datetime.datetime or pd.Timestamp,
-        forecast_time: pd.Timedelta
+        start_time
+        forecast_time
             Forecast time duration, such as 3h.
-        data_directory:
+        data_directory
             data directory for whole cycle.
-        work_directory:
+        work_directory
             work directory to run plot script.
-        verbose:
+        verbose
             logger setting
 
         Returns
@@ -228,22 +228,19 @@ class SystemPythonPlotter(PythonPlotter):
         """
         Parameters
         ----------
-        task: dict
+        task
             task config dict
             {
-                "ncl_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
                 "script_dir": "/home/wangdp/project/graph/operation/GMF_GRAPES_GFS_POST/tograph/script",
                 "data_path": "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/",
                 "start_datetime": "2021-06-23 00:00:00",
                 "forecast_time": "3h",
             }
-        work_dir: str
+        work_dir
             work directory
-        config: dict
+        config
             service config
             {
-                "ncl_lib": "/home/wangdp/project/graph/ncllib",
-                "geodiag_root": "/home/wangdp/project/graph/GEODIAG",
             }
         """
         super(SystemPythonPlotter, self).__init__(
@@ -275,16 +272,16 @@ class SystemPythonPlotter(PythonPlotter):
 
         Parameters
         ----------
-        graphics_config: Config
+        graphics_config
             graphics config
-        start_time: datetime.datetime or pd.Timestamp,
-        forecast_time: pd.Timedelta
+        start_time
+        forecast_time
             Forecast time duration, such as 3h.
-        data_directory:
+        data_directory
             data directory for whole cycle.
-        work_directory:
+        work_directory
             work directory to run plot script.
-        verbose:
+        verbose
             logger setting
 
         Returns
@@ -303,7 +300,6 @@ class SystemPythonPlotter(PythonPlotter):
             logger.debug(f"data directory: {data_path}")
 
         # task
-        script_dir = os.path.expandvars(system_config["system"]["script_dir"])
         component_config = system_config["components"]["typhoon"]
 
         task = {
