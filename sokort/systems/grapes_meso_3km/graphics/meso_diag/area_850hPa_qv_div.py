@@ -9,7 +9,7 @@ from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 class Plotter(SystemPlotter):
     plot_types = [
-        "area_850_div_wind"
+        "area_850hPa_qv_div"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
