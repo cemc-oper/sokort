@@ -21,6 +21,6 @@ class Plotter(SystemPlotter):
         return [
             {
                 "name": area["name"],
-                "path": f"GRAPES-MESOS-reg-850hPa-div-wind-{area['image_path_name']}{self.start_time}_{self.forecast_hour}.png"
+                "path": f"GRAPES-MESOS-reg-850hPa-div-wind-{area['image_path_name']}_{self.start_time}_{self.forecast_hour}.png"
             } for area in AREA_LIST
         ]
