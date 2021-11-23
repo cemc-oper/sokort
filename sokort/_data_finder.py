@@ -16,7 +16,7 @@ def find_local_file(
     -------
 
     """
-    from nwpc_data.data_finder import find_local_file
+    from reki.data_finder import find_local_file
     return find_local_file(
         data_type,
         **kwargs
