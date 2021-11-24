@@ -1,7 +1,7 @@
 #!/bin/bash
 #-------------------------------------
-# activate environment for CMA-PI
-# Use python environment Anaconda3 installed by wangdp.
+# activate development environment for CMA-PI
+# Use python environment Anaconda3 installed by wangdp@CEMC.
 #-------------------------------------
 
 set -x
