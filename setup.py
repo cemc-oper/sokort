@@ -10,12 +10,24 @@ setup(
 
     version=version,
 
-    description='NWPC Graphics Script Tool.',
+    description='CEMC Graphics Script Tool.',
     long_description=__doc__,
 
     url='https://github.com/nwpc-oper/sokort',
     author='perillaroc',
     author_email='perillaroc@gmail.com',
+
+    license='GPLv3',
+
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+    ],
+
+    keywords='cemc graph',
 
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
 
