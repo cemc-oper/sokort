@@ -53,7 +53,10 @@ def get_work_dir(
 
 def fix_system_name(system):
     system_mapper = {
-        "grapes_gfs": "grapes_gfs_gmf"
+        "grapes_gfs": "grapes_gfs_gmf",
+        "cma_gfs": "grapes_gfs_gmf",
+        "cma_meso": "grapes_meso_3km",
+        "cma_tym": "grapes_tym"
     }
     return system_mapper.get(system, system)
 

@@ -2,13 +2,13 @@
 
 > NWPC Graphics Script Tool
 
-封装中国气象局数值预报中心数值预报业务系统使用的图片制作脚本。
+封装中国气象局地球系统数值预报中心数值预报业务系统使用的图片制作脚本。
 
 仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
 
-- GRAPES 全球预报系统 (`grapes_gfs`)
-- GRAPES 区域预报系统 (`grapes_meso_3km`)
-- GRAPES 区域台风预报系统 (`grapes_tym`)
+- CMA-GFS 全球预报系统 (`cma_gfs`)
+- CMA-MESO 区域预报系统 (`cma_meso`)
+- CMA-TYM 区域台风预报系统 (`cma_tym`)
 
 ## 安装
 
@@ -22,7 +22,7 @@
 
 如果使用 CMA-PI 或二级存储中的自动数据查找功能，请安装下面 Python 包：
 
-- [nwpc-data](https://github.com/nwpc-oper/nwpc-data)
+- [reki](https://github.com/nwpc-oper/reki)
 
 ### 其他软件
 
@@ -53,7 +53,7 @@
 ```python
 from sokort import show_plot
 
-show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2021071100", "24h")
+show_plot("cma_gfs", "pwat_sfc_an_aea", "2021071100", "24h")
 ```
 
 在Jupyter Notebook中运行效果如下图所示
@@ -69,7 +69,7 @@ show_plot("grapes_gfs_gmf", "pwat_sfc_an_aea", "2021071100", "24h")
 
 ```shell
 python -m sokort show \
-    --system=grapes_gfs_gmf \
+    --system=cma_gfs \
     --plot-type=pwat_sfc_an_aea \
     --start-time=2021071100 \
     --forecast-time=24h
