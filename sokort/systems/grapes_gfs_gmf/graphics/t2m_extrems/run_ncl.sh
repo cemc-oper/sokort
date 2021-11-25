@@ -22,7 +22,8 @@ set -e
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-source ./load_env.sh
+echo "Load env script path is: ${load_env_script_name}"
+source ${load_env_script_name}
 
 #---------------
 # ncl script name

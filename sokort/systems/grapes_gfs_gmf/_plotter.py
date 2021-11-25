@@ -204,6 +204,7 @@ class SystemNclPlotter(NclPlotter):
             "max_forecast_time": self.max_forecast_time,
             "forecast_time_interval": f"{self.forecast_time_interval}",
             "data_path": data_path,
+            "load_env_script_name": self.load_env_script_path.name,
             "ncl_script_name": ncl_script_name,
         })
         return envs

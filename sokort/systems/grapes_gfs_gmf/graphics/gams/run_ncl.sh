@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run ncl script to draw graph for GRAEPS GFS GMF GAMS.
+# Run ncl script to draw graph for CMA-GFS GAMS.
 #
 # Prepare:
 #   1. enter a work directory
@@ -20,6 +20,7 @@
 #   forecast_time_interval: forecast time interval, required by some graph.
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
 #   ncl_script_name: ncl script file
+#   load_env_script_path:
 #
 
 set -x
@@ -28,7 +29,8 @@ set -e
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-source ./load_env.sh
+echo "Load env script path is: ${load_env_script_path}"
+source ${load_env_script_path}
 
 #---------------
 # ncl script name

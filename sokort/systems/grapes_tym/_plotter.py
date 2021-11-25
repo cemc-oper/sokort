@@ -171,6 +171,7 @@ class SystemPlotter(NclPlotter):
             "start_time": self.start_time,
             "data_path": data_path,
             "script_dir": script_dir,
+            "load_env_script_name": self.load_env_script_path.name,
             "ncl_script_name": ncl_script_name,
         })
         return envs

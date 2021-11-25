@@ -14,6 +14,7 @@
 #   start_time: YYYYMMDDHH
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
 #   ncl_script_name: ncl script file
+#   load_env_script_name:
 #
 set -x
 set +x
@@ -22,7 +23,8 @@ set -e
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-source ./load_env.sh
+echo "Load env script path is: ${load_env_script_name}"
+source ${load_env_script_name}
 
 #---------------
 # ncl script name
