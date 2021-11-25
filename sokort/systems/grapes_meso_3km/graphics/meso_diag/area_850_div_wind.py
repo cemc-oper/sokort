@@ -1,8 +1,8 @@
 """
-K 指数 + 850 hPa 风场
+860 hPa 散度 + 风场
 
 图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160307
+    http://nwpc.nmc.cn/list.jhtml?class_id=0302160206
 """
 from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
