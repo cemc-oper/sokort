@@ -1,9 +1,16 @@
 system:
-  ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/"
-  script_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/"
+  ncl_dir: "/some/path/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
+  script_dir: "/some/path/NWP_GRAPES_GFS_GMF_POST/tograph/script/"
 
 components:
   gams:
-    ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/GAMS-A/"
+    ncl_dir: "/some/path/NWP_GRAPES_GFS_GMF_POST/tograph/script/GAMS-A/"
   typhoon:
-    ncl_dir: "/some/path/GMF_GRAPES_GFS_POST/tograph/script/typhoon/"
+    ncl_dir: "/some/path/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
+    python_script_dir: "/some/path/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
+  wmc:
+    ncl_dir: "/some/path/GLOBALCHARTOS/deterministic/script/"
+    ncl_lib: "/some/path/GLOBALCHARTOS/deterministic/script/ncllib/"
+  swfdp:
+    ncl_dir: "/some/path/SWFDP/deterministic/script/"
+    ncl_lib: "/some/path/SWFDP/deterministic/script/ncllib/"
