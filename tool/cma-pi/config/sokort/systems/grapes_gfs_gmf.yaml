@@ -4,6 +4,13 @@ system:
 
 components:
   gams:
-    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/script/GAMS-A/"
+    ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/GAMS-A/"
   typhoon:
     ncl_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
+    python_script_dir: "/g1/u/nwp_pd/NWP_GRAPES_GFS_GMF_POST/tograph/script/typhoon/"
+  wmc:
+    ncl_dir: "/g1/u/nwp_pd/NWP_PST/GLOBALCHARTOS/deterministic/script/"
+    ncl_lib: "/g1/u/nwp_pd/NWP_PST/GLOBALCHARTOS/deterministic/script/ncllib/"
+  swfdp:
+    ncl_dir: "/g1/u/nwp_pd/NWP_PST/SWFDP/deterministic/script/"
+    ncl_lib: "/g1/u/nwp_pd/NWP_PST/SWFDP/deterministic/script/ncllib/"
