@@ -20,7 +20,7 @@
 #   forecast_time_interval: forecast time interval, required by some graph.
 #   data_path: directory of GRAPES GFS GMF original GRIB2 products.
 #   ncl_script_name: ncl script file
-#   load_env_script_path:
+#   load_env_script_name:
 #
 
 set -x
@@ -29,8 +29,8 @@ set -e
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
-echo "Load env script path is: ${load_env_script_path}"
-source ${load_env_script_path}
+echo "Load env script path is: ${load_env_script_name}"
+source ${load_env_script_name}
 
 #---------------
 # ncl script name
