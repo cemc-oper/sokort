@@ -1,10 +1,10 @@
 # sokort
 
-> NWPC Graphics Script Tool
+> CEMC Graphics Script Tool
 
-封装中国气象局地球系统数值预报中心数值预报业务系统使用的图片制作脚本。
+封装中国气象局地球系统数值预报中心 (CEMC) 数值预报业务系统使用的图片制作脚本。
 
-仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
+支持使用 NCL 和 Python 绘图的部分脚本，目前已集成的业务系统如下：
 
 - CMA-GFS 全球预报系统 (`cma_gfs`)
 - CMA-MESO 区域预报系统 (`cma_meso`)
@@ -20,7 +20,7 @@
 
 ### 额外 Python 包
 
-如果使用 CMA-PI 或二级存储中的自动数据查找功能，请安装下面 Python 包：
+如果使用 CMA-PI 或二级存储中的数据自动查找功能，请安装下面 Python 包：
 
 - [reki](https://github.com/nwpc-oper/reki)
 
@@ -29,6 +29,7 @@
 需要使用到的系统软件：
 
 - NCL (绘图)
+- Matplotlib (绘图)
 - ImageMagick (图片转格式，裁剪图片)
 - ksh (执行脚本)
 
@@ -56,7 +57,7 @@ from sokort import show_plot
 show_plot("cma_gfs", "pwat_sfc_an_aea", "2021071100", "24h")
 ```
 
-在Jupyter Notebook中运行效果如下图所示
+在 Jupyter Notebook 中运行效果如下图所示
 
 ![](./doc/nwpc-graphics-grapes-gfs-pwat-sfc-an-aea.png)
 
@@ -81,4 +82,4 @@ Copyright 2020-2021, perillaroc at nwpc-oper。
 
 `sokort` 以 [GPL-3.0](./LICENSE.md) 协议授权。
 
-本项目涉及的数值预报业务系统及图片制作脚本版权均属于中国气象局数值预报中心。
+本项目涉及的数值预报业务系统及图片制作脚本版权均属于中国气象局地球系统数值预报中心。
