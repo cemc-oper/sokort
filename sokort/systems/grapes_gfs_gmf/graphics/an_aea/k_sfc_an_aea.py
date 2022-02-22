@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 GRAPES GFS 东亚 K指数
 

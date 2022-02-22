@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 200hPa高度 + 200hPa风场
 

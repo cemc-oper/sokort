@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 850hPa 相对湿度 + 850hPa 风场
 

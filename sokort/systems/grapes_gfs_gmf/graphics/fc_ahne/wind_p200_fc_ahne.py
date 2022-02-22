@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 200hPa 风场
 

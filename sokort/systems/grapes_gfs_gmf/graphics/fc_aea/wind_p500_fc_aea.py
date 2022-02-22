@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 500hPa 风场
 

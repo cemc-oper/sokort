@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 850hPa 比湿
 

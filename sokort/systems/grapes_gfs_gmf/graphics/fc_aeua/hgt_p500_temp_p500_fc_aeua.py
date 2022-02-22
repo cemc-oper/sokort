@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 500hPa 高度场＋500hPa 温度场
 

@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 925hPa 风场
 

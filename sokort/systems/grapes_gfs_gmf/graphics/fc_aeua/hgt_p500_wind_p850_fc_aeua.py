@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 500hPa 高度场＋850hPa 风场
 
