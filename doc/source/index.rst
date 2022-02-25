@@ -6,15 +6,15 @@
 欢迎来到 sokort 文档
 ==================================
 
-NWPC Graphics Script Tool
+CEMC Graphics Script Tool
 
-封装中国气象局数值预报中心数值预报业务系统使用的图片制作脚本。
+封装中国气象局地球系统数值预报中心数值预报业务系统使用的图片制作脚本。
 
-仅支持使用 NCL 绘图脚本，目前已支持的数值预报业务系统如下：
+支持使用 NCL 或 Python 生成的部分图片产品，目前已支持的数值预报业务系统如下：
 
-* GRAPES 全球预报系统 (`grapes_gfs`)
-* GRAPES 区域预报系统 (`grapes_meso_3km`)
-* GRAPES 区域台风预报系统 (`grapes_tym`)
+* CMA-GFS 全球预报系统 (`cma_gfs`)
+* CMA-MESO 区域预报系统 (`cma_meso`)
+* CMA-TYM 区域台风预报系统 (`cma_tym`)
 
 用户指南
 ---------
