@@ -78,8 +78,8 @@ python -m sokort show \
 
 ## LICENSE
 
-Copyright 2020-2022, perillaroc at nwpc-oper。
+Copyright 2020-2022, perillaroc at cemc-oper。
 
-`sokort` 以 [GPL-3.0](./LICENSE.md) 协议授权。
+`sokort` 以 [Apache License, Version 2.0](./LICENSE) 协议授权。
 
 本项目涉及的数值预报业务系统及图片制作脚本版权均属于 CEMC。
