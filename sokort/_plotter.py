@@ -1,6 +1,6 @@
 import os
 import subprocess
-from typing import Union, Dict, List
+from typing import Union, Dict, List, Mapping
 from pathlib import Path
 from abc import ABC, abstractmethod
 
@@ -82,6 +82,7 @@ class BasePlotter(ABC):
         self._check_validity()
         self._prepare_environment()
         envs = self._generate_environ()
+
         self._run_process(envs=envs)
         self._do_postprocess()
 
@@ -111,7 +112,7 @@ class BasePlotter(ABC):
         """
         pass
 
-    def _generate_environ(self):
+    def _generate_environ(self) -> Mapping:
         """
         Generate environment variables for running plotting script.
         """

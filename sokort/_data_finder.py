@@ -6,7 +6,8 @@ def find_local_file(
         **kwargs
 ) -> Path or None:
     """
-    Find NWPC Operation Systems data using ``nwpc-data`` package.
+    Find CEMC Operation Systems data using ``reki`` package's ``find_local_file`` function.
+
     Parameters
     ----------
     data_type
@@ -14,7 +15,8 @@ def find_local_file(
 
     Returns
     -------
-
+    Path or None
+        local data file path, or None if not found.
     """
     from reki.data_finder import find_local_file
     return find_local_file(
