@@ -192,7 +192,7 @@ class SystemNclPlotter(NclPlotter):
         # str "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
         envs = os.environ
-        envs.update({
+        additional_envs = {
             "GEODIAG_ROOT": geodiag_root,
             "GEODIAG_TOOLS": geodiag_tools,
             "GRAPHIC_PRODUCT_LIB_ROOT": graphic_product_lib_root,
@@ -206,7 +206,14 @@ class SystemNclPlotter(NclPlotter):
             "data_path": data_path,
             "load_env_script_name": self.load_env_script_path.name,
             "ncl_script_name": ncl_script_name,
-        })
+        }
+        envs.update(additional_envs)
+
+        logger.info("print environment variables...")
+        for key, value in additional_envs.items():
+            print(f"export {key}={value}")
+        logger.info("print environment variables...done")
+
         return envs
 
     @classmethod

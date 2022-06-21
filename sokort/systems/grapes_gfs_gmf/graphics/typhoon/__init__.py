@@ -248,12 +248,19 @@ class TyphoonPythonPlotter(PythonPlotter):
         # str "/sstorage1/COMMONDATA/OPER/NWPC/GRAPES_GFS_GMF/Prod-grib/2020011021/ORIG/"
 
         envs = os.environ
-        envs.update({
+        additional_envs = {
             "start_time": self.start_time,
             "forecast_hour": self.forecast_hour,
             "data_path": data_path,
             "python_script_name": python_script_name,
-        })
+        }
+        envs.update(additional_envs)
+
+        logger.info("print environment variables...")
+        for key, value in additional_envs.items():
+            print(f"export {key}={value}")
+        logger.info("print environment variables...done")
+
         return envs
 
     @classmethod
