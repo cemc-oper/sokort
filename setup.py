@@ -58,7 +58,8 @@ setup(
 
     extras_require={
         "all": {
-            "loguru"
+            "loguru",
+            "reki",
         },
         # "jupyter": {
         #     "ipywidgets",
