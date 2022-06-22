@@ -1,13 +1,13 @@
-"""
-Central Asia, 2 meters Temperature
-
-图片样例请访问 NMC 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaTemp2mPlotter(SwfdpPlotter):
+    """
+    Central Asia, 2 meters Temperature
+
+    图片样例请访问 NMC 官网：暂缺
+    """
     plot_types = [
         "swfdp.central_asia.temp_2m"
     ]

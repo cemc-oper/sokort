@@ -1,14 +1,14 @@
-"""
-Africa, Temperature, 850 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/850wendu/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class AfricaTemp850Plotter(WmcPlotter):
+    """
+    Africa, Temperature, 850 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/850wendu/index.html
+    """
     plot_types = [
         "wmc.africa.temp_850"
     ]

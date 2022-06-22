@@ -1,10 +1,10 @@
-"""
-
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPythonPlotter
 
 
 class Plotter(TyphoonPythonPlotter):
+    """
+    卫星云图
+    """
     plot_types = [
         "typhoon.tbb"
     ]

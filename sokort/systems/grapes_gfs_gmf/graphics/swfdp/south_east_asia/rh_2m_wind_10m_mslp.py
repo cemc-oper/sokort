@@ -1,13 +1,13 @@
-"""
-South East Asia, RH 2M + Wind 10m + MSLP
-
-图片样例请访问 NMC 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp.south_east_asia import SwfdpSeaPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthEastAsiaRh2mWind10mMslpPlotter(SwfdpSeaPlotter):
+    """
+    South East Asia, RH 2M + Wind 10m + MSLP
+
+    图片样例请访问 NMC 官网：暂缺
+    """
     plot_types = [
         "swfdp.south_east_asia.rh_2m_wind_10m_mslp"
     ]

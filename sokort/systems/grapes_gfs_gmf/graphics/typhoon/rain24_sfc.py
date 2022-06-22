@@ -1,11 +1,11 @@
-"""
-
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPlotter
 from sokort._util import get_forecast_hour
 
 
 class Plotter(TyphoonPlotter):
+    """
+    24 小时累积降水
+    """
     plot_types = [
         "typhoon.rain24_sfc"
     ]

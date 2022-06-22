@@ -1,13 +1,13 @@
-"""
-850hPa 比湿 + 850hPa 风场
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130205
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aeua import FcAeuaPlotter
 
 
 class Plotter(FcAeuaPlotter):
+    """
+    850hPa 比湿 + 850hPa 风场
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130205
+    """
     plot_types = [
         "qv_p850_wind_p850_fc_aeua"
     ]

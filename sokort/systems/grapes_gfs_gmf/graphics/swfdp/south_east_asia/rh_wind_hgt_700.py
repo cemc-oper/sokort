@@ -1,13 +1,13 @@
-"""
-South East Asia, RH + Wind + HGT 700 hPa
-
-图片样例请访问 NMC 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp.south_east_asia import SwfdpSeaPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthEastAsiaRhWindHgt700Plotter(SwfdpSeaPlotter):
+    """
+    South East Asia, RH + Wind + HGT 700 hPa
+
+    图片样例请访问 NMC 官网：暂缺
+    """
     plot_types = [
         "swfdp.south_east_asia.rh_wind_hgt_700"
     ]

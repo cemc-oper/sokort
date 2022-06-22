@@ -1,12 +1,12 @@
-"""
-850hPa 风场
-
-图片暂时没有外网访问渠道。
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.gams import GamsPlotter
 
 
 class Plotter(GamsPlotter):
+    """
+    850hPa 风场
+
+    图片暂时没有外网访问渠道。
+    """
     plot_types = [
         "gams.wind_windbarb_850"
     ]

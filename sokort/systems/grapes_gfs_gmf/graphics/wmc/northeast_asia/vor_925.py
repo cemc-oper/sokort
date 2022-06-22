@@ -1,13 +1,13 @@
-"""
-Northeast Asia, VOR, 925 hPa
-
-图片样例请访问 WMC-BJ 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class NortheastAsia925Plotter(WmcPlotter):
+    """
+    Northeast Asia, VOR, 925 hPa
+
+    图片样例请访问 WMC-BJ 官网：暂缺
+    """
     plot_types = [
         "wmc.northeast_asia.vor_925"
     ]

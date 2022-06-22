@@ -1,13 +1,13 @@
-"""
-1小时降水
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=050301
-"""
 from sokort.systems.grapes_meso_3km.graphics.meso_3km import Meso3kmPlotter
 
 
 class Plotter(Meso3kmPlotter):
+    """
+    1小时降水
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=050301
+    """
     plot_types = [
         "meso_3km.prep_1h_10mw"
     ]

@@ -1,13 +1,13 @@
-"""
-925hPa 风场
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0313030404
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 
 
 class Plotter(FcAeaPlotter):
+    """
+    925hPa 风场
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0313030404
+    """
     plot_types = [
         "wind_p925_fc_aea"
     ]

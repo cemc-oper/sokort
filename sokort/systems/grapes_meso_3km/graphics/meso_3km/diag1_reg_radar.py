@@ -1,14 +1,14 @@
-"""
-1小时雷达组合反射率
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=050302
-"""
 from sokort.systems.grapes_meso_3km.graphics.meso_3km import Meso3kmPlotter
 from sokort._util import get_forecast_hour
 
 
 class Plotter(Meso3kmPlotter):
+    """
+    1小时雷达组合反射率
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=050302
+    """
     plot_types = [
         "meso_3km.reg_radar"
     ]

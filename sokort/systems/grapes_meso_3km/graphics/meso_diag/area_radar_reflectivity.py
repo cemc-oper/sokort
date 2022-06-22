@@ -1,13 +1,13 @@
-"""
-雷达组合反射率
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/area/hs/radar.html
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    雷达组合反射率
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/area/hs/radar.html
+    """
     plot_types = [
         "area_radar_reflectivity"
     ]

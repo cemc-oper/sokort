@@ -1,14 +1,14 @@
-"""
-10m 风场
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0313030405
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 from sokort._util import get_forecast_hour
 
 
 class Plotter(FcAeaPlotter):
+    """
+    10m 风场
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0313030405
+    """
     plot_types = [
         "wind_10m_fc_aea"
     ]

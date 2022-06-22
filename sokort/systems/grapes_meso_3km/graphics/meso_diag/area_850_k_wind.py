@@ -1,13 +1,13 @@
-"""
-K 指数 + 850 hPa 风场
-
-图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160307
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    K 指数 + 850 hPa 风场
+
+    图片样例请访问 NWPC/CMA 官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0302160307
+    """
     plot_types = [
         "area_850_K_wind"
     ]

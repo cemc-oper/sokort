@@ -1,12 +1,12 @@
-"""
-24 小时降水 + 10m 风
-
-暂无官网示例
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter
 
 
 class Plotter(SystemPlotter):
+    """
+    24 小时降水 + 10m 风
+
+    暂无官网示例
+    """
     plot_types = [
         "cn_prep_24h_10mw"
     ]

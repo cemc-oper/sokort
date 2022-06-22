@@ -1,13 +1,13 @@
-"""
-850hPa 温度
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130103
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_ahne import FcAhnePlotter
 
 
 class Plotter(FcAhnePlotter):
+    """
+    850hPa 温度
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130103
+    """
     plot_types = [
         "temp_p850_fc_ahne"
     ]

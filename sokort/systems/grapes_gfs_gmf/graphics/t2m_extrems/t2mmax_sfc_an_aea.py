@@ -1,17 +1,17 @@
-"""
-2m 最高温度
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/nwpc/grapes_gfs/ea/wind/T2mMax.htm
-
-Notes
------
-需要对原始预报数据进行加工，本库暂时不包括该数据处理程序
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.t2m_extrems import T2MExtremsPlotter
 
 
 class Plotter(T2MExtremsPlotter):
+    """
+    2m 最高温度
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/nwpc/grapes_gfs/ea/wind/T2mMax.htm
+
+    Notes
+    -----
+    需要对原始预报数据进行加工，本库暂时不包括该数据处理程序
+    """
     plot_types = [
         "t2m_extrems.max_sfc_an_aea"
     ]

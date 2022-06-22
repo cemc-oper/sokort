@@ -1,14 +1,14 @@
-"""
-Central Asia, vertical velocity, 700 hPa
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/vertical_velocity/700mb.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaW700Plotter(SwfdpPlotter):
+    """
+    Central Asia, vertical velocity, 700 hPa
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/vertical_velocity/700mb.html
+    """
     plot_types = [
         "swfdp.central_asia.w_700"
     ]

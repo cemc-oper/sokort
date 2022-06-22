@@ -1,13 +1,13 @@
-"""
-500 hPa 高度场 + 海平面气压
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/area/china/h500p.html
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter
 
 
 class Plotter(SystemPlotter):
+    """
+    500 hPa 高度场 + 海平面气压
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/area/china/h500p.html
+    """
     plot_types = [
         "cn_500height_mslp"
     ]

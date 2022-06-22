@@ -1,13 +1,13 @@
-"""
-South Asia, Relative Humidity, 925 hPa
-
-图片样例请访问 WMC-BJ 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaRh925Plotter(SwfdpPlotter):
+    """
+    South Asia, Relative Humidity, 925 hPa
+
+    图片样例请访问 WMC-BJ 官网：暂缺
+    """
     plot_types = [
         "swfdp.south_asia.rh_925"
     ]

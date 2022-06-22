@@ -1,9 +1,3 @@
-"""
-Central Asia, SKEWT, Kazakhstan, multi cities
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/Kyrgyzstan/Batken.html
-"""
 import shutil
 
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
@@ -11,6 +5,12 @@ from sokort._util import get_forecast_hour
 
 
 class CentralAsiaStationSkewtPlotter(SwfdpPlotter):
+    """
+    Central Asia, SKEWT, Kazakhstan, multi cities
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/Kyrgyzstan/Batken.html
+    """
     plot_types = [
         "swfdp.central_asia.station.skewt.kazakhstan"
     ]

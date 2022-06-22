@@ -1,14 +1,14 @@
-"""
-Africa, Wind, 10M Wind
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/10mfeng/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class AfricaWind10MPlotter(WmcPlotter):
+    """
+    Africa, Wind, 10M Wind
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/10mfeng/index.html
+    """
     plot_types = [
         "wmc.africa.wind_10m"
     ]

@@ -1,13 +1,13 @@
-"""
-500 hPa 温度和露点差
-
-图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160312
-"""
 from sokort.systems.grapes_tym import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    500 hPa 温度和露点差
+
+    图片样例请访问 NWPC/CMA 官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0302160312
+    """
     plot_types = [
         "area_500hPa_temp_dew_temp"
     ]

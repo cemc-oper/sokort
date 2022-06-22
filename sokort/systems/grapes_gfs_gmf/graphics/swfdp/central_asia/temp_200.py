@@ -1,14 +1,14 @@
-"""
-Central Asia, temperature, 200 hPa
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/temperature/200mb2.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaTemp200Plotter(SwfdpPlotter):
+    """
+    Central Asia, temperature, 200 hPa
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/temperature/200mb2.html
+    """
     plot_types = [
         "swfdp.central_asia.temp_200"
     ]

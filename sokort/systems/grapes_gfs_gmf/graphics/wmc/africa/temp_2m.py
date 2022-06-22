@@ -1,14 +1,14 @@
-"""
-Africa, 2M Temperature
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/2mwendu/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class AfricaTemp2MPlotter(WmcPlotter):
+    """
+    Africa, 2M Temperature
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/2mwendu/index.html
+    """
     plot_types = [
         "wmc.africa.temp_2m"
     ]

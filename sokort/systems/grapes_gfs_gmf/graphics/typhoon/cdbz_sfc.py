@@ -1,10 +1,10 @@
-"""
-
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPlotter
 
 
 class Plotter(TyphoonPlotter):
+    """
+    雷达组合反射率
+    """
     plot_types = [
         "typhoon.cdbz_sfc"
     ]

@@ -1,14 +1,14 @@
-"""
-Africa, HGT, 500 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/500-hgt/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class WmcAfricaHgt500Plotter(WmcPlotter):
+    """
+    Africa, HGT, 500 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/500-hgt/index.html
+    """
     plot_types = [
         "wmc.africa.hgt_500"
     ]

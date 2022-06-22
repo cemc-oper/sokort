@@ -1,14 +1,14 @@
-"""
-South Asia, Geopotential Height, 700 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/EGH_ASA_L70_P9.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaHgt700Plotter(SwfdpPlotter):
+    """
+    South Asia, Geopotential Height, 700 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/EGH_ASA_L70_P9.html
+    """
     plot_types = [
         "swfdp.south_asia.hgt_700"
     ]

@@ -1,14 +1,13 @@
-"""
-850hPa 水汽通量
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0313032002
-"""
-
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
 class Plotter(AnAeaPlotter):
+    """
+    850hPa 水汽通量
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0313032002
+    """
     plot_types = [
         "qflx_p850_an_aea"
     ]

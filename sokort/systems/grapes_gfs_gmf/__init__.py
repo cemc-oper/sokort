@@ -6,6 +6,7 @@ import pandas as pd
 
 from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
 from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPythonPlotter
+from sokort._plotter import BasePlotter
 from sokort._loader import load_plotters_from_paths
 from sokort._presenter import Presenter, IPythonPresenter
 
@@ -13,7 +14,7 @@ from sokort._presenter import Presenter, IPythonPresenter
 SYSTEM_NAME = "grapes_gfs_gmf"
 
 
-def _load_plotters():
+def _load_plotters() -> Dict[str, Type[BasePlotter]]:
     _plotters = load_plotters_from_paths(
         [pathlib.Path(pathlib.Path(__file__).parent, "graphics")],
         (SystemNclPlotter, TyphoonPythonPlotter),

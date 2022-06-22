@@ -100,9 +100,10 @@ def show(
 
 @cli.command("list")
 @click.option("--system", "system_name", required=True, help="operation system name")
-def list_plot_types(system_name: str,):
+@click.option("--with-summary", is_flag=True, default=True, help="print summary")
+def list_plot_types(system_name: str, with_summary: bool):
     system_name = fix_system_name(system_name)
-    list_plot_type(system=system_name)
+    list_plot_type(system=system_name, with_summary=with_summary)
 
 
 def _parse_additional_options(args):

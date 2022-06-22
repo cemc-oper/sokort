@@ -1,14 +1,13 @@
-"""
-500hPa 涡度平流
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130315
-"""
-
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
 class Plotter(AnAeaPlotter):
+    """
+    500hPa 涡度平流
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130315
+    """
     plot_types = [
         "voradv_p500_an_aea"
     ]

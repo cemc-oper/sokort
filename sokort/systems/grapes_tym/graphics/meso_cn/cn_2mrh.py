@@ -1,12 +1,12 @@
-"""
-2m 相对湿度
-
-图片样例请访问 NMC 官网：
-"""
 from sokort.systems.grapes_tym import SystemPlotter
 
 
 class Plotter(SystemPlotter):
+    """
+    2m 相对湿度
+
+    图片样例请访问 NMC 官网：
+    """
     plot_types = [
         "cn_2mrh"
     ]

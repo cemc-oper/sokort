@@ -1,14 +1,14 @@
-"""
-South Asia, 24hr Accumulated Precipitation
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ER24_ASA_L88_P9.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaRain24Plotter(SwfdpPlotter):
+    """
+    South Asia, 24hr Accumulated Precipitation
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ER24_ASA_L88_P9.html
+    """
     plot_types = [
         "swfdp.south_asia.rain_24"
     ]

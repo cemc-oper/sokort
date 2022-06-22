@@ -1,14 +1,14 @@
-"""
-Northeast Asia, Wind, 850 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_GFS/Northeast-Asia/Wind/850hPa/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class NortheastAsiaWind850Plotter(WmcPlotter):
+    """
+    Northeast Asia, Wind, 850 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_GFS/Northeast-Asia/Wind/850hPa/index.html
+    """
     plot_types = [
         "wmc.northeast_asia.wind_850"
     ]

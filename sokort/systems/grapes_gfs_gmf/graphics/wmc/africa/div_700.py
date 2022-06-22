@@ -1,13 +1,13 @@
-"""
-Africa, DIV, 700 hPa
-
-图片样例请访问 WMC-BJ 官网：暂缺
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class AfricaDiv700Plotter(WmcPlotter):
+    """
+    Africa, DIV, 700 hPa
+
+    图片样例请访问 WMC-BJ 官网：暂缺
+    """
     plot_types = [
         "wmc.africa.div_700"
     ]

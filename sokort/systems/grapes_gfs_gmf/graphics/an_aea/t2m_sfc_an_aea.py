@@ -1,15 +1,15 @@
-"""
-2m 温度
-
-003 时效开始
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130329
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
 class Plotter(AnAeaPlotter):
+    """
+    2m 温度
+
+    003 时效开始
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130329
+    """
     plot_types = [
         "t2m_sfc_an_aea"
     ]

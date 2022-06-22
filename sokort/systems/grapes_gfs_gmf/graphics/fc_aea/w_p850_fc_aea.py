@@ -1,13 +1,13 @@
-"""
-850hPa 垂直速度
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0313032403
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 
 
 class Plotter(FcAeaPlotter):
+    """
+    850hPa 垂直速度
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0313032403
+    """
     plot_types = [
         "w_p850_fc_aea"
     ]

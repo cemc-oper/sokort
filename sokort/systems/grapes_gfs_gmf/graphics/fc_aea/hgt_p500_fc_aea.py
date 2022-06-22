@@ -1,13 +1,13 @@
-"""
-500hPa 高度场
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130307
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 
 
 class Plotter(FcAeaPlotter):
+    """
+    500hPa 高度场
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130307
+    """
     plot_types = [
         "hgt_p500_fc_aea"
     ]

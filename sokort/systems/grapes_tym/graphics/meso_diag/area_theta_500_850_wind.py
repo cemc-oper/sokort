@@ -1,13 +1,13 @@
-"""
-500 hPa 与 850 hPa 假相当位温之差 + 850 hPa 风场
-
-图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160314
-"""
 from sokort.systems.grapes_tym import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    500 hPa 与 850 hPa 假相当位温之差 + 850 hPa 风场
+
+    图片样例请访问 NWPC/CMA 官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0302160314
+    """
     plot_types = [
         "area_theta_500_850_wind"
     ]

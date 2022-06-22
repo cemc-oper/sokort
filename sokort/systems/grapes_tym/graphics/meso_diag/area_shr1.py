@@ -1,13 +1,13 @@
-"""
-0 - 1 km 垂直风切变
-
-图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160315
-"""
 from sokort.systems.grapes_tym import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    0 - 1 km 垂直风切变
+
+    图片样例请访问 NWPC/CMA 官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0302160315
+    """
     plot_types = [
         "area_shr1"
     ]

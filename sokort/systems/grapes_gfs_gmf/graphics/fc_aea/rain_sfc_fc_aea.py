@@ -1,13 +1,13 @@
-"""
-总累计降水
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130327
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 
 
 class Plotter(FcAeaPlotter):
+    """
+    总累计降水
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130327
+    """
     plot_types = [
         "rain_sfc_fc_aea"
     ]

@@ -1,13 +1,13 @@
-"""
-850 hPa / 750 hPa 散度 + 风场
-
-图片样例请访问气象业务内网：
-    http://10.1.64.146/npt/f/p-56438
-"""
 from sokort.systems.grapes_tym import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    850 hPa / 750 hPa 散度 + 风场
+
+    图片样例请访问气象业务内网：
+        http://10.1.64.146/npt/f/p-56438
+    """
     plot_types = [
         "area_850_div_wind"
     ]

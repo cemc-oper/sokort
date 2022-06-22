@@ -1,13 +1,13 @@
-"""
-700hPa 流场
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130309
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 
 
 class Plotter(FcAeaPlotter):
+    """
+    700hPa 流场
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130309
+    """
     plot_types = [
         "str_p700_fc_aea"
     ]

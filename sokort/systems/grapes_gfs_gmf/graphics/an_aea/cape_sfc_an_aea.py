@@ -1,14 +1,13 @@
-"""
-CAPE
-
-图片样例请访问NMC官网：
-    http://www.nmc.cn/publish/nwpc/grapes_gfs/ea/cape.htm
-"""
-
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
 class Plotter(AnAeaPlotter):
+    """
+    CAPE
+
+    图片样例请访问NMC官网：
+        http://www.nmc.cn/publish/nwpc/grapes_gfs/ea/cape.htm
+    """
     plot_types = [
         "cape_sfc_an_aea"
     ]

@@ -1,12 +1,12 @@
-"""
-6小时降水
-
-图片暂时没有外网访问渠道。
-"""
 from sokort.systems.grapes_meso_3km.graphics.meso_3km import Meso3kmPlotter
 
 
 class Plotter(Meso3kmPlotter):
+    """
+    6小时降水
+
+    图片暂时没有外网访问渠道。
+    """
     plot_types = [
         "meso_3km.prep_6h_10mw"
     ]

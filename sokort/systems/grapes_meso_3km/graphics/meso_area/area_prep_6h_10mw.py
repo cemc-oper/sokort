@@ -1,13 +1,13 @@
-"""
-6h 降水 + 10m 风场
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/area/hs/6h10mw.html
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    6h 降水 + 10m 风场
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/area/hs/6h10mw.html
+    """
     plot_types = [
         "area_prep_6h_10mw"
     ]

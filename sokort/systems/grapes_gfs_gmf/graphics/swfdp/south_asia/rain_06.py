@@ -1,14 +1,14 @@
-"""
-South Asia, 6hr Accumulated Precipitation
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ER6_ASA_L88_P9/index2.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaRain06Plotter(SwfdpPlotter):
+    """
+    South Asia, 6hr Accumulated Precipitation
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ER6_ASA_L88_P9/index2.html
+    """
     plot_types = [
         "swfdp.south_asia.rain_06"
     ]

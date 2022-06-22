@@ -1,13 +1,13 @@
-"""
-海平面气压
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130105
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_ahne import FcAhnePlotter
 
 
 class Plotter(FcAhnePlotter):
+    """
+    海平面气压
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130105
+    """
     plot_types = [
         "mslp_sfc_fc_ahne"
     ]

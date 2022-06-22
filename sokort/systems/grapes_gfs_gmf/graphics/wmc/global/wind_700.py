@@ -1,14 +1,14 @@
-"""
-Global, Wind, 700 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Weather-Models/GRAPES_GFS_new/9.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class Temp2MPlotter(WmcPlotter):
+    """
+    Global, Wind, 700 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Weather-Models/GRAPES_GFS_new/9.html
+    """
     plot_types = [
         "wmc.global.wind_700"
     ]

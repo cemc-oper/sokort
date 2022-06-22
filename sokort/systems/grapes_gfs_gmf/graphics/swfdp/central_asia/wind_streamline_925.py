@@ -1,14 +1,14 @@
-"""
-Central Asia, wind, streamlines, streamlines
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/wind/steamlines/925mb.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaWindStreamline925Plotter(SwfdpPlotter):
+    """
+    Central Asia, wind, streamlines, streamlines
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/wind/steamlines/925mb.html
+    """
     plot_types = [
         "swfdp.central_asia.wind_streamline_925"
     ]

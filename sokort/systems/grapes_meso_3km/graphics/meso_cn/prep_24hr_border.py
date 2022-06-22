@@ -1,13 +1,13 @@
-"""
-24 小时降水
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/area/china/24hrain.html
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter
 
 
 class Plotter(SystemPlotter):
+    """
+    24 小时降水
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/area/china/24hrain.html
+    """
     plot_types = [
         "prep_24hr_border"
     ]

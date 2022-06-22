@@ -1,14 +1,14 @@
-"""
-Central Asia, wind, streamlines, speed/direction
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/wind/speed_driection/850mb.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaWindBarb850Plotter(SwfdpPlotter):
+    """
+    Central Asia, wind, streamlines, speed/direction
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/wind/speed_driection/850mb.html
+    """
     plot_types = [
         "swfdp.central_asia.wind_barb_850"
     ]

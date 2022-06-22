@@ -1,14 +1,14 @@
-"""
-Central Asia, Mean sea level pressure
-
-图片样例请访问 NMC 官网：
-    http://eng.nmc.cn/ca/publish/up/mslp.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class CentralAsiaMslpPlotter(SwfdpPlotter):
+    """
+    Central Asia, Mean sea level pressure
+
+    图片样例请访问 NMC 官网：
+        http://eng.nmc.cn/ca/publish/up/mslp.html
+    """
     plot_types = [
         "swfdp.central_asia.mslp"
     ]

@@ -1,14 +1,14 @@
-"""
-24小时累计降水
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130302
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
 from sokort._util import get_forecast_hour
 
 
 class Plotter(FcAeaPlotter):
+    """
+    24小时累计降水
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130302
+    """
     plot_types = [
         "rain24_sfc_fc_aea"
     ]

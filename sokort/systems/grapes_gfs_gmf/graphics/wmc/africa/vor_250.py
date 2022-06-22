@@ -1,14 +1,14 @@
-"""
-Africa, VOR, 250 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/250xuandu/index.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
 from sokort._util import get_forecast_hour
 
 
 class AfricaVor250Plotter(WmcPlotter):
+    """
+    Africa, VOR, 250 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES_EPS/African/250xuandu/index.html
+    """
     plot_types = [
         "wmc.africa.vor_250"
     ]

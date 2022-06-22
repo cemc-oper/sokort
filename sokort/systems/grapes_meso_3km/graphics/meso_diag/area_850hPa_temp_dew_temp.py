@@ -1,13 +1,13 @@
-"""
-850 hPa 温度和露点差
-
-图片样例请访问 NWPC/CMA 官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=0302160313
-"""
 from sokort.systems.grapes_meso_3km import SystemPlotter, AREA_LIST
 
 
 class Plotter(SystemPlotter):
+    """
+    850 hPa 温度和露点差
+
+    图片样例请访问 NWPC/CMA 官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=0302160313
+    """
     plot_types = [
         "area_850hPa_temp_dew_temp"
     ]

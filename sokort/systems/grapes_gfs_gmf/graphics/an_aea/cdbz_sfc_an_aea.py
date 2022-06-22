@@ -1,14 +1,13 @@
-"""
-雷达组合反射率
-
-图片样例请访问NWPC/CMA官网：
-    http://nwpc.nmc.cn/list.jhtml?class_id=03130325
-"""
-
 from sokort.systems.grapes_gfs_gmf.graphics.an_aea import AnAeaPlotter
 
 
 class Plotter(AnAeaPlotter):
+    """
+    雷达组合反射率
+
+    图片样例请访问NWPC/CMA官网：
+        http://nwpc.nmc.cn/list.jhtml?class_id=03130325
+    """
     plot_types = [
         "cdbz_sfc_an_aea"
     ]

@@ -1,14 +1,14 @@
-"""
-South Asia, Total totals Index
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ETT_ASA_L88_P9.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaTotalTotalsIndexPlotter(SwfdpPlotter):
+    """
+    South Asia, Total totals Index
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/ETT_ASA_L88_P9.html
+    """
     plot_types = [
         "swfdp.south_asia.total_totals"
     ]

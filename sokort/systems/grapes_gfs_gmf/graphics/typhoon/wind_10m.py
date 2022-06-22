@@ -1,10 +1,10 @@
-"""
-
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.typhoon import TyphoonPlotter
 
 
 class Plotter(TyphoonPlotter):
+    """
+    10 米风
+    """
     plot_types = [
         "typhoon.wind_10m"
     ]

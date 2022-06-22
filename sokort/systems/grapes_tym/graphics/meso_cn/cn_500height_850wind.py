@@ -1,13 +1,13 @@
-"""
-500 hPa 高度场 + 850 hPa 风场 + 850 hPa 大风速（大于等于12）
-
-图片样例请访问 NMC 官网：
-    http://www.nmc.cn/publish/area/china/hws.html
-"""
 from sokort.systems.grapes_tym import SystemPlotter
 
 
 class Plotter(SystemPlotter):
+    """
+    500 hPa 高度场 + 850 hPa 风场 + 850 hPa 大风速（大于等于12）
+
+    图片样例请访问 NMC 官网：
+        http://www.nmc.cn/publish/area/china/hws.html
+    """
     plot_types = [
         "cn_500height_850wind"
     ]

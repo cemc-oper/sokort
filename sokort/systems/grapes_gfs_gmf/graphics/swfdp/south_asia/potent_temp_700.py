@@ -1,14 +1,14 @@
-"""
-South Asia, Equipotential temperature, 700 hPa
-
-图片样例请访问 WMC-BJ 官网：
-    http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/EPT_ASA_L70_P9.html
-"""
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
 from sokort._util import get_forecast_hour
 
 
 class SouthAsiaPotentialTemp700Plotter(SwfdpPlotter):
+    """
+    South Asia, Equipotential temperature, 700 hPa
+
+    图片样例请访问 WMC-BJ 官网：
+        http://www.wmc-bj.net/publish/Models/Weather-Models/GRAPES-GFS-0521/EPT_ASA_L70_P9.html
+    """
     plot_types = [
         "swfdp.south_asia.potent_temp_700"
     ]

@@ -1,4 +1,5 @@
 import datetime
+import inspect
 from typing import Union
 from pathlib import Path
 
@@ -156,10 +157,20 @@ def show_plot(
 
 def list_plot_type(
         system: str,
+        with_summary: bool = True,
 ):
     system = fix_system_name(system)
     system_module = get_system_module(system)
 
     plotters = system_module.plotters
-    for key in plotters.keys():
-        print(key)
+    for key, some_plotter in plotters.items():
+        docs = some_plotter.__doc__
+        if docs is None:
+            plotter_summary = None
+        else:
+            docs = inspect.cleandoc(docs)
+            plotter_summary = docs.splitlines()[0]
+        if plotter_summary is None:
+            print(key)
+        else:
+            print(f"{key} : {plotter_summary}")
