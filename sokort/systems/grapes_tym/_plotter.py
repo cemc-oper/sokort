@@ -171,6 +171,7 @@ class SystemPlotter(NclPlotter):
             "GEODIAG_ROOT": geodiag_root,
             "GEODIAG_TOOLS": geodiag_tools,
             "GRAPHIC_PRODUCT_LIB_ROOT": ncl_lib,
+            "GRAPHIC_PRODUCT_SCRIPT_ROOT": ncl_lib,
             "start_time": self.start_time,
             "data_path": data_path,
             "script_dir": script_dir,
