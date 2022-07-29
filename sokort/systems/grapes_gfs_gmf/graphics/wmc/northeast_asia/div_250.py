@@ -1,5 +1,5 @@
 from sokort.systems.grapes_gfs_gmf.graphics.wmc import WmcPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class NortheastAsiaDiv250Plotter(WmcPlotter):

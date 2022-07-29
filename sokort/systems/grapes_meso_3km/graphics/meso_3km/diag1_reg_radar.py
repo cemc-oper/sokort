@@ -1,5 +1,5 @@
 from sokort.systems.grapes_meso_3km.graphics.meso_3km import Meso3kmPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class Plotter(Meso3kmPlotter):

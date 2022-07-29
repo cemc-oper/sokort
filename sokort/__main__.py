@@ -3,7 +3,7 @@ import click
 from sokort.config import load_config
 from sokort.interface import draw_plot, show_plot, list_plot_type
 from sokort._presenter import PILPresenter
-from sokort._util import fix_system_name
+from sokort.util import fix_system_name
 
 
 @click.group("sokort")

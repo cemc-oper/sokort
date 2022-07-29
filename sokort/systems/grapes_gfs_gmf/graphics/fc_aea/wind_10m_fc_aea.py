@@ -1,5 +1,5 @@
 from sokort.systems.grapes_gfs_gmf.graphics.fc_aea import FcAeaPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class Plotter(FcAeaPlotter):

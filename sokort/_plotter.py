@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 import pandas as pd
 
 from ._logging import get_logger, convert_verbose
-from ._util import get_forecast_hour
+from .util import get_forecast_hour
 
 
 logger = get_logger()

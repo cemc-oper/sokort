@@ -9,7 +9,7 @@ import pandas as pd
 from sokort._logging import get_logger
 from sokort.config import Config
 from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
-from sokort._util import (
+from sokort.util import (
     get_work_dir,
     get_data_path
 )

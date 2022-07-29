@@ -17,9 +17,9 @@ def get_data_path(
         start_time: Union[datetime.datetime, pd.Timestamp],
         forecast_time: pd.Timedelta = None,
         data_directory: Optional[Union[str, Path]] = None,
-):
+) -> str:
     if data_directory is None:
-        # get data file using nwpc-data.
+        # get data file using reki.
         if forecast_time is None:
             forecast_time = pd.to_timedelta("0h")
         data_file = find_local_file(
@@ -32,6 +32,8 @@ def get_data_path(
         data_path = str(data_file.parent) + "/"
     else:
         data_path = data_directory
+        if isinstance(data_path, Path):
+            data_path = str(data_path.absolute())
         if data_path[-1] != "/":
             data_path = data_path + "/"
     return data_path
@@ -43,7 +45,7 @@ def get_work_dir(
         start_time: Union[datetime.datetime, pd.Timestamp] = None,
         forecast_time: pd.Timedelta = None,
         work_directory: Optional[Union[str, Path]] = None,
-):
+) -> Path:
     if work_directory is None:
         work_dir = graphics_config.generate_run_dir()
     else:
@@ -51,7 +53,7 @@ def get_work_dir(
     return work_dir
 
 
-def fix_system_name(system):
+def fix_system_name(system: str) -> str:
     system_mapper = {
         "grapes_gfs": "grapes_gfs_gmf",
         "cma_gfs": "grapes_gfs_gmf",
@@ -61,7 +63,7 @@ def fix_system_name(system):
     return system_mapper.get(system, system)
 
 
-def parse_start_time(start_time: Union[str, datetime.datetime, pd.Timestamp]):
+def parse_start_time(start_time: Union[str, datetime.datetime, pd.Timestamp]) -> Union[pd.Timestamp, datetime.datetime]:
     if isinstance(start_time, str):
         if len(start_time) == 10:
             start_time = pd.to_datetime(start_time, format="%Y%m%d%H")
@@ -70,7 +72,7 @@ def parse_start_time(start_time: Union[str, datetime.datetime, pd.Timestamp]):
     return start_time
 
 
-def parse_forecast_time(forecast_time: Union[str, pd.Timedelta]):
+def parse_forecast_time(forecast_time: Union[str, pd.Timedelta]) -> pd.Timedelta:
     if isinstance(forecast_time, str):
         forecast_time = pd.to_timedelta(forecast_time)
     return forecast_time

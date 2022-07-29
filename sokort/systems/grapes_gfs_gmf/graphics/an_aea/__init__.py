@@ -1,5 +1,5 @@
 from sokort.systems.grapes_gfs_gmf._plotter import SystemNclPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class AnAeaPlotter(SystemNclPlotter):

@@ -7,7 +7,7 @@ import pandas as pd
 from sokort.systems.grapes_meso_3km._plotter import SystemPlotter
 from sokort.config import Config
 from sokort._logging import get_logger
-from sokort._util import (
+from sokort.util import (
     get_work_dir,
     get_data_path
 )

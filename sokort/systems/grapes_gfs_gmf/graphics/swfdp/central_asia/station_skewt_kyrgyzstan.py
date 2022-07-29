@@ -1,7 +1,7 @@
 import shutil
 
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp import SwfdpPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class CentralAsiaStationSkewtPlotter(SwfdpPlotter):

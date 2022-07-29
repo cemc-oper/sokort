@@ -1,5 +1,5 @@
 from sokort.systems.grapes_gfs_gmf.graphics.swfdp.south_east_asia import SwfdpSeaPlotter
-from sokort._util import get_forecast_hour
+from sokort.util import get_forecast_hour
 
 
 class SouthEastAsiaTemp700Plotter(SwfdpSeaPlotter):

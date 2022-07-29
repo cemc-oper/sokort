@@ -8,7 +8,7 @@ from sokort.systems import (
     grapes_gfs_gmf,
 )
 from sokort._presenter import JupyterWidgetsPresenter
-from sokort._util import fix_system_name
+from sokort.util import fix_system_name
 
 system_mapper = {
     "grapes_gfs_gmf": {
