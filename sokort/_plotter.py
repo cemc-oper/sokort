@@ -137,12 +137,14 @@ class BasePlotter(ABC):
             start_new_session=True,
             env=envs,
             stdout=process_stdout,
-            stderr=process_stderr
+            stderr=process_stderr,
+            encoding='utf-8',
         )
 
-        stdout, stderr = pipe.communicate()
+        # stdout, stderr = pipe.communicate()
         pipe.wait()
-        pipe.terminate()
+        # pipe.terminate()
+
         if self.verbose >= 1:
             logger.debug(f"run process done: {self.run_script_name}")
 
