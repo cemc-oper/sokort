@@ -17,7 +17,6 @@
 #   ncl_script_name: ncl script file
 #
 set -x
-set +x
 set -e
 
 #---------------

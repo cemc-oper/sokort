@@ -17,7 +17,6 @@
 #   load_env_script_name:
 #
 set -x
-set +x
 set -e
 
 #---------------
