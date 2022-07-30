@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from typing import List, Union, Optional
 from pathlib import Path
@@ -5,6 +6,28 @@ from pathlib import Path
 import yaml
 import pandas as pd
 from jinja2 import Template
+
+from sokort._logging import get_logger
+
+
+logger = get_logger("cmadaas")
+
+
+def link_data_files(
+        target_dir: Union[Path, str],
+        system: str,
+        start_time: Union[datetime, pd.Timestamp],
+        forecast_time: Optional[pd.Timedelta] = None
+):
+    file_dir = Path(get_file_directory(system, start_time, forecast_time))
+    file_name_glob = get_file_name(system, start_time, "*")
+
+    for f in file_dir.glob(file_name_glob):
+        file_name = f.name
+        link_file_names = generate_filenames(f)
+        for link_file_name in link_file_names:
+            logger.info(f"link: {file_name} -> {link_file_name}")
+            os.symlink(f, Path(target_dir, link_file_name))
 
 
 production_mapper = {
