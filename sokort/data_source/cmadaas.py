@@ -8,6 +8,7 @@ import pandas as pd
 from jinja2 import Template
 
 from sokort._logging import get_logger
+from sokort.util import get_forecast_hour
 
 
 logger = get_logger("cmadaas")
@@ -185,10 +186,6 @@ def generate_filenames(file_path: Path) -> List[str]:
     return file_names
 
 
-def get_hour(forecast_time: pd.Timedelta) -> int:
-    return int(forecast_time.seconds/3600) + forecast_time.days * 24
-
-
 class QueryVars:
     def __init__(self):
         self.storage_base = None
@@ -208,6 +205,6 @@ class TimeVars:
         self.Minute = start_time.strftime("%M")
 
         if isinstance(forecast_time, pd.Timedelta):
-            self.Forecast = f"{get_hour(forecast_time):03}"
+            self.Forecast = f"{get_forecast_hour(forecast_time):03}"
         else:
             self.Forecast = forecast_time
