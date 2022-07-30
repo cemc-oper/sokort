@@ -19,6 +19,9 @@
 set -x
 set -e
 
+date
+echo "run_ncl.sh start..."
+
 #---------------
 # SECTION: activate anaconda environment for NCL.
 #----------------
@@ -60,3 +63,6 @@ ncl ./${ncl_script_name}
 
 # convert image
 #./ps2gif_NoRotation_NoPlot.scr
+
+date
+echo "run_ncl.sh end"
