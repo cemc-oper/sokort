@@ -12,6 +12,26 @@ here = path.abspath(path.dirname(__file__))
 with codecs.open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+
+requires_cmadaas = {
+    "jinja2"
+}
+
+requires_data = {
+    "reki"
+}
+
+requires_util = {
+    "loguru",
+}
+
+requires_all = {
+    **requires_cmadaas,
+    **requires_data,
+    **requires_util,
+}
+
+
 setup(
     name='sokort',
 
@@ -57,12 +77,7 @@ setup(
     ],
 
     extras_require={
-        "all": {
-            "loguru",
-            "reki",
-        },
-        # "jupyter": {
-        #     "ipywidgets",
-        # }
+        "all": requires_all,
+        "cmadaas": requires_cmadaas
     }
 )
