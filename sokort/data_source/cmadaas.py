@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import List, Union, Optional
+from typing import List, Union, Optional, Dict
 from pathlib import Path
 
 import yaml
@@ -30,37 +30,10 @@ def link_data_files(
             os.symlink(f, Path(target_dir, link_file_name))
 
 
-production_mapper = {
-    "GRAPES-GFS-GLB": {
-        "filename_template": "gmf.gra.{start_time_string}{forecast_hour_string}.grb2",
-        "stream": "oper",
-    },
-    "GRAPES-3KM-ORIG": {
-        "filename_template": [
-            "rmf.hgra.{start_time_string}{forecast_hour_string}.grb2",
-            "rmf.gra.{start_time_string}{forecast_hour_string}.grb2",
-        ],
-        "stream": "oper",
-    },
-    "GRAPES-TYM-ACWP": {
-        "filename_template": "rmf.gra.{start_time_string}{forecast_hour_string}.grb2",
-        "stream": "oper",
-    },
-    "GRAPES-GEPS-GLB": {
-        "filename_template": "gef.gra.{number_string}.{start_time_string}{forecast_hour_string}.grb2",
-        "stream": "ens",
-    },
-    "GRAPES-REPS-CN": {
-        "filename_template": "mef.gra.{number_string}.{start_time_string}{forecast_hour_string}.grb2",
-        "stream": "ens",
-    },
-}
-
-
 class Config:
     def __init__(self):
-        self.systems = dict()
-        self.labels = dict()
+        self.systems: Dict[str, Dict] = dict()
+        self.labels: Dict[str, str] = dict()
 
     @classmethod
     def load_config(cls, config_file=None) -> "Config":
@@ -75,9 +48,9 @@ class Config:
         return c
 
 
-def load_config() -> Config:
+def load_config(config_file: Optional[Union[Path, str]] = None) -> Config:
     global cmadaas_config
-    cmadaas_config = Config.load_config()
+    cmadaas_config = Config.load_config(config_file)
     return cmadaas_config
 
 
@@ -164,7 +137,7 @@ def generate_filenames(file_path: Path) -> List[str]:
     3. CMA-TYM
 
         >>> generate_filenames(Path("Z_NAFP_C_BABJ_20220701180000_P_NWPC-GRAPES-TYM-ACWP-02400.grib2"))
-        ['rmf.gra.2022070118024.grb2']
+        ['rmf.tcgra.2022070118024.grb2']
 
     4. CMA-GEPS
 
@@ -192,16 +165,16 @@ def generate_filenames(file_path: Path) -> List[str]:
     else:
         raise RuntimeError(f"file name is not supported: {file_name_stem}")
 
-    if production_string not in production_mapper:
+    config: Config = get_config()
+
+    if production_string not in config.labels:
         raise RuntimeError(f"production is not supported: {production_string}")
 
-    file_template = production_mapper[production_string]["filename_template"]
-
-    if isinstance(file_template, str):
-        file_template = [file_template]
+    system = config.labels[production_string]
+    file_templates = config.systems[system]["prepare"]["link"]["file_names"]
 
     file_names = []
-    for t in file_template:
+    for t in file_templates:
         file_name = t.format(
             start_time_string=start_time_string,
             forecast_hour_string=forecast_hour_string,
