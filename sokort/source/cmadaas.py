@@ -1,5 +1,10 @@
-from typing import List
+from datetime import datetime
+from typing import List, Union, Optional
 from pathlib import Path
+
+import yaml
+import pandas as pd
+from jinja2 import Template
 
 
 production_mapper = {
@@ -27,6 +32,76 @@ production_mapper = {
         "stream": "ens",
     },
 }
+
+
+class Config:
+    def __init__(self):
+        self.systems = dict()
+        self.labels = dict()
+
+    @classmethod
+    def load_config(cls, config_file=None) -> "Config":
+        if config_file is None:
+            config_file = Path(Path(__file__).parent, "cmadaas.yaml")
+        with open(config_file) as f:
+            config_dict = yaml.safe_load(f)
+        c = Config()
+        for system_name, system_config in config_dict.items():
+            c.systems[system_name] = system_config
+            c.labels[system_config["production_label"]] = system_name
+        return c
+
+
+def load_config() -> Config:
+    global cmadaas_config
+    cmadaas_config = Config.load_config()
+    return cmadaas_config
+
+
+cmadaas_config: Config = load_config()
+
+
+def get_config() -> Config:
+    if cmadaas_config is None:
+        raise ValueError("CMADaaS config must be set.")
+    else:
+        return cmadaas_config
+
+
+def get_file_directory(
+        system: str,
+        start_time: Union[datetime, pd.Timestamp],
+        forecast_time: Optional[pd.Timedelta],
+) -> str:
+    config = get_config()
+    system_config = config.systems[system]
+    template_string = system_config["location"]
+
+    time_vars = TimeVars(start_time=start_time, forecast_time=forecast_time)
+
+    template = Template(template_string)
+    location = template.render(time_vars=time_vars)
+    return location
+
+
+def get_file_name(
+        system: str,
+        start_time: Union[datetime, pd.Timestamp],
+        forecast_time: Union[pd.Timedelta, str],
+        **kwargs
+) -> str:
+    config = get_config()
+    system_config = config.systems[system]
+    template_string = system_config["file_name"]
+
+    time_vars = TimeVars(start_time=start_time, forecast_time=forecast_time)
+    query_vars = QueryVars()
+    for key in kwargs:
+        setattr(query_vars, key, kwargs[key])
+
+    template = Template(template_string)
+    file_name = template.render(time_vars=time_vars, query_vars=query_vars)
+    return file_name
 
 
 def generate_filenames(file_path: Path) -> List[str]:
@@ -112,3 +187,31 @@ def generate_filenames(file_path: Path) -> List[str]:
         file_names.append(file_name)
 
     return file_names
+
+
+def get_hour(forecast_time: pd.Timedelta) -> int:
+    return int(forecast_time.seconds/3600) + forecast_time.days * 24
+
+
+class QueryVars:
+    def __init__(self):
+        self.storage_base = None
+        self.number = None
+
+
+class TimeVars:
+    def __init__(
+            self,
+            start_time: Union[datetime, pd.Timestamp],
+            forecast_time: Union[pd.Timedelta, str] = pd.Timedelta(hours=0)
+    ):
+        self.Year = start_time.strftime("%Y")
+        self.Month = start_time.strftime("%m")
+        self.Day = start_time.strftime("%d")
+        self.Hour = start_time.strftime("%H")
+        self.Minute = start_time.strftime("%M")
+
+        if isinstance(forecast_time, pd.Timedelta):
+            self.Forecast = f"{get_hour(forecast_time):03}"
+        else:
+            self.Forecast = forecast_time
