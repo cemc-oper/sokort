@@ -9,7 +9,7 @@ from .config import Config
 
 
 def get_forecast_hour(forecast_time: pd) -> int:
-    return int(forecast_time.total_seconds()) // 3600 + forecast_time.days * 24
+    return int(forecast_time.total_seconds()) // 3600
 
 
 def get_data_path(
