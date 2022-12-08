@@ -23,4 +23,4 @@ class Plotter(AnAeaPlotter):
             raise ValueError(f"forecast time must greater than 0h.")
 
     def _check_forecast_time(self) -> bool:
-        return not int(self.forecast_hour) == 0
+        return int(self.forecast_hour) > 0
