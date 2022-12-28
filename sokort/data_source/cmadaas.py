@@ -20,6 +20,19 @@ def link_data_files(
         start_time: Union[datetime, pd.Timestamp],
         forecast_time: Optional[pd.Timedelta] = None
 ):
+    """
+    Link CMADaaS data files to target directory, and rename to CEMC file names.
+
+    Parameters
+    ----------
+    target_dir
+    system
+        system name
+    start_time
+        start time of some forecast
+    forecast_time
+        forecast time, "*" will use if forecast time is not set.
+    """
     file_dir = Path(get_file_directory(system, start_time, forecast_time))
     file_name_glob = get_file_name(system, start_time, "*")
 

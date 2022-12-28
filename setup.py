@@ -13,23 +13,23 @@ with codecs.open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-requires_cmadaas = {
+requires_cmadaas = [
     "jinja2"
-}
+]
 
-requires_data = {
+requires_data = [
     "reki"
-}
+]
 
-requires_util = {
+requires_util = [
     "loguru",
-}
+]
 
-requires_all = {
-    **requires_cmadaas,
-    **requires_data,
-    **requires_util,
-}
+requires_all = [
+    *requires_cmadaas,
+    *requires_data,
+    *requires_util,
+]
 
 
 setup(
@@ -70,9 +70,9 @@ setup(
     install_requires=[
         'click',
         'pyyaml',
-        "IPython",
-        "pillow",
         "pandas",
+        "pillow",
+        "IPython",
         "ipywidgets"
     ],
 
