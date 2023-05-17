@@ -41,7 +41,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
 
-    url='https://github.com/nwpc-oper/sokort',
+    url='https://github.com/cemc-oper/sokort',
     author='perillaroc',
     author_email='perillaroc@gmail.com',
 

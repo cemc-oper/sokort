@@ -78,7 +78,7 @@ python -m sokort show \
 
 ## LICENSE
 
-Copyright 2020-2022, perillaroc at cemc-oper。
+Copyright 2020-2023, perillaroc at cemc-oper。
 
 `sokort` 以 [Apache License, Version 2.0](./LICENSE) 协议授权。
 
