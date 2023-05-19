@@ -25,8 +25,7 @@ dependencies = [
     "pandas",
 #    'importlib-metadata; python_version<"3.8"',
 ]
-
-#dynamic = ["version"]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 all = [
@@ -49,3 +48,5 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["sokort"]
+
+[tool.versioneer]
