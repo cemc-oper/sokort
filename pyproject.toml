@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sokort"
+version = "2023.05.0"
+authors = [
+    {name = "perillaroc", email = "perillaroc@gmail.com"},
+]
+description = "CEMC Graphics Script Tool"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["cemc", "graph"]
+license = {text = "Apache License 2.0"}
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'License :: OSI Approved :: Apache Software License',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+]
+dependencies = [
+    'click',
+    'pyyaml',
+    "pandas",
+#    'importlib-metadata; python_version<"3.8"',
+]
+
+#dynamic = ["version"]
+
+[project.optional-dependencies]
+all = [
+    "jinja2",
+    "reki",
+    "loguru",
+    "pillow",
+    "IPython",
+    "ipywidgets",
+]
+cmadaas = [
+    "jinja2"
+]
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.setuptools.package-data]
+"*" = ["*.ncl", "*.sh"]
+
+[tool.setuptools.packages.find]
+where = ["sokort"]
