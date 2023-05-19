@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sokort"
-version = "2023.05.0"
 authors = [
     {name = "perillaroc", email = "perillaroc@gmail.com"},
 ]
