@@ -232,11 +232,15 @@ class NclPlotter(BasePlotter):
             process_stdout = None
             process_stderr = None
 
+        envs = self._generate_environ()
+        envs["load_env_script_name"] = self.load_env_script_path.name
+
         pipe = subprocess.Popen(
-            ["ksh",  _get_convert_image_script(), file_path],
-            start_new_session=True,
+            ["bash", _get_convert_image_script(), file_path],
+            # start_new_session=True,
             stdout=process_stdout,
-            stderr=process_stderr
+            stderr=process_stderr,
+            env=envs
         )
 
         stdout, stderr = pipe.communicate()
