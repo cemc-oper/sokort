@@ -53,7 +53,7 @@ def get_config() -> VersioneerConfig:
     cfg.style = "pep440"
     cfg.tag_prefix = "v"
     cfg.parentdir_prefix = "sokort-"
-    cfg.versionfile_source = "sokort/_version.py"
+    cfg.versionfile_source = "src/sokort/_version.py"
     cfg.verbose = False
     return cfg
 

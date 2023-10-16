@@ -1,1 +1,1 @@
-recursive-include sokort *.sh
+recursive-include src/sokort *.sh *.yaml
