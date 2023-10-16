@@ -6,7 +6,7 @@
 #     ./convert_image.sh some.ps
 #
 # Parameters should be passed as environment variables.
-#   load_env_script_name:
+#   load_env_script_name: env script file name using in plot section.
 #
 # Input: some.ps
 # Output: some.png
