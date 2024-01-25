@@ -4,7 +4,7 @@ from sokort.util import get_forecast_hour
 
 class CentralAsiaWindBarb300Plotter(SwfdpPlotter):
     """
-    Central Asia, wind, streamlines, speed/direction
+    Central Asia, wind, speed/direction, 300hPa
 
     图片样例请访问 NMC 官网：
         http://eng.nmc.cn/ca/publish/up/wind/speed_driection/300mb.html

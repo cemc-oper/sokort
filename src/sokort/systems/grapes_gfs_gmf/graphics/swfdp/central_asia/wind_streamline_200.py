@@ -4,7 +4,7 @@ from sokort.util import get_forecast_hour
 
 class CentralAsiaWindStreamline200Plotter(SwfdpPlotter):
     """
-    Central Asia, wind, streamlines, streamlines
+    Central Asia, wind, streamlines, 200hPa
 
     图片样例请访问 NMC 官网：
         http://eng.nmc.cn/ca/publish/up/wind/steamlines/200mb3.html

@@ -4,7 +4,7 @@ from sokort.util import get_forecast_hour
 
 class CentralAsiaRh2mPlotter(SwfdpPlotter):
     """
-    Central Asia, Relative Humidity, 2m hPa
+    Central Asia, Relative Humidity, 2m
 
     图片样例请访问 NMC 官网：
         http://eng.nmc.cn/ca/publish/up/humidity/2mmb.html
