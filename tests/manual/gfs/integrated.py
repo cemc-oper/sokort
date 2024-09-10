@@ -1,5 +1,5 @@
 import datetime
-from sokort.systems.grapes_gfs_gmf import show_plot
+from sokort.systems.cma_gfs import show_plot
 
 
 def run():

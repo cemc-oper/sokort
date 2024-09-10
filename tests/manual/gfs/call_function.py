@@ -6,7 +6,7 @@ import datetime
 
 import click
 
-from sokort.systems.grapes_gfs_gmf.graphics.an_aea.pwat_sfc_an_aea import Plotter
+from sokort.systems.cma_gfs.graphics.an_aea.pwat_sfc_an_aea import Plotter
 
 
 @click.command()

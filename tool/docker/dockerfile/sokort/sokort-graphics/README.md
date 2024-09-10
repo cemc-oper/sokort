@@ -31,7 +31,7 @@ docker run --rm \
   -v /home/wangdp/project/graphics/operation/system:/srv/system \
   -v /sstorage1:/sstorage1 nwpc-oper/sokort-graphics \
   draw \
-  --system=grapes_gfs_gmf \
+  --system=cma_gfs \
   --plot-type=pwat_sfc_an_aea \
   --start-time=2021071100 \
   --forecast-time=24h

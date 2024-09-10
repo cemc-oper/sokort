@@ -1,5 +1,5 @@
 import datetime
-from sokort.systems.grapes_meso_3km import show_plot
+from sokort.systems.cma_meso import show_plot
 
 
 def run():

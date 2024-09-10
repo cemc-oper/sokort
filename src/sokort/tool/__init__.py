@@ -4,19 +4,19 @@ import ipywidgets as widgets
 from IPython.display import display
 
 from sokort.systems import (
-    grapes_meso_3km,
-    grapes_gfs_gmf,
+    cma_meso,
+    cma_gfs,
 )
 from sokort._presenter import JupyterWidgetsPresenter
 from sokort.util import fix_system_name
 
 system_mapper = {
-    "grapes_gfs_gmf": {
-        "module": grapes_gfs_gmf,
+    "cma_gfs": {
+        "module": cma_gfs,
         "start_hours": ['00', '06', '12', "18"],
     },
-    "grapes_meso_3km": {
-        "module": grapes_meso_3km,
+    "cma_meso": {
+        "module": cma_meso,
         "start_hours": ['00', '03', '06', '09', '12', '15', "18", '21'],
     }
 }

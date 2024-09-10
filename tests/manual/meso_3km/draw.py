@@ -1,6 +1,6 @@
 import datetime
 import pandas as pd
-from sokort.systems.grapes_meso_3km import draw_plot
+from sokort.systems.cma_meso import draw_plot
 
 
 def run():

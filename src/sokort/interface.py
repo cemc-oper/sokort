@@ -15,15 +15,15 @@ logger = get_logger()
 
 
 def get_system_module(system):
-    if system == "grapes_gfs_gmf":
-        from sokort.systems import grapes_gfs_gmf
-        return grapes_gfs_gmf
-    elif system == "grapes_meso_3km":
-        from sokort.systems import grapes_meso_3km
-        return grapes_meso_3km
-    elif system == "grapes_tym":
-        from sokort.systems import grapes_tym
-        return grapes_tym
+    if system == "cma_gfs":
+        from sokort.systems import cma_gfs
+        return cma_gfs
+    elif system == "cma_meso":
+        from sokort.systems import cma_meso
+        return cma_meso
+    elif system == "cma_tym":
+        from sokort.systems import cma_tym
+        return cma_tym
     else:
         raise ValueError(f"system is not supported: {system}")
 
