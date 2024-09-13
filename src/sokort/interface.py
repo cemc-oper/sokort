@@ -14,11 +14,11 @@ from ._presenter import Presenter, IPythonPresenter
 logger = get_logger()
 
 
-def get_system_module(system):
-    if system == "cma_gfs":
+def get_system_module(system: str):
+    if system in ("cma_gfs", "cma_gfs_gmf"):
         from sokort.systems import cma_gfs
         return cma_gfs
-    elif system == "cma_meso":
+    elif system in ("cma_meso", "cma_meso_3km", "cma_meso_1km"):
         from sokort.systems import cma_meso
         return cma_meso
     elif system == "cma_tym":
@@ -79,6 +79,7 @@ def draw_plot(
     forecast_time = parse_forecast_time(forecast_time)
 
     plotter = plotter_class.create_plotter(
+        system_name=system,
         graphics_config=get_config(),
         start_time=start_time,
         forecast_time=forecast_time,

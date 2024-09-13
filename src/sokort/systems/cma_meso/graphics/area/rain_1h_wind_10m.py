@@ -9,7 +9,7 @@ class Plotter(SystemPlotter):
         http://www.nmc.cn/publish/area/hs/1h10mw.html
     """
     plot_types = [
-        "area_prep_1h_10mw"
+        "area.rain_1h_wind_10m"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):

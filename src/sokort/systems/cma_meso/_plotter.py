@@ -23,14 +23,14 @@ class SystemPlotter(NclPlotter):
     System plotter for GRAPES MESO 3KM
     """
     plot_types = None
-    system_name = "cma_meso"
 
     def __init__(
             self,
             task: Dict,
             work_dir: str,
             config: Dict,
-            verbose: Union[bool, int] = False
+            verbose: Union[bool, int] = False,
+            system_name: str = "cma_meso",
     ):
         """
         Parameters
@@ -53,6 +53,7 @@ class SystemPlotter(NclPlotter):
             }
         verbose:
             print setting
+        system_name
         """
         NclPlotter.__init__(
             self,
@@ -61,10 +62,12 @@ class SystemPlotter(NclPlotter):
             config=config,
             verbose=verbose,
         )
+        self.system_name = system_name
 
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta,
@@ -76,6 +79,7 @@ class SystemPlotter(NclPlotter):
 
         Parameters
         ----------
+        system_name
         graphics_config: Config
             graphics config
         start_time: datetime.datetime or pd.Timestamp
@@ -89,10 +93,10 @@ class SystemPlotter(NclPlotter):
         -------
         SystemPlotter
         """
-        system_config = graphics_config["systems"][cls.system_name]
+        system_config = graphics_config["systems"][system_name]
 
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -128,7 +132,8 @@ class SystemPlotter(NclPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
-            verbose=verbose
+            verbose=verbose,
+            system_name=system_name,
         )
 
     def _prepare_environment(self):

@@ -22,13 +22,13 @@ class SystemNclPlotter(NclPlotter):
     System plotter for GRAPES GFS GMF.
     """
     plot_types = None
-    system_name = "cma_gfs"
 
     def __init__(
             self,
             task: Dict,
             work_dir: Union[str, Path],
             config: Dict,
+            system_name: str = "cma_gfs",
             verbose: Union[bool, int] = False
     ):
         """
@@ -59,6 +59,7 @@ class SystemNclPlotter(NclPlotter):
             config=config,
             verbose=verbose
         )
+        self.system_name = system_name
 
         # magic options
         self.forecast_time_interval = 12
@@ -75,6 +76,7 @@ class SystemNclPlotter(NclPlotter):
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta = None,
@@ -86,6 +88,7 @@ class SystemNclPlotter(NclPlotter):
 
         Parameters
         ----------
+        system_name: str
         graphics_config
             graphics config
         start_time
@@ -102,10 +105,10 @@ class SystemNclPlotter(NclPlotter):
         -------
         SystemNclPlotter
         """
-        system_config = graphics_config["systems"][cls.system_name]
+        system_config = graphics_config["systems"][system_name]
 
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -147,6 +150,7 @@ class SystemNclPlotter(NclPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            system_name=system_name,
             verbose=verbose
         )
 

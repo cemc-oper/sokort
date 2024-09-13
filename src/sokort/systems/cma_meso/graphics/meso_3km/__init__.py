@@ -26,19 +26,22 @@ class Meso3kmPlotter(SystemPlotter):
             task: dict,
             work_dir: str,
             config: dict,
-            verbose: Union[bool, int] = False
+            verbose: Union[bool, int] = False,
+            **kwargs
     ):
         SystemPlotter.__init__(
             self,
             task=task,
             work_dir=work_dir,
             config=config,
-            verbose=verbose
+            verbose=verbose,
+            **kwargs,
         )
 
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: datetime.datetime or pd.Timestamp,
             forecast_time: pd.Timedelta,
@@ -50,6 +53,7 @@ class Meso3kmPlotter(SystemPlotter):
 
         Parameters
         ----------
+        system_name : str
         graphics_config: Config
             graphics config
         start_time: datetime.datetime or pd.Timestamp
@@ -60,11 +64,11 @@ class Meso3kmPlotter(SystemPlotter):
         -------
         SystemPlotter
         """
-        system_config = graphics_config["systems"]["cma_meso"]
+        system_config = graphics_config["systems"][system_name]
         component_config = system_config["components"]["meso_3km"]
 
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -96,5 +100,6 @@ class Meso3kmPlotter(SystemPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            system_name=system_name,
             verbose=verbose
         )

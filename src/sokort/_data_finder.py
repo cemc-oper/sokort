@@ -6,7 +6,7 @@ def find_local_file(
         **kwargs
 ) -> Path or None:
     """
-    Find CEMC Operation Systems data using ``reki`` package's ``find_local_file`` function.
+    Find CEMC Operating Systems data using ``reki`` package's ``find_local_file`` function.
 
     Parameters
     ----------

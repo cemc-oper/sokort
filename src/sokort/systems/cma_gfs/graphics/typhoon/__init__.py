@@ -22,13 +22,14 @@ class TyphoonPlotter(SystemNclPlotter):
     """
     Plotter for component typhoon.
     """
-    def __init__(self, task: Dict, work_dir: str, config: Dict, **kwargs):
-        SystemNclPlotter.__init__(self, task, work_dir, config, **kwargs)
+    def __init__(self, task: Dict, work_dir: str, config: Dict, system_name: str = "cma_gfs", **kwargs):
+        SystemNclPlotter.__init__(self, task, work_dir, config, system_name=system_name, **kwargs)
         self.typhoon_area = task["typhoon_area"]
 
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta = None,
@@ -41,6 +42,7 @@ class TyphoonPlotter(SystemNclPlotter):
 
         Parameters
         ----------
+        system_name
         graphics_config: dict
             graphics config
         start_time: datetime.datetime or pd.Timestamp
@@ -56,7 +58,7 @@ class TyphoonPlotter(SystemNclPlotter):
         SystemNclPlotter
         """
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -94,19 +96,20 @@ class TyphoonPlotter(SystemNclPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
-            verbose=verbose
+            system_name=system_name,
+            verbose=verbose,
         )
 
 
 class TyphoonPythonPlotter(PythonPlotter):
     plot_types = None
-    system_name = "cma_gfs"
 
     def __init__(
             self,
             task: Dict,
             work_dir: Union[str, Path],
             config: Dict,
+            system_name: str = "cma_gfs",
             verbose: Union[bool, int] = False,
             **kwargs
     ):
@@ -135,6 +138,8 @@ class TyphoonPythonPlotter(PythonPlotter):
             verbose=verbose,
             **kwargs
         )
+        self.system_name = system_name
+
         self.run_script_name = "run_python.sh"
         self.python_script_name = None
 
@@ -145,6 +150,7 @@ class TyphoonPythonPlotter(PythonPlotter):
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: Union[datetime.datetime, pd.Timestamp],
             forecast_time: pd.Timedelta = None,
@@ -157,6 +163,7 @@ class TyphoonPythonPlotter(PythonPlotter):
 
         Parameters
         ----------
+        system_name
         graphics_config
             graphics config
         start_time
@@ -173,10 +180,10 @@ class TyphoonPythonPlotter(PythonPlotter):
         -------
         SystemNclPlotter
         """
-        system_config = graphics_config["systems"][cls.system_name]
+        system_config = graphics_config["systems"][system_name]
 
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -212,6 +219,7 @@ class TyphoonPythonPlotter(PythonPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            system_name=system_name,
             verbose=verbose,
             **kwargs
         )

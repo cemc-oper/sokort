@@ -21,12 +21,13 @@ class WmcPlotter(SystemNclPlotter):
     """
     Plotter for component WMC-BJ.
     """
-    def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
-        SystemNclPlotter.__init__(self, task, work_dir, config, **kwargs)
+    def __init__(self, task: dict, work_dir: str, config: dict, system_name: str = "cma_gfs", **kwargs):
+        SystemNclPlotter.__init__(self, task, work_dir, config, system_name=system_name, **kwargs)
 
     @classmethod
     def create_plotter(
             cls,
+            system_name: str,
             graphics_config: Config,
             start_time: datetime.datetime or pd.Timestamp,
             forecast_time: pd.Timedelta,
@@ -38,6 +39,7 @@ class WmcPlotter(SystemNclPlotter):
 
         Parameters
         ----------
+        system_name : str
         graphics_config: dict
             graphics config
         start_time: datetime.datetime or pd.Timestamp
@@ -53,7 +55,7 @@ class WmcPlotter(SystemNclPlotter):
         SystemNclPlotter
         """
         data_path = get_data_path(
-            system_name=cls.system_name,
+            system_name=system_name,
             start_time=start_time,
             forecast_time=forecast_time,
             data_directory=data_directory
@@ -90,6 +92,7 @@ class WmcPlotter(SystemNclPlotter):
             task=task,
             work_dir=work_dir,
             config=config,
+            system_name=system_name,
             verbose=verbose
         )
 
