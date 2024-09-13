@@ -1,0 +1,16 @@
+system:
+  ncl_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/"
+  script_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/"
+
+components:
+  gams:
+    ncl_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/GAMS-A/"
+  typhoon:
+    ncl_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/typhoon/"
+    python_script_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/typhoon/"
+  wmc:
+    ncl_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_graph/base/GLOBALCHARTOS/graph/script/"
+    ncl_lib: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_graph/base/GLOBALCHARTOS/graph/script/ncllib/"
+  swfdp:
+    ncl_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_graph/base/GLOBALCHARTOS/graph/script_swfdp/"
+    ncl_lib: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_graph/base/GLOBALCHARTOS/graph/script_swfdp/ncllib/"

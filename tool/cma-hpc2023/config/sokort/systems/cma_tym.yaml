@@ -1,0 +1,5 @@
+system:
+  script_dir: "/g1/u/nwp_pd/NWP_GRAPES_MESO_9KM_GRAPH/graph/script"
+
+ncl:
+  ncl_lib: "/g1/u/nwp_pd/NWP_GRAPES_MESO_9KM_GRAPH/graph/script/nclib"

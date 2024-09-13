@@ -1,0 +1,13 @@
+ncl:
+  ncl_lib: "/g1/u/op_post/OPER/UTIL/GRAPH/ncllib/"
+  geodiag_root: "/g1/u/op_post/OPER/UTIL/GEODIAG/"
+  load_env_script: "./load_env.sh"
+
+python:
+  load_env_script: "./load_python_env.sh"
+
+general:
+  run_base_dir: "${JOBDIR}/graphics"
+
+config:
+  systems_dir: "./systems"

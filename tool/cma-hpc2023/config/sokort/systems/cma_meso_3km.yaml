@@ -1,0 +1,10 @@
+system:
+  script_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_meso_3km_post/base/CMA_MESO_3KM_POST/graph/script"
+
+ncl:
+  ncl_lib: "/g1/u/op_post/OPER/ECFLOW/system/cma_meso_3km_post/base/CMA_MESO_3KM_POST/graph/script/ncllib"
+
+components:
+  meso_3km:
+    system:
+      script_dir: "/g1/u/op_post/OPER/ECFLOW/system/cma_meso_3km_post/base/CMA_MESO_3KM_POST/graph/script"
