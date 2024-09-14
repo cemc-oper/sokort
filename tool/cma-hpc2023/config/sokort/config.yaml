@@ -1,5 +1,5 @@
 ncl:
-  ncl_lib: "/g1/u/op_post/OPER/UTIL/GRAPH/ncllib/"
+  ncl_lib: "/g1/u/op_post/OPER/ECFLOW/system/cma_gfs_gmf_post/base/NWP_CMA_GFS_GMF_POST/graph/script/ncllib"
   geodiag_root: "/g1/u/op_post/OPER/UTIL/GEODIAG/"
   load_env_script: "./load_env.sh"
 
