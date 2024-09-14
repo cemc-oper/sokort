@@ -6,7 +6,7 @@ class Plotter(TyphoonPythonPlotter):
     卫星云图
     """
     plot_types = [
-        "typhoon.cn_tbb"
+        "typhoon.cn.tbb"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):

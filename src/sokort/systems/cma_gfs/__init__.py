@@ -29,7 +29,7 @@ def draw_plot(
         plot_type: str,
         start_time: Union[str, datetime.datetime, pd.Timestamp],
         forecast_time: Union[str, pd.Timedelta],
-        system: str=SYSTEM_NAME,
+        system_name: str = SYSTEM_NAME,
         verbose: Union[bool, int] = False
 ):
     """Draw images and save them in work directory.
@@ -44,7 +44,7 @@ def draw_plot(
             - ``datetime.datetime`` or ``pd.Timestamp``
     forecast_time: str or pd.Timedelta
         Forecast time duration, such as 3h.
-    system
+    system_name
     verbose:
         print setting
 
@@ -55,7 +55,7 @@ def draw_plot(
     """
     from sokort.interface import draw_plot as base_draw_plot
     return base_draw_plot(
-        system=system,
+        system=system_name,
         plot_type=plot_type,
         start_time=start_time,
         forecast_time=forecast_time,
