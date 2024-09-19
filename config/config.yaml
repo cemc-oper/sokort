@@ -9,7 +9,7 @@ config:
 # - `python`: Python
 
 ncl:
-  load_env_script: "./load_env.sh"
+  load_env_script: "./load_ncl_env.sh"
   ncl_lib: "/some/path/ncllib/"
   geodiag_root: "/some/path/GEODIAG/"
 
