@@ -8,7 +8,6 @@
 
 - CMA-GFS 全球预报系统 (`cma_gfs`)
 - CMA-MESO 区域预报系统 (`cma_meso`)
-- CMA-TYM 区域台风预报系统 (`cma_tym`)
 
 ## 安装
 
@@ -54,7 +53,7 @@
 ```python
 from sokort import show_plot
 
-show_plot("cma_gfs", "pwat_sfc_an_aea", "2021071100", "24h")
+show_plot("cma_gfs", "cn.pwat", "2021071100", "24h")
 ```
 
 在 Jupyter Notebook 中运行效果如下图所示
@@ -71,14 +70,14 @@ show_plot("cma_gfs", "pwat_sfc_an_aea", "2021071100", "24h")
 ```shell
 python -m sokort show \
     --system=cma_gfs \
-    --plot-type=pwat_sfc_an_aea \
+    --plot-type=cn.pwat \
     --start-time=2021071100 \
     --forecast-time=24h
 ```
 
 ## LICENSE
 
-Copyright 2020-2023, perillaroc at cemc-oper。
+Copyright 2020-2024, developers at cemc-oper。
 
 `sokort` 以 [Apache License, Version 2.0](./LICENSE) 协议授权。
 
