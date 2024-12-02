@@ -9,7 +9,7 @@ class Plotter(AeuaFcPlotter):
         http://nwpc.nmc.cn/list.jhtml?class_id=031302
     """
     plot_types = [
-        "europe_asia.height_500"
+        "europe_asia.height_500_mslp"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):

@@ -9,7 +9,7 @@ class Plotter(AeaAnPlotter):
         http://nwpc.nmc.cn/list.jhtml?class_id=03130322
     """
     plot_types = [
-        "cn_qflx_div_700"
+        "cn.qflx_div_700"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
