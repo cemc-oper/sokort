@@ -22,7 +22,7 @@ class GamsPlotter(SystemNclPlotter):
     Plotter for component GAMS.
     """
     def __init__(self, task: dict, work_dir: str, config: dict, system_name: str = "cma_gfs", **kwargs):
-        SystemNclPlotter.__init__(self, task, work_dir, config, system_name=system, **kwargs)
+        SystemNclPlotter.__init__(self, task, work_dir, config, system_name=system_name, **kwargs)
 
     @classmethod
     def create_plotter(
