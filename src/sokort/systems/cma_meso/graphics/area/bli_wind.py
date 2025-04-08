@@ -9,7 +9,7 @@ class Plotter(SystemPlotter):
         http://nwpc.nmc.cn/list.jhtml?class_id=0302160308
     """
     plot_types = [
-        "area.bpli_wind"
+        "area.bli_wind"
     ]
 
     def __init__(self, task: dict, work_dir: str, config: dict, **kwargs):
