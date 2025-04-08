@@ -11,6 +11,7 @@ components:
   wmc:
     ncl_dir: "/some/path/GLOBALCHARTOS/deterministic/script/"
     ncl_lib: "/some/path/GLOBALCHARTOS/deterministic/script/ncllib/"
+    python_dir: "/some/path/GLOBALCHARTOS/deterministic/python/"
   swfdp:
     ncl_dir: "/some/path/SWFDP/deterministic/script/"
     ncl_lib: "/some/path/SWFDP/deterministic/script/ncllib/"
